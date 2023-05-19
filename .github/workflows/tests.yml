@@ -4,8 +4,8 @@ jobs:
   combine2pyhf:
     runs-on: ubuntu-latest
     name: Run combine and pyhf tests
-  - uses: cvmfs-contrib/github-action-cvmfs@v3
     steps:
+      - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Build
         id: build
         uses: validation/action@v20230519-1
