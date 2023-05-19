@@ -1,0 +1,6 @@
+# tests.yml
+name: 'combine2pyhf'
+description: 'Run combine and pyhf stat tests'
+runs:
+  using: 'docker'
+  image: 'kskovpen/combine2pyhf:latest'
