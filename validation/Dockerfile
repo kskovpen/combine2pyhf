@@ -1,0 +1,24 @@
+FROM ubuntu:latest as base
+FROM base as builder
+
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip dpkg gcc-11
+RUN gcc --version
+
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install pyhf
+
+RUN git clone --single-branch --branch combine2pyhf https://github.com/kskovpen/HiggsAnalysis-CombinedLimit.git 
+HiggsAnalysis/CombinedLimi$
+WORKDIR HiggsAnalysis/CombinedLimit
+
+RUN wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
+RUN dpkg -i cvmfs-release-latest_all.deb
+RUN rm -f cvmfs-release-latest_all.deb
+RUN apt-get update
+RUN apt-get install -y cvmfs
+
+ADD . /run
+
+ENTRYPOINT ["/bin/bash", "/run/install.sh"]
