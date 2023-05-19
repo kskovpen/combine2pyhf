@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  combine2pyhf:
+    runs-on: kskovpen/combine2pyhf:latest
+    name: Run combine and pyhf tests
+    steps:
+      - name: Main step
+        id: main
+        uses: validation/action@v20230519-1
+      
