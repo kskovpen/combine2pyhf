@@ -2,10 +2,11 @@ on: [push]
 
 jobs:
   combine2pyhf:
-    runs-on: kskovpen/combine2pyhf:latest
+    runs-on: ubuntu-latest
     name: Run combine and pyhf tests
+    uses: cvmfs-contrib/github-action-cvmfs@v3
     steps:
-      - name: Main step
-        id: main
+      - name: Build
+        id: build
         uses: validation/action@v20230519-1
       
