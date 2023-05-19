@@ -8,5 +8,5 @@ jobs:
       - uses: cvmfs-contrib/github-action-cvmfs@v3
       - name: Build
         id: build
-        uses: kskovpen/combine2pyhf/validation/action@v20230519-1
+        uses: combine2pyhf/action@v20230519-1
       
