@@ -18,6 +18,6 @@ RUN rm -f cvmfs-release-latest_all.deb
 RUN apt-get update
 RUN apt-get install -y cvmfs
 
-ADD validation /run
+COPY install.sh .
 
-ENTRYPOINT ["/bin/bash", "/run/install.sh"]
+ENTRYPOINT ["/bin/bash", "install.sh"]
