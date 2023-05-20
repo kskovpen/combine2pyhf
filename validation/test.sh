@@ -7,7 +7,6 @@ mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 echo "Ready. Starting combine tests .."
-cp validation/combine.py .
 python3 combine.py
 echo "Done."
 
