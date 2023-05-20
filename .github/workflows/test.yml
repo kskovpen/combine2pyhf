@@ -7,10 +7,11 @@ jobs:
       image: kskovpen/combine2pyhf:latest
       options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
     name: Run combine2pyhf tests
-    inputs:
-      repo_path:
-        description: /validation
-	required: true
     steps:
+      - name: Upload test script
+        uses: actions/upload-artifact@v3
+	with:
+	  name: test
+	  path: validation/test.sh
       - name: Run tests
         run: /.dockerenv | /validation/test.sh
