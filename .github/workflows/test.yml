@@ -1,16 +1,18 @@
-on: push
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   combine2pyhf:
     runs-on: ubuntu-latest
     container: 
-      image: kskovpen/combine2pyhf:latest
+      image: kskovpen/combine2pyhf:latest      
       options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
     name: Run combine2pyhf tests
-    inputs:
-      repo_path:
-        description: /validation
-	required: true
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
       - name: Run tests
-        run: /.dockerenv | /validation/test.sh
+        shell: bash
+        run: /.dockerenv | validation/test.sh
