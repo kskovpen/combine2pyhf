@@ -12,7 +12,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test
-          path: validation/test.sh
+          path: /validation/test.sh
       - name: Run tests
         shell: bash
         run: /.dockerenv | /validation/test.sh
