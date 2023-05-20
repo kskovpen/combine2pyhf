@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: kskovpen/combine2pyhf:latest
-      options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
+      options: -v "$PWD/validation:/validation" --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
     name: Run combine2pyhf tests
     steps:
       - name: Run tests
-        run: /.dockerenv | /run/test.sh
+        run: /.dockerenv | /validation/test.sh
