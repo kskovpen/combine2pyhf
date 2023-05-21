@@ -4,12 +4,12 @@ import os, sys, pyhf, json, glob
 
 ws = os.environ['WS']
 
-fcv = glob.glob(ws+'/validation/cards/pyhf/*.txt')
+fcv = glob.glob(ws+'/validation/cards/pyhf/combine2pyhf/*.json')
 
 for f in fcv:
     with open(f, 'r') as fdv:
         dcv = parseCard(fdv, opts)
-    with open(f.replace('validation/', ''), 'r') as fdo:
+    with open(f.replace('validation/', '').replace('combine2pyhf/', ''), 'r') as fdo:
         dco = parseCard(fdo, opts)
     res = {}
     print(f)
