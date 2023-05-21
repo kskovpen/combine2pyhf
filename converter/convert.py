@@ -14,7 +14,7 @@ for f in fc:
     # combine -> pyhf
     os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+os.path.splitext(f)[0])
     # pyhf -> combine
-    os.system('python3 '+ws+'/convert/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+os.path.splitext(f)[0]' --output '+wd+'/cards/combine/pyhf2combine/'+os.path.splitext(f)[0])
+    os.system('python3 '+ws+'/convert/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+os.path.splitext(f)[0]+' --output '+wd+'/cards/combine/pyhf2combine/'+os.path.splitext(f)[0])
     
 # pyhf cards
 fc = glob.glob(ws+'/cards/pyhf/*.txt')

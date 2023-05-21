@@ -1,5 +1,13 @@
 #!/bin/bash
 
+check() {
+  res=$?
+  if [ $res -ne 0 ]; then
+    echo $1
+    exit 1
+  fi
+}
+
 echo "Setting up environment .."
 
 export CVMFS_HTTP_PROXY=DIRECT
@@ -14,8 +22,11 @@ echo "Done"
 echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
+check "Conversion failed!"
 python3 $WS/converter/validateCombine.py
+check "Validation of combine cards failed!"
 python3 $WS/converter/validatePyhf.py
+check "Validation of pyhf cards failed!"
 
 echo "Done."
 echo "Run combine tests .."
