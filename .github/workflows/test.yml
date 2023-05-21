@@ -19,6 +19,6 @@ jobs:
         run: /.dockerenv | validation/test.sh
       - name: Publish results
         uses: actions/upload-artifact@v3
-	with:
-	  name: code-coverage-report
-	  path: validation/results/code-coverage.html
+        with:
+          name: code-coverage-report
+          path: validation/results/code-coverage.html
