@@ -10,19 +10,23 @@ export WS=$GITHUB_WORKSPACE
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 
-echo "Done. Convert datacards .."
+echo "Done"
+echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
 python3 $WS/converter/validateCombine.py
 python3 $WS/converter/validatePyhf.py
 
-echo "Done. Run combine tests .."
+echo "Done."
+echo "Run combine tests .."
 
 #python3 $WS/validation/combine.py
 
-echo "Done. Run pyhf tests .."
+echo "Done."
+echo "Run pyhf tests .."
 
 #python3 $WS/validation/pyhf.py
 
-echo "Done. Run comparisons .."
+echo "Done."
+echo "Run comparisons .."
 echo "All done."

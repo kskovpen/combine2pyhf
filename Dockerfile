@@ -3,7 +3,7 @@ FROM base as builder
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip dpkg gcc-11 fuse
+RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip dpkg gcc-11 fuse libgfortran5
 RUN gcc --version
 
 RUN python3 -m pip install --upgrade pip
