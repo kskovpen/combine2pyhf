@@ -15,6 +15,7 @@ mount -t cvmfs cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch
 mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 
 export WS=$GITHUB_WORKSPACE
+mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 
