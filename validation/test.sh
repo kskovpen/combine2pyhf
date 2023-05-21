@@ -32,7 +32,7 @@ check "Validation of pyhf cards failed!"
 echo "Done."
 echo "Run combine tests .."
 
-#python3 $WS/validation/combine.py
+python3 $WS/validation/combine.py
 
 echo "Done."
 echo "Run pyhf tests .."
