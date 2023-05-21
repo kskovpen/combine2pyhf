@@ -16,9 +16,9 @@ for d in dc:
     os.system('mkdir '+wd+'/cards/combine/pyhf2combine/'+dname)
     fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
     for f in fc:
-        # combine -> pyhf
+        print('combine -> pyhf: '+f)
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(f)[0])
-        # pyhf -> combine
+        print('pyhf -> combine: '+f)
         os.system('python3 '+ws+'/convert/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(f)[0]+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(f)[0])
     
 # pyhf cards
@@ -29,7 +29,7 @@ for d in dc:
     os.system('mkdir '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
     for f in fc:
-        # pyhf -> combine
+        print('pyhf -> combine: '+f)
         os.system('python3 '+ws+'/convert/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(f)[0])
-        # combine -> pyhf
+        print('combine -> pyhf: '+f)
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(f)[0]+' --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(f)[0])
