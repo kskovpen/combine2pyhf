@@ -25,9 +25,10 @@ if __name__ == '__main__':
     dc = glob.glob(indir+'/*')
     
     for d in dc:
-        outdir = os.environ['WS']+'/validation/results/combine/'+d
+        dname = d.split('/')[-1]
+        outdir = os.environ['WS']+'/validation/results/combine/'+dname
         os.system('mkdir -p '+outdir)
-        fc = glob.glob(indir+'/'+d+'/*.txt')
+        fc = glob.glob(indir+'/'+dname+'/*.txt')
         for f in fc:
             fname = f.replace('.txt', '')
             # do not use analytical minimization (not implemented in pyhf); store the full nll
