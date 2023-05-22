@@ -102,6 +102,7 @@ if __name__ == '__main__':
         for i, s in enumerate(sampord):
             procbin.append(ch['name'])
             procname.append(s)
+            print(s, i)
             procsamp.append(i)
             rate.append(-1)
     dc += 'bin          '+' '.join(procbin)+'\\n'
