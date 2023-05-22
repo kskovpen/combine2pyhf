@@ -89,7 +89,7 @@ if __name__ == '__main__':
     dc += 'kmax 0 number of nuisance parameters\\n'
     dc += '------------------------------------\\n'
     for ch in d['channels']:
-        dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root $PROCESS\\n'
+        dc += 'shapes * '+ch['name']+' '+options.output.split('/')[-1]+'.root $PROCESS\\n'
     dc += '------------------------------------\\n'
     dc += 'bin          '+' '.join(d['channels'])+'\\n'
     dc += 'observation  '+np.repeat('-1 ', nchan)+'\\n'
@@ -97,7 +97,7 @@ if __name__ == '__main__':
     procbin, proc, procsamp, rate = [], [], [], []
     for ch in d['channels']:
         for i, s in enumerate(samp):
-            procbin.append(ch)
+            procbin.append(ch['name'])
             proc.append(s)
             procsamp.append(i)
             rate.append(-1)
