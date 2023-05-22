@@ -76,6 +76,7 @@ if __name__ == '__main__':
              
     f.Write()
     f.Close()
+    print(samples)
     
     # Create datacard
     chans = []
@@ -98,7 +99,6 @@ if __name__ == '__main__':
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\\n'
     dc += '------------------------------------\\n'
     procbin, proc, procsamp, rate = [], [], [], []
-    print(samp)
     for ch in d['channels']:
         for i, s in enumerate(samp):
             procbin.append(ch['name'])
