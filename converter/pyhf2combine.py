@@ -76,7 +76,6 @@ if __name__ == '__main__':
              
     f.Write()
     f.Close()
-    print(samples)
     
     # Create datacard
     chans = []
@@ -88,6 +87,7 @@ if __name__ == '__main__':
         if s == poi: continue
         samp.append(s)
     nsamp = len(samp)
+    print(samp)
     dc = 'imax '+str(nchan)+' number of bins\\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\\n'
     dc += 'kmax 0 number of nuisance parameters\\n'
