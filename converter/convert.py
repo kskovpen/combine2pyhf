@@ -23,7 +23,7 @@ def shapeloc(dname, fname):
 
 for d in dc:
     dname = d.split('/')[-1]
-    print('Convert '+dname)
+    print('Convert '+dname+' (combine)')
     os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf/'+dname)
     os.system('mkdir -p '+wd+'/cards/combine/pyhf2combine/'+dname)
     fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
@@ -39,7 +39,7 @@ for d in dc:
 dc = glob.glob(ws+'/cards/pyhf/*')
 for d in dc:
     dname = d.split('/')[-1]
-    print('Convert '+dname)
+    print('Convert '+dname+' (pyhf)')
     os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
