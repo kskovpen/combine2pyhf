@@ -103,7 +103,7 @@ if __name__ == '__main__':
             procbin.append(ch['name'])
             procname.append(s)
             procsamp.append(str(i))
-            rate.append(-1)
+            rate.append(str(-1))
     dc += 'bin          '+' '.join(procbin)+'\\n'
     dc += 'process      '+' '.join(procname)+'\\n'
     dc += 'process      '+' '.join(procsamp)+'\\n'
