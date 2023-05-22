@@ -2,6 +2,7 @@
 
 import os, sys, math, json
 import numpy as np
+from array import array
 from optparse import OptionParser
 import ROOT
 
