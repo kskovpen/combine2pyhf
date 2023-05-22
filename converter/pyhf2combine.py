@@ -46,12 +46,12 @@ if __name__ == '__main__':
         if bbl: break
                     
     # Create shape file
-    samples = []
+    samp = []
     poi = ''
     for ch in d['channels']:
         f.mkdir(ch['name']);
         for s in ch['samples']:
-            if s not in samples: samples.append(s['name'])
+            if s not in samp: samp.append(s['name'])
             hname = ch['name']+'/'+s['name']
             data = s['data']
             nb = len(data)
@@ -82,12 +82,11 @@ if __name__ == '__main__':
     for ch in d['channels']:
         chans.append(ch['name'])
     nchan = len(chans)
-    samp = [poi]
-    for s in samples:
+    sampord = [poi]
+    for s in samp:
         if s == poi: continue
-        samp.append(s)
-    nsamp = len(samp)
-    print(samp)
+        sampord.append(s)
+    nsamp = len(sampord)
     dc = 'imax '+str(nchan)+' number of bins\\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\\n'
     dc += 'kmax 0 number of nuisance parameters\\n'
@@ -100,7 +99,7 @@ if __name__ == '__main__':
     dc += '------------------------------------\\n'
     procbin, proc, procsamp, rate = [], [], [], []
     for ch in d['channels']:
-        for i, s in enumerate(samp):
+        for i, s in enumerate(sampord):
             procbin.append(ch['name'])
             proc.append(s)
             procsamp.append(i)
