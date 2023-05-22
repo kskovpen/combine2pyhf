@@ -30,10 +30,12 @@ for d in dc:
     for f in fc:        
         fname = f.split('/')[-1]
         shapeloc(dname, f)
+        print('Print out datacard')
+        os.system('cat '+f)
         print('combine -> pyhf: '+fname)
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         print('pyhf -> combine: '+fname)
-        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0]+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
     
 # pyhf cards
 dc = glob.glob(ws+'/cards/pyhf/*.json')
@@ -48,4 +50,4 @@ for d in dc:
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         print('combine -> pyhf: '+fname)
-        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+' --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+fname+' --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
