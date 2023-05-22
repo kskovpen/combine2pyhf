@@ -31,7 +31,7 @@ for d in dc:
     fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
     for f in fc:        
         fname = f.split('/')[-1]
-        shapeloc(dname, fname)
+        shapeloc(dname, f)
         print('combine -> pyhf: '+fname)
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         print('pyhf -> combine: '+fname)
