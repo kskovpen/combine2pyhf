@@ -97,15 +97,16 @@ if __name__ == '__main__':
     dc += 'bin          '+' '.join(chans)+'\\n'
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\\n'
     dc += '------------------------------------\\n'
-    procbin, proc, procsamp, rate = [], [], [], []
+    procbin, procname, procsamp, rate = [], [], [], []
+    print(sampord)
     for ch in d['channels']:
         for i, s in enumerate(sampord):
             procbin.append(ch['name'])
-            proc.append(s)
+            procname.append(s)
             procsamp.append(i)
             rate.append(-1)
     dc += 'bin          '+' '.join(procbin)+'\\n'
-    dc += 'process      '+' '.join(proc)+'\\n'
+    dc += 'process      '+' '.join(procname)+'\\n'
     dc += 'process      '+' '.join(procsamp)+'\\n'
     dc += 'rate         '+' '.join(rate)+'\\n'
     dc += '------------------------------------\\n'
