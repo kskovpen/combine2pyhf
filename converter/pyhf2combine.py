@@ -60,7 +60,7 @@ if __name__ == '__main__':
                 h[hname].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor' and 'r_' in m['name']:
-                        poi = s
+                        poi = s['name']
                     if 'prop' in m['name']:
                         h[hname].SetBinError(i+1, m['data'][i])
                         
@@ -98,7 +98,6 @@ if __name__ == '__main__':
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\\n'
     dc += '------------------------------------\\n'
     procbin, procname, procsamp, rate = [], [], [], []
-    print(sampord)
     for ch in d['channels']:
         for i, s in enumerate(sampord):
             procbin.append(ch['name'])
