@@ -95,7 +95,7 @@ if __name__ == '__main__':
         dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root $PROCESS\\n'
     dc += '------------------------------------\\n'
     dc += 'bin          '+' '.join(chans)+'\\n'
-    dc += 'observation  '+np.repeat('-1 ', nchan)+'\\n'
+    dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\\n'
     dc += '------------------------------------\\n'
     procbin, proc, procsamp, rate = [], [], [], []
     for ch in d['channels']:
