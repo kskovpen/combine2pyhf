@@ -54,7 +54,7 @@ if __name__ == '__main__':
             hname = ch['name']+'/'+s['name']
             data = s['data']
             nb = len(data)
-            h[hname] = ROOT.TH1F(hname, hname, nb, list(np.arange(nb+1)))
+            h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
             for i in range(len(data)):
                 h[hname].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
@@ -68,7 +68,7 @@ if __name__ == '__main__':
                 hname = ch['name']+'/data_obs'
                 data = s['data']
                 nb = len(data)
-                h[hname] = ROOT.TH1F(hname, hname, nb, list(np.arange(nb+1)))
+                h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):
                     h[hname].SetBinContent(i+1, data[i])
                     h[hname].SetBinError(i+1, math.sqrt(data[i]))
