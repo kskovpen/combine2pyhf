@@ -78,7 +78,10 @@ if __name__ == '__main__':
     f.Close()
     
     # Create datacard
-    nchan = len(d['channels'])
+    chans = []
+    for ch in d['channels']:
+        chans.append(ch['name'])
+    nchan = len(chans)
     samp = [poi]
     for s in samples:
         if s == poi: continue
@@ -88,10 +91,10 @@ if __name__ == '__main__':
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\\n'
     dc += 'kmax 0 number of nuisance parameters\\n'
     dc += '------------------------------------\\n'
-    for ch in d['channels']:
-        dc += 'shapes * '+ch['name']+' '+options.output.split('/')[-1]+'.root $PROCESS\\n'
+    for ch in chans:
+        dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root $PROCESS\\n'
     dc += '------------------------------------\\n'
-    dc += 'bin          '+' '.join(d['channels'])+'\\n'
+    dc += 'bin          '+' '.join(chans)+'\\n'
     dc += 'observation  '+np.repeat('-1 ', nchan)+'\\n'
     dc += '------------------------------------\\n'
     procbin, proc, procsamp, rate = [], [], [], []
