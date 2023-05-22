@@ -5,9 +5,6 @@ import os, sys, glob
 ws = os.environ['WS']
 wd = ws+'/validation'
 
-os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf; mkdir -p '+wd+'/cards/combine/pyhf2combine')
-os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine; mkdir -p '+wd+'/cards/pyhf/combine2pyhf')
-
 # combine cards
 dc = glob.glob(ws+'/cards/combine/*')
 
@@ -26,8 +23,9 @@ def shapeloc(dname, fname):
 
 for d in dc:
     dname = d.split('/')[-1]
-    os.system('mkdir '+wd+'/cards/combine/combine2pyhf/'+dname)
-    os.system('mkdir '+wd+'/cards/combine/pyhf2combine/'+dname)
+    print('Convert '+dname)
+    os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf/'+dname)
+    os.system('mkdir -p '+wd+'/cards/combine/pyhf2combine/'+dname)
     fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
     for f in fc:        
         fname = f.split('/')[-1]
@@ -41,8 +39,9 @@ for d in dc:
 dc = glob.glob(ws+'/cards/pyhf/*.json')
 for d in dc:
     dname = d.split('/')[-1]
-    os.system('mkdir '+wd+'/cards/pyhf/pyhf2combine/'+dname)
-    os.system('mkdir '+wd+'/cards/pyhf/combine2pyhf/'+dname)
+    print('Convert '+dname)
+    os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
+    os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
     for f in fc:
         fname = f.split('/')[-1]
