@@ -51,7 +51,7 @@ if __name__ == '__main__':
     for ch in d['channels']:
         f.mkdir(ch['name']);
         for s in ch['samples']:
-            if s not in samples: samples.append(s)
+            if s not in samples: samples.append(s['name'])
             hname = ch['name']+'/'+s['name']
             data = s['data']
             nb = len(data)
