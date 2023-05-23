@@ -34,6 +34,7 @@ for d in dc:
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+sys.exit()
     
 # pyhf cards
 dc = glob.glob(ws+'/cards/pyhf/*')
