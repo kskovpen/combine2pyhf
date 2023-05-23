@@ -48,5 +48,7 @@ for d in dc:
         fname = f.split('/')[-1]
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        os.system('ls '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/')
+        os.system('cat '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
 #        print('combine -> pyhf: '+fname)
 #        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+fname.replace('.json', '.txt')+' --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
