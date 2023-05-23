@@ -16,10 +16,10 @@ def shapeloc(dname, fname):
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
-                            words[i] = ws+'/cards/combine/'+dname+'/'+w
+                            words[i] = wd+'/cards/combine/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
-    os.system('cp '+fname.replace('.txt', '.root')+' '+ws+'/cards/combine/'+dname+'/'+w)
+#    os.system('cp '+fname.replace('.txt', '.root')+' '+ws+'/cards/combine/'+dname+'/'+w)
     os.system('mv '+fname+'_mod '+fname)
 
 #for d in dc:
