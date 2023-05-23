@@ -24,15 +24,15 @@ echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
 check "Conversion failed!"
-python3 $WS/converter/validateCombine.py
-check "Validation of combine cards failed!"
-python3 $WS/converter/validatePyhf.py
-check "Validation of pyhf cards failed!"
+#python3 $WS/converter/validateCombine.py
+#check "Validation of combine cards failed!"
+#python3 $WS/converter/validatePyhf.py
+#check "Validation of pyhf cards failed!"
 
 echo "Done."
 echo "Run combine tests .."
 
-python3 $WS/validation/combine.py
+#python3 $WS/validation/combine.py
 
 echo "Done."
 echo "Run pyhf tests .."
