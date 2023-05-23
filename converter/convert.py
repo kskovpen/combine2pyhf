@@ -16,7 +16,7 @@ def shapeloc(dname, fname):
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
-                            words[i] = wd+'/cards/combine/'+dname+'/'+w
+                            words[i] = wd+'/cards/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
 #    os.system('cp '+fname.replace('.txt', '.root')+' '+ws+'/cards/combine/'+dname+'/'+w)
@@ -50,7 +50,7 @@ for d in dc:
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         print('combine -> pyhf: '+fname)
-        shapeloc(dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+        shapeloc(dname+'/pyhf/pyhf2combine', wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
         with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
             lines = ff.readlines()
             for l in lines:
