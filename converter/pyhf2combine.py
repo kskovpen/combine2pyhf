@@ -111,8 +111,6 @@ if __name__ == '__main__':
     dc += '------------------------------------\n'
     if bbl: dc += 'ch1 autoMCStats 0 1 1\n'
     else: dc += 'ch1 autoMCStats 0 100000 100000\n'
-    print('print out internal')
-    print(dc)
     with open(options.output+'.txt', 'w') as f:
         f.write(dc)
         f.close()
