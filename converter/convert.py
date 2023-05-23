@@ -49,6 +49,9 @@ for d in dc:
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         os.system('ls '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/')
+        print(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+        if not os.path.isfile(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt'):
+            print('no such file')
         with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt') as ff:
             lines = ff.readlines()
             for l in lines:
