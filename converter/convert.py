@@ -65,5 +65,5 @@ for d in dc:
 #        hsig.Print('all')
 #        hbkg = froo.Get('bkg')
 #        hbkg.Print('all')
-        froo.Close()
+#        froo.Close()
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
