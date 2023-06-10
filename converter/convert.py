@@ -44,6 +44,10 @@ for d in dc:
     os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
+    print('testing')
+    fl = glob.glob('/__w/combine2pyhf/combine2pyhf/validation/cards/pyhf/pyhf2combine/one-bin/*')
+    for f in fl:
+        print(f)
     for f in fc:
         fname = f.split('/')[-1]
         print('pyhf -> combine: '+fname)
