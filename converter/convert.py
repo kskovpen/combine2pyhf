@@ -50,9 +50,6 @@ for d in dc:
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
-        print('create '+froot)
-        if os.path.isfile(froot):
-            print('file exists')
         print('combine -> pyhf: '+fname)
         shapeloc('pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
 #        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
