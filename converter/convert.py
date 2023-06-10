@@ -59,8 +59,8 @@ for d in dc:
             lines = ff.readlines()
             for l in lines:
                 print(l)
-        froo = ROOT.TFile(froot, 'READ')
-        froo.ls()
+#        froo = ROOT.TFile(froot, 'READ')
+#        froo.ls()
 #        hsig = froo.Get('sig')
 #        hsig.Print('all')
 #        hbkg = froo.Get('bkg')
