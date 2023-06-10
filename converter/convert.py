@@ -2,6 +2,8 @@
 
 import os, sys, glob, ROOT
 
+ROOT.gROOT.SetBatch(1)
+
 ws = os.environ['WS']
 wd = ws+'/validation'
 
