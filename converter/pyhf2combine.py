@@ -27,7 +27,7 @@ if __name__ == '__main__':
     
     d = json.load(open(options.input))
     
-    f = ROOT.TFile(options.output+'.root', "RECREATE")
+    fr = ROOT.TFile(options.output+'.root', "RECREATE")
     
     h = {}
     
@@ -49,10 +49,12 @@ if __name__ == '__main__':
     samp = []
     poi = ''
     for ch in d['channels']:
-        f.mkdir(ch['name']);
+        fr.cd()
+        fr.mkdir(ch['name']);
+        fr.cd(ch['name'])
         for s in ch['samples']:
             if s not in samp: samp.append(s['name'])
-            hname = ch['name']+'/'+s['name']
+            hname = s['name']
             data = s['data']
             nb = len(data)
             h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
@@ -63,21 +65,19 @@ if __name__ == '__main__':
                         poi = s['name']
                     if 'prop' in m['name']:
                         h[hname].SetBinError(i+1, m['data'][i])
-            h[hname].Write()
                         
         for obs in d['observations']:
             if obs['name'] == ch['name']:
-                hname = ch['name']+'/data_obs'
+                hname = 'data_obs'
                 data = s['data']
                 nb = len(data)
                 h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):
                     h[hname].SetBinContent(i+1, data[i])
                     h[hname].SetBinError(i+1, math.sqrt(data[i]))
-                h[hname].Write()
              
-    f.Write()
-    f.Close()
+    fr.Write()
+    fr.Close()
     
     # Create datacard
     chans = []
