@@ -92,7 +92,7 @@ if __name__ == '__main__':
     dc += 'kmax 0 number of nuisance parameters\n'
     dc += '------------------------------------\n'
     for ch in chans:
-        dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root '+ch+'/$PROCESS\n'
+        dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root '+ch+'/$PROCESS '+ch+'/$PROCESS_$SYSTEMATIC\n'
     dc += '------------------------------------\n'
     dc += 'bin          '+' '.join(chans)+'\n'
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\n'
