@@ -2,8 +2,6 @@
 
 import os, sys, glob, ROOT
 
-ROOT.gROOT.SetBatch(1)
-
 ws = os.environ['WS']
 wd = ws+'/validation'
 
@@ -61,12 +59,4 @@ for d in dc:
             lines = ff.readlines()
             for l in lines:
                 print(l)
-        froo = ROOT.TFile(froot, 'READ')
-        froo.ls()
-        hsig = froo.Get('ch1/sig')
-        hsig.Print('all')
-        hbkg = froo.Get('ch1/bkg')
-        hbkg.Print('all')
-        sys.exit()
-#        froo.Close()
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
