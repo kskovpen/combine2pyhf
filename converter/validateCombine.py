@@ -19,12 +19,11 @@ def compare(lh, rh):
 ws = os.environ['WS']
 
 fcv = glob.glob(ws+'/validation/cards/combine/pyhf2combine/*.txt')
-print('Found files:')
-print(fcv)
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
 for f in fcv:
+    print('Validate ', f)
     with open(f, 'r') as fdv:
         dcv = parseCard(fdv, opts)
     with open(f.replace('validation/', '').replace('pyhf2combine/', ''), 'r') as fdo:
