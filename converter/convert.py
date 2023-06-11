@@ -8,7 +8,7 @@ wd = ws+'/validation'
 # combine cards
 dc = glob.glob(ws+'/cards/combine/*')
 
-def shapeloc(dname, fname):
+def shapeloc(dname, fname, combine2pyhf = False):
     print('modify '+fname)
     with open(fname+'_mod', 'w') as f:
         with open(fname, 'r') as fr:
@@ -17,7 +17,8 @@ def shapeloc(dname, fname):
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
-                            words[i] = wd+'/cards/'+dname+'/'+w
+                            if combine2pyhf: words[i] = ws+'/cards/'+dname+'/'+w
+                            else: words[i] = wd+'/cards/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
     os.system('mv '+fname+'_mod '+fname)
@@ -30,7 +31,7 @@ for d in dc:
     fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
     for f in fc:        
         fname = f.split('/')[-1]
-        shapeloc(dname, f)
+        shapeloc(dname, f, combine2pyhf = True)
         print('combine -> pyhf: '+fname)
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         print('pyhf -> combine: '+fname)
