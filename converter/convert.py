@@ -22,19 +22,19 @@ def shapeloc(dname, fname):
                 else: f.write(line)
     os.system('mv '+fname+'_mod '+fname)
 
-#for d in dc:
-#    dname = d.split('/')[-1]
-#    print('Convert '+dname+' (combine)')
-#    os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf/'+dname)
-#    os.system('mkdir -p '+wd+'/cards/combine/pyhf2combine/'+dname)
-#    fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
-#    for f in fc:        
-#        fname = f.split('/')[-1]
-#        shapeloc(dname, f)
-#        print('combine -> pyhf: '+fname)
-#        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
-#        print('pyhf -> combine: '+fname)
-#        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+for d in dc:
+    dname = d.split('/')[-1]
+    print('Convert '+dname+' (combine)')
+    os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf/'+dname)
+    os.system('mkdir -p '+wd+'/cards/combine/pyhf2combine/'+dname)
+    fc = glob.glob(ws+'/cards/combine/'+dname+'/*.txt')
+    for f in fc:        
+        fname = f.split('/')[-1]
+        shapeloc(dname, f)
+        print('combine -> pyhf: '+fname)
+        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        print('pyhf -> combine: '+fname)
+        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
 
     
 # pyhf cards
