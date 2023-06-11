@@ -19,6 +19,8 @@ def compare(lh, rh):
 ws = os.environ['WS']
 
 fcv = glob.glob(ws+'/validation/cards/combine/pyhf2combine/*.txt')
+print('Found files:')
+print(fcv)
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
