@@ -36,25 +36,24 @@ for d in dc:
         os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         print('pyhf -> combine: '+fname)
         os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
-
     
 # pyhf cards
-#dc = glob.glob(ws+'/cards/pyhf/*')
-#for d in dc:
-#    dname = d.split('/')[-1]
-#    print('Convert '+dname+' (pyhf)')
-#    os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
-#    os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
-#    fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
-#    for f in fc:
-#        fname = f.split('/')[-1]
-#        print('pyhf -> combine: '+fname)
-#        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
-#        froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
-#        print('combine -> pyhf: '+fname)
-#        shapeloc('pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
-##        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
-##            lines = ff.readlines()
-##            for l in lines:
-##                print(l)
-#        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+dc = glob.glob(ws+'/cards/pyhf/*')
+for d in dc:
+    dname = d.split('/')[-1]
+    print('Convert '+dname+' (pyhf)')
+    os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
+    os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
+    fc = glob.glob(ws+'/cards/pyhf/'+dname+'/*.json')
+    for f in fc:
+        fname = f.split('/')[-1]
+        print('pyhf -> combine: '+fname)
+        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
+        print('combine -> pyhf: '+fname)
+        shapeloc('pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+#        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
+#            lines = ff.readlines()
+#            for l in lines:
+#                print(l)
+        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
