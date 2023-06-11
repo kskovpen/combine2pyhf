@@ -17,7 +17,7 @@ def shapeloc(dname, fname, combine2pyhf = False):
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
-                            if combine2pyhf: words[i] = ws+'/cards/'+dname+'/'+w
+                            if combine2pyhf: words[i] = ws+'/cards/combine/'+dname+'/'+w
                             else: words[i] = wd+'/cards/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
