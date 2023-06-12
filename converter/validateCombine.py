@@ -36,6 +36,8 @@ for r in runs:
         res = {}
         res['bins'] = compare(dco.bins, dcv.bins)
         res['obs'] = compare(dco.obs, dcv.obs)
+        print(dco.obs)
+        print(dcv.obs)
         res['processes'] = compare(dco.processes, dcv.processes)
         res['signals'] = compare(dco.signals, dcv.signals)
         res['isSignal'] = compare(dco.isSignal, dcv.isSignal)
