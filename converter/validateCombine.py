@@ -45,14 +45,18 @@ for r in runs:
         res['exp'] = compare(dco.exp, dcv.exp)
         res['systs'] = compare(dco.systs, dcv.systs)
         res['shapeMap'] = compare(dco.shapeMap, dcv.shapeMap)
-        print(dco.shapeMap)
-        print(dcv.shapeMap)
         res['flatParamNuisances'] = compare(dco.flatParamNuisances, dcv.flatParamNuisances)
         res['rateParams'] = compare(dco.rateParams, dcv.rateParams)
         res['extArgs'] = compare(dco.extArgs, dcv.extArgs)
         res['rateParamsOrder'] = compare(dco.rateParamsOrder, dcv.rateParamsOrder)
         res['frozenNuisances'] = compare(dco.frozenNuisances, dcv.frozenNuisances)
+        passedCard = True
         for k in res.keys():
             if not res[k]:
                 print('Validation failed for '+k)
-
+                passedCard = False
+        if passedCard:
+            print('--> Compare shapes')
+            for b in dco.shapeMap.items():
+                for p in b.items():
+                    print(b.value, p.value[0])

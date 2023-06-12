@@ -2,7 +2,7 @@ imax 1 number of bins
 jmax 1 number of processes minus 1
 kmax 0 number of nuisance parameters
 ------------------------------------
-shapes * ch1 one-bin-stat.root $PROCESS
+shapes * ch1 one-bin-stat.root ch1/$PROCESS ch1/$PROCESS_$SYSTEMATIC
 ------------------------------------
 bin          ch1
 observation  -1
