@@ -74,7 +74,7 @@ for r in runs:
                     keysv = rfv.GetDirectory(b).GetListOfKeys()
                     histso, histsv = {}, {}
                     for ho in keyso:
-                        histso[ho.ReadObj().GetName()] = ho.ReadObj().Copy(ho.ReadObj().GetName()+'_original')
+                        histso[ho.ReadObj().GetName()] = ho.ReadObj().Clone(ho.ReadObj().GetName()+'_original')
                     for hv in keysv:
-                        histsv[hv.ReadObj().GetName()] = hv.ReadObj().Copy(hv.ReadObj().GetName()+'_converted')
+                        histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
                     compareShapes(histso, histsv)
