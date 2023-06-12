@@ -63,8 +63,10 @@ for r in runs:
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
-                    keyso = rfileo.GetDirectory(b).GetListOfKeys()
-                    keysv = rfilev.GetDirectory(b).GetListOfKeys()
+                    rfo = ROOT.TFile(rfileo, 'READ')
+                    rfv = ROOT.TFile(rfilev, 'READ')
+                    keyso = rfo.GetDirectory(b).GetListOfKeys()
+                    keysv = rfv.GetDirectory(b).GetListOfKeys()
                     histso, histsv = {}, {}
                     for ho in keyso:
                         histso[ho.ReadObj().GetName()] = ho.ReadObj()
