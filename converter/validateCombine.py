@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, glob
+import os, sys, glob, ROOT
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
 def compare(lh, rh):
