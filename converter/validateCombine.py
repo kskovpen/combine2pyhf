@@ -64,7 +64,7 @@ for r in runs:
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
-                    rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine/', '')+'/'+runName+'/'+rfileo, 'READ')
+                    rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(wdir+'/'+runName+'/'+rfilev, 'READ')
                     keyso = rfo.GetDirectory(b).GetListOfKeys()
                     keysv = rfv.GetDirectory(b).GetListOfKeys()
