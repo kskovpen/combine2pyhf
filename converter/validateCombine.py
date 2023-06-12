@@ -50,14 +50,24 @@ for r in runs:
         res['extArgs'] = compare(dco.extArgs, dcv.extArgs)
         res['rateParamsOrder'] = compare(dco.rateParamsOrder, dcv.rateParamsOrder)
         res['frozenNuisances'] = compare(dco.frozenNuisances, dcv.frozenNuisances)
+        
         passedCard = True
         for k in res.keys():
             if not res[k]:
                 print('Validation failed for '+k)
                 passedCard = False
+                
         if passedCard:
             print('--> Compare shapes')
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
-                    for i in dco.shapeMap[b][p]:
-                        print(i)
+                    rfileo = dco.shapeMap[b][p][0]
+                    rfilev = dcv.shapeMap[b][p][0]
+                    keyso = rfileo.GetDirectory(b).GetListOfKeys()
+                    keysv = rfilev.GetDirectory(b).GetListOfKeys()
+                    histso, histsv = {}, {}
+                    for ho in keyso:
+                        histso[ho.ReadObj().GetName()] = ho.ReadObj()
+                    for hv in keysv:
+                        histsv[hv.ReadObj().GetName()] = hv.ReadObj()
+                    print(histso, histsv)
