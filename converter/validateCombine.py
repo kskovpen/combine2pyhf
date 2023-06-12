@@ -44,6 +44,8 @@ for r in runs:
         print(dcv.bins)
         print(dco.processes)
         print(dcv.processes)
+        print(dco.exp)
+        print(dcv.exp)
         res['processes'] = compare(dco.processes, dcv.processes)
         res['signals'] = compare(dco.signals, dcv.signals)
         res['isSignal'] = compare(dco.isSignal, dcv.isSignal)
