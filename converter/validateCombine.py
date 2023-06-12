@@ -57,6 +57,6 @@ for r in runs:
                 passedCard = False
         if passedCard:
             print('--> Compare shapes')
-            for b in dco.shapeMap.items():
-                for p in b.items():
-                    print(b.value, p.value[0])
+            for b in dco.shapeMap.keys():
+                for p in dco.shapeMap[b]:
+                    print(b, p.value[0])
