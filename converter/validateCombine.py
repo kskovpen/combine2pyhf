@@ -70,6 +70,7 @@ for r in runs:
                     rfilev = dcv.shapeMap[b][p][0]
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(wdir+'/'+runName+'/'+rfilev, 'READ')
+                    print(wdir+'/'+runName+'/'+rfilev)
                     keyso = rfo.GetDirectory(b).GetListOfKeys()
                     keysv = rfv.GetDirectory(b).GetListOfKeys()
                     histso, histsv = {}, {}
