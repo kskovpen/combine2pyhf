@@ -73,4 +73,5 @@ for r in runs:
                         histso[ho.ReadObj().GetName()] = ho.ReadObj()
                     for hv in keysv:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj()
-                    print(histso, histsv)
+                    print('original:', histso)
+                    print('validate:', histsv)
