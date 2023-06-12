@@ -28,6 +28,7 @@ if __name__ == '__main__':
     d = json.load(open(options.input))
     
     fr = ROOT.TFile(options.output+'.root', "RECREATE")
+    print('Create', options.output+'.root')
     
     h = {}
     
@@ -61,6 +62,7 @@ if __name__ == '__main__':
             for i in range(len(data)):
                 print('INTRODUCE A BIAS')
                 h[hname].SetBinContent(i+1, data[i]*+1.0)
+                print(data[i]*+1.0)
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor' and 'r_' in m['name']:
                         poi = s['name']
