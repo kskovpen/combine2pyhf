@@ -28,20 +28,22 @@ for r in runs:
     print('Validate ', r)
 
     for f in fcv:
-        print('-> ', f)
+        forig = f.replace('validation/', '').replace('pyhf2combine/', '')
         with open(f, 'r') as fdv:
             dcv = parseCard(fdv, opts)
-        with open(f.replace('validation/', '').replace('pyhf2combine/', ''), 'r') as fdo:
+        with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-        if os.path.isfile(f):
-            print('File exists:', f)
-        if os.path.isfile(f.replace('validation/', '').replace('pyhf2combine/', '')):
-            print('File exists:', f.replace('validation/', '').replace('pyhf2combine/', ''))
+        print('--> Converted:', f)
+        print('--> Original:', forig)
         res = {}
         res['bins'] = compare(dco.bins, dcv.bins)
         res['obs'] = compare(dco.obs, dcv.obs)
         print(dco.obs)
         print(dcv.obs)
+        print(dco.bins)
+        print(dcv.bins)
+        print(dco.processes)
+        print(dcv.processes)
         res['processes'] = compare(dco.processes, dcv.processes)
         res['signals'] = compare(dco.signals, dcv.signals)
         res['isSignal'] = compare(dco.isSignal, dcv.isSignal)
