@@ -3,7 +3,7 @@
 import os, sys, glob, ROOT
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
-def compare(lh, rh):
+def compareCards(lh, rh):
     if isinstance(lh, list):
         lh.sort()
         rh.sort()
@@ -15,6 +15,10 @@ def compare(lh, rh):
         diff = lh.difference(rh)
         return not bool(diff)
     return False
+
+def compareShapes(lh, rh):
+    for hname in lh.keys():
+        print(hname, lh[hname].GetIntegral(), rh[hname].GetIntegral())
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
@@ -37,20 +41,20 @@ for r in runs:
         print('--> Converted datacard:', f)
         print('--> Original datacard:', forig)
         res = {}
-        res['bins'] = compare(dco.bins, dcv.bins)
-        res['obs'] = compare(dco.obs, dcv.obs)
-        res['processes'] = compare(dco.processes, dcv.processes)
-        res['signals'] = compare(dco.signals, dcv.signals)
-        res['isSignal'] = compare(dco.isSignal, dcv.isSignal)
-        res['keyline'] = compare(dco.keyline, dcv.keyline)
-        res['exp'] = compare(dco.exp, dcv.exp)
-        res['systs'] = compare(dco.systs, dcv.systs)
-        res['shapeMap'] = compare(dco.shapeMap, dcv.shapeMap)
-        res['flatParamNuisances'] = compare(dco.flatParamNuisances, dcv.flatParamNuisances)
-        res['rateParams'] = compare(dco.rateParams, dcv.rateParams)
-        res['extArgs'] = compare(dco.extArgs, dcv.extArgs)
-        res['rateParamsOrder'] = compare(dco.rateParamsOrder, dcv.rateParamsOrder)
-        res['frozenNuisances'] = compare(dco.frozenNuisances, dcv.frozenNuisances)
+        res['bins'] = compareCards(dco.bins, dcv.bins)
+        res['obs'] = compareCards(dco.obs, dcv.obs)
+        res['processes'] = compareCards(dco.processes, dcv.processes)
+        res['signals'] = compareCards(dco.signals, dcv.signals)
+        res['isSignal'] = compareCards(dco.isSignal, dcv.isSignal)
+        res['keyline'] = compareCards(dco.keyline, dcv.keyline)
+        res['exp'] = compareCards(dco.exp, dcv.exp)
+        res['systs'] = compareCards(dco.systs, dcv.systs)
+        res['shapeMap'] = compareCards(dco.shapeMap, dcv.shapeMap)
+        res['flatParamNuisances'] = compareCards(dco.flatParamNuisances, dcv.flatParamNuisances)
+        res['rateParams'] = compareCards(dco.rateParams, dcv.rateParams)
+        res['extArgs'] = compareCards(dco.extArgs, dcv.extArgs)
+        res['rateParamsOrder'] = compareCards(dco.rateParamsOrder, dcv.rateParamsOrder)
+        res['frozenNuisances'] = compareCards(dco.frozenNuisances, dcv.frozenNuisances)
         
         passedCard = True
         for k in res.keys():
@@ -73,5 +77,4 @@ for r in runs:
                         histso[ho.ReadObj().GetName()] = ho.ReadObj()
                     for hv in keysv:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj()
-                    print('original:', histso)
-                    print('validate:', histsv)
+                    compareShapes(histso, histsv)
