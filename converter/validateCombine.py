@@ -24,7 +24,7 @@ wdir = ws+'/validation/cards/combine/pyhf2combine'
 
 runs = glob.glob(wdir+'/*/')
 for r in runs:
-    fcv = glob.glob(wdir+'/'+r.split('/')[-1]+'/*.txt')
+    fcv = glob.glob(wdir+'/'+r.split('/')[-2]+'/*.txt')
     print('Validate ', r)
 
     for f in fcv:
