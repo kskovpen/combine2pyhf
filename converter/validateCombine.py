@@ -33,10 +33,10 @@ for r in runs:
             dcv = parseCard(fdv, opts)
         with open(f.replace('validation/', '').replace('pyhf2combine/', ''), 'r') as fdo:
             dco = parseCard(fdo, opts)
-        if os.path.isfile(fdv):
-            print('File exists:', fdv)
-        if os.path.isfile(fdo):
-            print('File exists:', fdo)
+            if os.path.isfile(f):
+                print('File exists:', f)
+            if os.path.isfile(fdo):
+                print('File exists:', fdo)
         res = {}
         res['bins'] = compare(dco.bins, dcv.bins)
         res['obs'] = compare(dco.obs, dcv.obs)
