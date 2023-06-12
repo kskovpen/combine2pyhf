@@ -18,7 +18,7 @@ def compareCards(lh, rh):
 
 def compareShapes(lh, rh):
     for hname in lh.keys():
-        print(hname, lh[hname].GetIntegral(), rh[hname].GetIntegral())
+        print(hname, lh[hname].Integral(), rh[hname].Integral())
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
