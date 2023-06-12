@@ -59,6 +59,7 @@ if __name__ == '__main__':
             nb = len(data)
             h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
             for i in range(len(data)):
+                print('INTRODUCE A BIAS')
                 h[hname].SetBinContent(i+1, data[i]*+1.0)
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor' and 'r_' in m['name']:
