@@ -17,8 +17,16 @@ def compareCards(lh, rh):
     return False
 
 def compareShapes(lh, rh):
+    hists = []
     for hname in lh.keys():
-        print(hname, lh[hname].GetName(), lh[hname].Integral(), rh[hname].GetName(), rh[hname].Integral())
+        if lh[hname].Integral() != rh[hname].Integral():
+            hists.append(hname)
+        else:
+            for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
+                if (lh[hname].GetXaxis().GetBinContent(b) != lr[hname].GetXaxis().GetBinContent(b)) or (lh[hname].GetXaxis().GetBinError(b) != lr[hname].GetXaxis().GetBinError(b)):
+                    hists.append(hname)
+                    break
+    return hists
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
@@ -73,7 +81,6 @@ for r in runs:
                     print('Converted shape file:', rfilev)
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(rfilev, 'READ')
-                    print('Validating ', wdir+'/'+runName+'/'+rfilev)
                     keyso = rfo.GetDirectory(b).GetListOfKeys()
                     keysv = rfv.GetDirectory(b).GetListOfKeys()
                     histso, histsv = {}, {}
@@ -81,4 +88,14 @@ for r in runs:
                         histso[ho.ReadObj().GetName()] = ho.ReadObj().Clone(ho.ReadObj().GetName()+'_original')
                     for hv in keysv:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
-                    compareShapes(histso, histsv)
+                    hists = compareShapes(histso, histsv)
+                    for h in hists:
+                        print('Shape comparison failed for', h, '!')
+                        nbins = histso[h].GetXaxis().GetNbins()
+                        print('--> Original shape:')
+                        for b in range(1, nbins+1):
+                            print(b, histso[h].GetXaxis().GetBinContent(b), histso[h].GetXaxis().GetBinError(b))
+                        print('--> Converted shape:')
+                        for b in range(1, nbins+1):
+                            print(b, histsv[h].GetXaxis().GetBinContent(b), histsv[h].GetXaxis().GetBinError(b))
+                            

@@ -28,7 +28,6 @@ if __name__ == '__main__':
     d = json.load(open(options.input))
     
     fr = ROOT.TFile(options.output+'.root', "RECREATE")
-    print('Create', options.output+'.root')
     
     h = {}
     
