@@ -5,6 +5,9 @@ import os, sys, glob, ROOT, logging, subprocess
 ws = os.environ['WS']
 wd = ws+'/validation'
 
+os.system('mkdir -p '+wd+'/cards/combine')
+os.system('mkdir -p '+wd+'/cards/pyhf')
+
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M',
