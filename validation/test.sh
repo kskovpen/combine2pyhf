@@ -2,7 +2,6 @@
 
 check() {
   res=$?
-  echo "check ${res}"
   if [ $res -ne 0 ]; then
     echo $1
     exit 1

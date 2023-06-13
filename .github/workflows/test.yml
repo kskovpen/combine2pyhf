@@ -21,4 +21,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: inputFile
-          path: /__w/combine2pyhf/combine2pyhf/validation/cards/pyhf/pyhf2combine/one-bin/one-bin-stat-full.root
+          path: /__w/combine2pyhf/combine2pyhf/validation/cards/combine/convert.log

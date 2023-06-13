@@ -90,12 +90,13 @@ for r in runs:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
                     hists = compareShapes(histso, histsv)
                     for h in hists:
-                        print('Shape comparison failed for', h, '!')
                         nbins = histso[h].GetXaxis().GetNbins()
-                        print('--> Original shape:')
+                        print('--> Original shape ('+h+'):')
                         for b in range(1, nbins+1):
                             print('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
-                        print('--> Converted shape:')
+                        print('--> Converted shape ('+h+'):')
                         for b in range(1, nbins+1):
                             print('bin #',b,':', histsv[h].GetBinContent(b), '+-', histsv[h].GetBinError(b))
-                            
+                    if hists:
+                        print('Shape comparison failed, please find details above')
+                        sys.exit()
