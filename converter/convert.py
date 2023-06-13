@@ -48,7 +48,7 @@ for d in dc:
     print('Convert '+dname+' (pyhf)')
     os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
-    os.system('cp '+ws+'/cards/combine/'+dname+'/* '+wd+'/cards/combine/pyhf2combine/'+dname+'/.')
+    os.system('cp '+ws+'/cards/pyhf/'+dname+'/* '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/.')
     fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
     for f in fc:
         fname = f.split('/')[-1]
