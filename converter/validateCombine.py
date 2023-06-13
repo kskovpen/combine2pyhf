@@ -69,6 +69,8 @@ for r in runs:
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
+                    print('Original shape file:', rfileo)
+                    print('Converted shape file:', rfilev)
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(wdir+'/'+runName+'/'+rfilev, 'READ')
                     print('Validating ', wdir+'/'+runName+'/'+rfilev)
