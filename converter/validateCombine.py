@@ -94,8 +94,8 @@ for r in runs:
                         nbins = histso[h].GetXaxis().GetNbins()
                         print('--> Original shape:')
                         for b in range(1, nbins+1):
-                            print(b, histso[h].GetBinContent(b), histso[h].GetBinError(b))
+                            print('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
                         print('--> Converted shape:')
                         for b in range(1, nbins+1):
-                            print(b, histsv[h].GetBinContent(b), histsv[h].GetBinError(b))
+                            print('bin #',b,':', histsv[h].GetBinContent(b), '+-', histsv[h].GetBinError(b))
                             
