@@ -82,6 +82,14 @@ if __name__ == '__main__':
     fr.Write()
     fr.Close()
     
+    print("check file histograms")
+    fr = ROOT.TFile(options.output+'.root', "READ")
+    h = fr.Get('ch1/sig')
+    print(h.Integral())
+    h2 = fr.Get('ch1/bkg')
+    print(h2.Integral())
+    fr.Close()
+    
     # Create datacard
     chans = []
     for ch in d['channels']:
