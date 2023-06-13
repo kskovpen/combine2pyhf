@@ -83,7 +83,7 @@ if __name__ == '__main__':
     fr.Close()
     
     print("check file histograms")
-    fr = ROOT.TFile('/__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/one-bin/one-bin-stat-full.root', "READ")
+    fr = ROOT.TFile('/__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/one-bin/one-bin-stat-bbl.root', "READ")
     h = fr.Get('ch1/sig')
     print(h.Integral())
     h2 = fr.Get('ch1/bkg')
