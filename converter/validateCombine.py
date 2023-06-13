@@ -49,7 +49,7 @@ for r in runs:
         res['keyline'] = [compareCards(dco.keyline, dcv.keyline), dco.keyline, dcv.keyline]
         res['exp'] = [compareCards(dco.exp, dcv.exp), dco.exp, dcv.exp]
         res['systs'] = [compareCards(dco.systs, dcv.systs), dco.systs, dcv.systs]
-        res['shapeMap'] = [compareCards(dco.shapeMap, dcv.shapeMap), dco.shapeMap, dcv.shapeMap]
+#        res['shapeMap'] = [compareCards(dco.shapeMap, dcv.shapeMap), dco.shapeMap, dcv.shapeMap] # run an explicit comparison of shapes below
         res['flatParamNuisances'] = [compareCards(dco.flatParamNuisances, dcv.flatParamNuisances), dco.flatParamNuisances, dcv.flatParamNuisances]
         res['rateParams'] = [compareCards(dco.rateParams, dcv.rateParams), dco.rateParams, dcv.rateParams]
         res['extArgs'] = [compareCards(dco.extArgs, dcv.extArgs), dco.extArgs, dcv.extArgs]
