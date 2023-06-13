@@ -26,14 +26,6 @@ ws = os.environ['WS']
 
 wdir = ws+'/validation/cards/combine/pyhf2combine'
 
-print("check file histograms")
-fr = ROOT.TFile('/__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/one-bin/one-bin-stat-full.root', "READ")
-h = fr.Get('ch1/sig')
-print(h.Integral())
-h2 = fr.Get('ch1/bkg')
-print(h2.Integral())
-fr.Close()
-
 runs = glob.glob(wdir+'/*/')
 for r in runs:
     runName = r.split('/')[-2]
