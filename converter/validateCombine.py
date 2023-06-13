@@ -23,7 +23,7 @@ def compareShapes(lh, rh):
             hists.append(hname)
         else:
             for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
-                if (lh[hname].GetXaxis().GetBinContent(b) != lr[hname].GetXaxis().GetBinContent(b)) or (lh[hname].GetXaxis().GetBinError(b) != lr[hname].GetXaxis().GetBinError(b)):
+                if (lh[hname].GetBinContent(b) != lr[hname].GetBinContent(b)) or (lh[hname].GetBinError(b) != lr[hname].GetBinError(b)):
                     hists.append(hname)
                     break
     return hists
@@ -94,8 +94,8 @@ for r in runs:
                         nbins = histso[h].GetXaxis().GetNbins()
                         print('--> Original shape:')
                         for b in range(1, nbins+1):
-                            print(b, histso[h].GetXaxis().GetBinContent(b), histso[h].GetXaxis().GetBinError(b))
+                            print(b, histso[h].GetBinContent(b), histso[h].GetBinError(b))
                         print('--> Converted shape:')
                         for b in range(1, nbins+1):
-                            print(b, histsv[h].GetXaxis().GetBinContent(b), histsv[h].GetXaxis().GetBinError(b))
+                            print(b, histsv[h].GetBinContent(b), histsv[h].GetBinError(b))
                             
