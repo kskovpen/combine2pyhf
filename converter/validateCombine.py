@@ -38,28 +38,29 @@ for r in runs:
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-        print('--> Converted datacard:', f)
         print('--> Original datacard:', forig)
+        print('--> Converted datacard:', f)
         res = {}
-        res['bins'] = compareCards(dco.bins, dcv.bins)
-        res['obs'] = compareCards(dco.obs, dcv.obs)
-        res['processes'] = compareCards(dco.processes, dcv.processes)
-        res['signals'] = compareCards(dco.signals, dcv.signals)
-        res['isSignal'] = compareCards(dco.isSignal, dcv.isSignal)
-        res['keyline'] = compareCards(dco.keyline, dcv.keyline)
-        res['exp'] = compareCards(dco.exp, dcv.exp)
-        res['systs'] = compareCards(dco.systs, dcv.systs)
-        res['shapeMap'] = compareCards(dco.shapeMap, dcv.shapeMap)
-        res['flatParamNuisances'] = compareCards(dco.flatParamNuisances, dcv.flatParamNuisances)
-        res['rateParams'] = compareCards(dco.rateParams, dcv.rateParams)
-        res['extArgs'] = compareCards(dco.extArgs, dcv.extArgs)
-        res['rateParamsOrder'] = compareCards(dco.rateParamsOrder, dcv.rateParamsOrder)
-        res['frozenNuisances'] = compareCards(dco.frozenNuisances, dcv.frozenNuisances)
+        res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
+        res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
+        res['processes'] = [compareCards(dco.processes, dcv.processes), dco.processes, dcv.processes]
+        res['signals'] = [compareCards(dco.signals, dcv.signals), dco.signals, dcv.signals]
+        res['isSignal'] = [compareCards(dco.isSignal, dcv.isSignal), dco.isSignal, dcv.isSignal]
+        res['keyline'] = [compareCards(dco.keyline, dcv.keyline), dco.keyline, dcv.keyline]
+        res['exp'] = [compareCards(dco.exp, dcv.exp), dco.exp, dcv.exp]
+        res['systs'] = [compareCards(dco.systs, dcv.systs), dco.systs, dcv.systs]
+        res['shapeMap'] = [compareCards(dco.shapeMap, dcv.shapeMap), dco.shapeMap, dcv.shapeMap]
+        res['flatParamNuisances'] = [compareCards(dco.flatParamNuisances, dcv.flatParamNuisances), dco.flatParamNuisances, dcv.flatParamNuisances]
+        res['rateParams'] = [compareCards(dco.rateParams, dcv.rateParams), dco.rateParams, dcv.rateParams]
+        res['extArgs'] = [compareCards(dco.extArgs, dcv.extArgs), dco.extArgs, dcv.extArgs]
+        res['rateParamsOrder'] = [compareCards(dco.rateParamsOrder, dcv.rateParamsOrder), dco.rateParamsOrder, dcv.rateParamsOrder]
+        res['frozenNuisances'] = [compareCards(dco.frozenNuisances, dcv.frozenNuisances), dco.frozenNuisances, dcv.frozenNuisances]
         
         passedCard = True
         for k in res.keys():
-            if not res[k]:
-                print('Validation failed for '+k)
+            if not res[k][0]:
+                print('Validation failed for '+k+':')
+                print(res[k][1], res[k][2])
                 passedCard = False
                 
         if passedCard:
