@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import os, sys, pyhf, json, glob, logging, subprocess
+from nested_diff import diff
 
 ws = os.environ['WS']
 wd = ws+'/validation'
@@ -28,4 +29,14 @@ for r in runs:
     
     for f in fcv:
         forig = f.replace('validation/', '').replace('combine2pyhf/', '')
-        pyhflog.info('Compare '+forig+' and '+f)
+        pyhflog.info('--> Compare json: '+os.path.splitext(forig.split('/')[-1])[0])
+        with open(forig) as fforig:
+            jorig = json.loads(fforig.read())
+        with open(f) as ff:
+            j = json.loads(ff.read())
+        res = diff(jorig, j)
+        if bool(res):
+            pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
+            pyhflog.error(res)
+        else:
+            pyhflog.info('--> Compare json: \033[1;32mpassed\x1b[0m')
