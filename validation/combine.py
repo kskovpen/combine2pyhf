@@ -72,8 +72,7 @@ if __name__ == '__main__':
     
     for d in dc:
         dname = d.split('/')[-1]
-        os.system('mkdir -p '+outdir)
-        os.chdir(outdir)
+        os.chdir(indir+'/'+dname)
         fc = glob.glob(indir+'/'+dname+'/*.txt')
         for f in fc:
             fname = f.replace('.txt', '')
