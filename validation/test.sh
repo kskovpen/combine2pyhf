@@ -6,6 +6,8 @@ check() {
   fi
 }
 
+pyloc=($(pip show pyhf | grep Location))[1]
+
 echo "Setting up environment .."
 
 export CVMFS_HTTP_PROXY=DIRECT
@@ -16,6 +18,7 @@ export WS=$GITHUB_WORKSPACE
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
+export PYTHONPATH=$PYTHONPATH:${pyloc}
 
 echo "Done"
 echo "Convert datacards .."
@@ -24,7 +27,7 @@ python3 $WS/converter/convert.py
 check "$WS/validation/cards/combine/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/validation/cards/combine/validateCombine.log"
-/usr/bin/python3 $WS/converter/validatePyhf.py
+python3 $WS/converter/validatePyhf.py
 check "$WS/validation/cards/combine/validatePyhf.log"
 
 echo "Done."
