@@ -106,7 +106,7 @@ for r in runs:
                         nbins = histso[h].GetXaxis().GetNbins()
                         comblog.error('--> Original shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            comblog.error('bin #'+str(b)+': '+histso[h].GetBinContent(b)+'+-'+histso[h].GetBinError(b))
+                            comblog.error('bin #'+str(b)+': '+str(histso[h].GetBinContent(b))+'+-'+str(histso[h].GetBinError(b)))
                         comblog.error('--> Converted shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            comblog.error('bin #'+str(b)+': '+histsv[h].GetBinContent(b)+'+-'+histsv[h].GetBinError(b))
+                            comblog.error('bin #'+str(b)+': '+str(histsv[h].GetBinContent(b))+'+-'+str(histsv[h].GetBinError(b)))
