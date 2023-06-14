@@ -68,7 +68,8 @@ if __name__ == '__main__':
     fits = {'asi': '-t -1 ', 'obs': ''}
     
     # do not use analytical minimization (pyhf does not use it); store the full nll
-    opts = '--X-rtd REMOVE_CONSTANT_ZERO_POINT=1 --X-rtd MINIMIZER_no_analytic'
+    # opts = '--X-rtd REMOVE_CONSTANT_ZERO_POINT=1 --X-rtd MINIMIZER_no_analytic'
+    opts = '--X-rtd MINIMIZER_no_analytic'
     
     for d in dc:
         dname = d.split('/')[-1]
@@ -80,16 +81,14 @@ if __name__ == '__main__':
             comblog.info('--> Prepare the workspace')
             execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f)
             for fit in fits.keys():
-                # get the best-fit snapshot
                 comblog.info('--> Perform the best fit ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
                 bf = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
-                comblog.info('bf='+str(bf['r'])+', nll='+str(bf['nll']))
-                # perform a NLL scan
+                comblog.info('    bf='+str(bf['r'])+', nll='+str(bf['nll']))
                 rs = [0.68, 0.84, 1, 1.16, 1.32]
+                comblog.info('--> Perform the scan ('+fit+')')
                 for r in rs:
-                    comblog.info('--> Perform the fit for r='+str(r)+' ('+fit+')')
                     execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Fit_r'+str(r)+' --setParameters r='+str(r)+' --freezeParameters r')
                     fres = postproc(comblog, 'higgsCombineFit_r'+str(r)+'.MultiDimFit.mH120.root')
-                    comblog.info('rf='+str(fres['r'])+', deltaNLL='+str(fres['nll']))
+                    comblog.info('    r='+str(fres['r'])+', deltaNLL='+str(fres['nll']))
 
