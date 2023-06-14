@@ -63,7 +63,7 @@ for r in runs:
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-        comblog.info('--> Compare datacards')
+        comblog.info('--> Compare datacards: '+os.path.splittext(forig.split('/')[-1])[0])
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
         res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
@@ -89,7 +89,7 @@ for r in runs:
                 
         if passedCard:
             comblog.info('--> Compare datacards: \033[1;32mpassed\x1b[0m')
-            comblog.info('--> Compare shapes')
+            comblog.info('--> Compare shapes: '+os.path.splittext(forig.split('/')[-1])[0])
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]

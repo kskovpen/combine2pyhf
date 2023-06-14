@@ -1,20 +1,31 @@
 #!/usr/bin/python3
 
-import os, sys, pyhf, json, glob
+import os, sys, pyhf, json, glob, logging, subprocess
 
 ws = os.environ['WS']
+wd = ws+'/validation'
+wdir = wd+'/cards/pyhf/combine2pyhf'
 
-fcv = glob.glob(ws+'/validation/cards/pyhf/combine2pyhf/*.json')
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename=wd+'/cards/combine/validatePyhf.log',
+                    filemode='w')
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+console.setFormatter(formatter)
+logging.getLogger().addHandler(console)
 
-for f in fcv:
-    print('Validate ', f)
-    with open(f, 'r') as fdv:
-        dcv = parseCard(fdv, opts)
-    with open(f.replace('validation/', '').replace('combine2pyhf/', ''), 'r') as fdo:
-        dco = parseCard(fdo, opts)
-    res = {}
-    print(f)
-    for k in res.keys():
-        if not res[k]:
-            print('Validation failed for '+k)
-                                
+logging.info('Start validation process for pyhf json conversion')
+pyhflog = logging.getLogger('convert.pyhf.validate')
+
+runs = glob.glob(wdir+'/*/')
+for r in runs:
+    runName = r.split('/')[-2]
+    fcv = glob.glob(wdir+'/'+runName+'/*.json')
+    pyhflog.info('Validate '+runName+' (pyhf)')
+    
+    for f in fcv:
+        forig = f.replace('validation/', '').replace('combine2pyhf/', '')
+        pyhflog.info('Compare '+forig+' and '+f)
