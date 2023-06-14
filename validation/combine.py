@@ -83,8 +83,8 @@ if __name__ == '__main__':
                 # get the best-fit snapshot
                 comblog.info('--> Perform the best fit ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
-                print(fname+'_model.root')
-#                bf = postproc(comblog, getFitInfo('higgsCombineBestFit.MultiDimFit.mH120.root'))
+                execute(comblog, 'ls')
+                bf = postproc(comblog, getFitInfo('higgsCombineBestFit.MultiDimFit.mH120.root'))
 #                comblog.info('bf='+str(bf['r'])+', nll='+str(bf['nll']))
                 # perform a NLL scan
 #                rs = [0.68, 0.84, 1, 1.16, 1.32]
