@@ -15,6 +15,7 @@ console.setFormatter(formatter)
 logging.getLogger().addHandler(console)
 
 logging.info('Start validation process for combine card conversion')
+comblog = logging.getLogger('convert.combine.validate')
 
 def compareCards(lh, rh):
     if isinstance(lh, list):
@@ -51,7 +52,7 @@ runs = glob.glob(wdir+'/*/')
 for r in runs:
     runName = r.split('/')[-2]
     fcv = glob.glob(wdir+'/'+runName+'/*.txt')
-    print('Validate ', r)
+    comblog.info('Validate ', r)
 
     for f in fcv:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
@@ -59,8 +60,8 @@ for r in runs:
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-        print('--> Original datacard:', forig)
-        print('--> Converted datacard:', f)
+        comblog.info('--> Original datacard:', forig)
+        comblog.info('--> Converted datacard:', f)
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
         res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
@@ -85,13 +86,13 @@ for r in runs:
                 passedCard = False
                 
         if passedCard:
-            print('--> Compare shapes')
+            comblog.info('--> Compare shapes')
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
-                    print('Original shape file:', rfileo)
-                    print('Converted shape file:', rfilev)
+                    comblog.info('Original shape file:', rfileo)
+                    comblog.info('Converted shape file:', rfilev)
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(rfilev, 'READ')
                     keyso = rfo.GetDirectory(b).GetListOfKeys()
@@ -104,7 +105,7 @@ for r in runs:
                     hists = compareShapes(histso, histsv)
                     for h in hists:
                         nbins = histso[h].GetXaxis().GetNbins()
-                        print('--> Original shape ('+h+'):')
+                        comblog.info('--> Original shape ('+h+'):')
                         for b in range(1, nbins+1):
                             print('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
                         print('--> Converted shape ('+h+'):')
