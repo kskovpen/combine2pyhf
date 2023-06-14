@@ -72,7 +72,6 @@ if __name__ == '__main__':
     
     for d in dc:
         dname = d.split('/')[-1]
-        outdir = ws+'/validation/results/combine/'+dname
         os.system('mkdir -p '+outdir)
         os.chdir(outdir)
         fc = glob.glob(indir+'/'+dname+'/*.txt')
@@ -80,12 +79,11 @@ if __name__ == '__main__':
             fname = f.replace('.txt', '')
             comblog.info('--> Run fits ('+dname+')')
             comblog.info('--> Prepare the workspace')
-            print('output file', outdir+'/'+fname+'_model.root')
-            execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+outdir+'/'+fname+'_model.root '+f)
+            execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f)
             for fit in fits:
                 # get the best-fit snapshot
                 comblog.info('--> Perform the best fit ('+fit+')')
-                execute(comblog, 'combine -M MultiDimFit '+fit+'--saveWorkspace --expectSignal=1 -n BestFit '+opts+' '+outdir+'/'+fname+'_model.root')
+                execute(comblog, 'combine -M MultiDimFit '+fit+'--saveWorkspace --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
                 bf = postproc(comblog, getFitInfo('higgsCombineBestFit.MultiDimFit.mH120.root'))
                 comblog.info('bf='+str(bf['r'])+', nll='+str(bf['nll']))
                 # perform a NLL scan
