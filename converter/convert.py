@@ -29,7 +29,7 @@ def execute(logger, c):
         
 def shapeloc(dname, fname, combine2pyhf = False):
     with open(fname+'_mod', 'w') as f:
-        with open(fname+'test', 'r') as fr:
+        with open(fname, 'r') as fr:
             for line in fr:
                 if '.root' in line:
                     words = line.split()
@@ -47,8 +47,8 @@ def execshapeloc(logger, dname, fname, combine2pyhf = False):
     except Exception as e:
         logger.error(e)
 
-comblog = logging.getLogger('convert.combine')
 # combine cards
+comblog = logging.getLogger('convert.combine')
 dc = glob.glob(ws+'/cards/combine/*')
 for d in dc:
     dname = d.split('/')[-1]
@@ -67,23 +67,24 @@ for d in dc:
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
     
 # pyhf cards
-#dc = glob.glob(ws+'/cards/pyhf/*')
-#for d in dc:
-#    dname = d.split('/')[-1]
-#    print('Convert '+dname+' (pyhf)')
-#    os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
-#    os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
-#    os.system('cp '+ws+'/cards/pyhf/'+dname+'/* '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/.')
-#    fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
-#    for f in fc:
-#        fname = f.split('/')[-1]
-#        print('pyhf -> combine: '+fname)
-#        os.system('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
-#        froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
-#        print('combine -> pyhf: '+fname)
-#        shapeloc('pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+pyhflog = logging.getLogger('convert.pyhf')
+dc = glob.glob(ws+'/cards/pyhf/*')
+for d in dc:
+    dname = d.split('/')[-1]
+    pyhflog.info('Convert '+dname+' (pyhf)')
+    os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
+    os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
+    os.system('cp '+ws+'/cards/pyhf/'+dname+'/* '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/.')
+    fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
+    for f in fc:
+        fname = f.split('/')[-1]
+        pyhflog.info('pyhf -> combine: '+fname)
+        execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
+        pyhflog.info('combine -> pyhf: '+fname)
+        execshapeloc(pyhflog, 'pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
 ##        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 ##            lines = ff.readlines()
 ##            for l in lines:
 ##                print(l)
-#        os.system('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])

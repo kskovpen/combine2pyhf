@@ -2,6 +2,7 @@
 
 check() {
   if grep -q "ERROR" $1; then
+    echo "Found FAILURE"
     exit 1
   fi
 }
@@ -23,7 +24,7 @@ echo "Convert datacards .."
 python3 $WS/converter/convert.py
 check "$WS/validation/cards/combine/convert.log"
 python3 $WS/converter/validateCombine.py
-#check "failed"
+check "$WS/validation/cards/combine/validateCombine.log"
 #python3 $WS/converter/validatePyhf.py
 #check "Validation of pyhf cards failed!"
 

@@ -1,7 +1,20 @@
 #!/usr/bin/python3
 
-import os, sys, glob, ROOT
+import os, sys, glob, ROOT, logging, subprocess
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename=wd+'/cards/combine/validateCombine.log',
+                    filemode='w')
+console = logging.StreamHandler()
+console.setLevel(logging.INFO)
+formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
+console.setFormatter(formatter)
+logging.getLogger().addHandler(console)
+
+logging.info('Start validation process for combine card conversion')
 
 def compareCards(lh, rh):
     if isinstance(lh, list):
