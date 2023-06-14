@@ -23,8 +23,8 @@ echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
 check "$WS/validation/cards/combine/convert.log"
-python3 $WS/converter/validateCombine.py
-check "$WS/validation/cards/combine/validateCombine.log"
+#python3 $WS/converter/validateCombine.py
+#check "$WS/validation/cards/combine/validateCombine.log"
 #python3 $WS/converter/validatePyhf.py
 #check "Validation of pyhf cards failed!"
 

@@ -27,7 +27,7 @@ def execute(logger, c):
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
         
-def shapeloc(dname, fname, combine2pyhf = False):
+def shapeloc(dname, fname, tool = 'combine', combine2pyhf = False):
     with open(fname+'_mod', 'w') as f:
         with open(fname, 'r') as fr:
             for line in fr:
@@ -35,15 +35,15 @@ def shapeloc(dname, fname, combine2pyhf = False):
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
-                            if combine2pyhf: words[i] = wd+'/cards/combine/combine2pyhf/'+dname+'/'+w
-                            else: words[i] = wd+'/cards/combine/pyhf2combine/'+dname+'/'+w
+                            if combine2pyhf: words[i] = wd+'/cards/'+tool+'/combine2pyhf/'+dname+'/'+w
+                            else: words[i] = wd+'/cards/'+tool+'/pyhf2combine/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
     os.system('mv '+fname+'_mod '+fname)
    
-def execshapeloc(logger, dname, fname, combine2pyhf = False):
+def execshapeloc(logger, dname, fname, tool = 'combine', combine2pyhf = False):
     try:
-        shapeloc(dname, fname, combine2pyhf)
+        shapeloc(dname, fname, tool, combine2pyhf)
     except Exception as e:
         logger.error(e)
 
@@ -59,7 +59,7 @@ for d in dc:
     fc = glob.glob(wd+'/cards/combine/combine2pyhf/'+dname+'/*.txt')
     for f in fc:
         fname = f.split('/')[-1]
-        execshapeloc(comblog, dname, f, combine2pyhf = True)
+        execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
         execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('pyhf -> combine: '+fname)
@@ -82,7 +82,7 @@ for d in dc:
         execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
-        execshapeloc(pyhflog, 'pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+        execshapeloc(pyhflog, 'pyhf/pyhf2combine/'+dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
 ##        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 ##            lines = ff.readlines()
 ##            for l in lines:
