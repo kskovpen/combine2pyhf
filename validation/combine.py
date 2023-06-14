@@ -20,11 +20,10 @@ def postproc(logger, fname):
 def getFitInfo(fname):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
-    res = {'r': None, 'nll': None, 'nll0': None}
+    res = {'r': None, 'nll': None}
     tr.GetEntry(0)
     res['r'] = tr.r
-    res['nll'] = tr.nll
-    res['nll0'] = tr.nll0
+    res['nll'] = 2*(tr.nll0+tr.nll+tr.deltaNLL)
     json.dump(res, open(fname.replace('.root', '.json'), 'w'), indent=2)
     return res
 
@@ -82,13 +81,9 @@ if __name__ == '__main__':
                 comblog.info('--> Perform the best fit ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
                 bf = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
-                bfnll = bf['nll']
-                comblog.info('    bf='+str(bf['r'])+', nll='+str(bfnll))
-                rs = [0.68, 0.84, 1, 1.16, 1.32]
+                comblog.info('    bf='+str(bf['r']))
                 comblog.info('--> Perform the scan ('+fit+')')
-                for r in rs:
-                    execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Fit_r'+str(r)+' '+opts+' --setParameters r='+str(r)+' --freezeParameters r')
-                    fres = postproc(comblog, 'higgsCombineFit_r'+str(r)+'.MultiDimFit.mH120.root')
-                    dnll = -2.*(fres['nll']-bfnll)
-                    comblog.info('    r='+str(fres['r'])+', dnll='+str(dnll))
+                execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.6 --rMax 1.4 --points 5 --freezeParameters r')
+                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root')
+                comblog.info('    r='+str(fres['r'])+', delta_nll='+str(fres['nll']))
 
