@@ -23,7 +23,7 @@ logging.info('Start conversion process')
 
 def execute(logger, c):
     try:
-        subprocess.check_output(c, shell=True)
+        subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
         
