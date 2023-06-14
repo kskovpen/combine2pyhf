@@ -29,14 +29,14 @@ def execute(logger, c):
         
 def shapeloc(dname, fname, combine2pyhf = False):
     with open(fname+'_mod', 'w') as f:
-        with open(fname, 'r') as fr:
+        with open(fname+'test', 'r') as fr:
             for line in fr:
                 if '.root' in line:
                     words = line.split()
                     for i, w in enumerate(words):
                         if '.root' in w:
                             if combine2pyhf: words[i] = wd+'/cards/combine/combine2pyhf/'+dname+'/'+w
-                            else: words[i] = wd+'/sdfsdfcards/combine/pyhf2combine/'+dname+'/'+w
+                            else: words[i] = wd+'/cards/combine/pyhf2combine/'+dname+'/'+w
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
     os.system('mv '+fname+'_mod '+fname)
