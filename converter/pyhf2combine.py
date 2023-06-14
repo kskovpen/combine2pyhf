@@ -69,7 +69,7 @@ if __name__ == '__main__':
         for obs in d['observations']:
             if obs['name'] == ch['name']:
                 hname = 'data_obs'
-                data = s['data']
+                data = obs['data']
                 nb = len(data)
                 h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):

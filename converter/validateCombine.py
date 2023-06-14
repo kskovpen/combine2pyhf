@@ -105,7 +105,7 @@ for r in runs:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
                     hists = compareShapes(histso, histsv)
                     if hists:
-                        comblog.error('Shape comparison failed, more info below:')
+                        comblog.info('--> Compare shapes: \033[1;31mfailed\x1b[0m')
                     else:
                         comblog.info('--> Compare shapes: \033[1;32mpassed\x1b[0m')
                     for h in hists:
