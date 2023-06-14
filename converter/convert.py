@@ -25,11 +25,9 @@ def execute(logger, c):
     try:
         subprocess.check_output(c, shell=True)
     except subprocess.CalledProcessError as e:
-        logger.info(e.output)
+        logger.error(e.output)
         
 def shapeloc(dname, fname, combine2pyhf = False):
-    if not os.path.isfile(fname):
-        raise InputFileError
     with open(fname+'_mod', 'w') as f:
         with open(fname, 'r') as fr:
             for line in fr:
@@ -46,8 +44,8 @@ def shapeloc(dname, fname, combine2pyhf = False):
 def execshapeloc(logger, dname, fname, combine2pyhf = False):
     try:
         shapeloc(dname, fname, combine2pyhf)
-    except InputFileError:
-        logger.info('Input datacard does not exist:', fname)
+    except Exception as e:
+        logger.error(e.output)
 
 comblog = logging.getLogger('convert.combine')
 # combine cards
