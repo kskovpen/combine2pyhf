@@ -8,9 +8,6 @@ check() {
 
 echo "Setting up environment .."
 
-which python3
-python3 -m pip list
-
 export CVMFS_HTTP_PROXY=DIRECT
 mount -t cvmfs cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch
 mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
@@ -27,9 +24,7 @@ python3 $WS/converter/convert.py
 check "$WS/validation/cards/combine/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/validation/cards/combine/validateCombine.log"
-which python3
-python3 -m pip list
-python3 $WS/converter/validatePyhf.py
+/usr/bin/python3 $WS/converter/validatePyhf.py
 check "$WS/validation/cards/combine/validatePyhf.log"
 
 echo "Done."
