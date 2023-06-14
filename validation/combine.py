@@ -13,7 +13,7 @@ def execute(logger, c):
         
 def postproc(logger, fname):
     try:
-        getFitInfo(fname)
+        return getFitInfo(fname)
     except Exception as e:
         logger.error(e)
         
