@@ -11,7 +11,7 @@ os.system('mkdir -p '+wd+'/cards/pyhf')
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M',
-                    filename=wd+'/cards/combine/convert.log',
+                    filename=ws+'/logs/convert.log',
                     filemode='w')
 console = logging.StreamHandler()
 console.setLevel(logging.INFO)

@@ -45,4 +45,4 @@ echo "Done."
 echo "Run comparisons .."
 echo "All done."
 
-tar -czf $WS/log.tar.gz $WS/logs
+cd $WS; tar -czf log.tar.gz logs

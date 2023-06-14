@@ -10,7 +10,7 @@ wdir = wd+'/cards/pyhf/combine2pyhf'
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M',
-                    filename=wd+'/cards/combine/validatePyhf.log',
+                    filename=ws+'/logs/validatePyhf.log',
                     filemode='w')
 console = logging.StreamHandler()
 console.setLevel(logging.INFO)
