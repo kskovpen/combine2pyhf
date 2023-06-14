@@ -75,7 +75,6 @@ for d in dc:
     os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     os.system('cp '+ws+'/cards/pyhf/'+dname+'/* '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/.')
-    print('here:', ws+'/cards/pyhf/'+dname+'/*')    
     fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
     for f in fc:
         fname = f.split('/')[-1]

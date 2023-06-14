@@ -28,7 +28,7 @@ for r in runs:
     pyhflog.info('Validate '+runName+' (pyhf)')
     
     for f in fcv:
-        forig = f.replace('validation/', '').replace('combine2pyhf/', '')
+        forig = f.replace('validation/', '').replace('combine2pyhf/', '').replace('cards', 'combine2pyhf/combine2pyhf/cards')
         pyhflog.info('--> Compare json: '+os.path.splitext(forig.split('/')[-1])[0])
         with open(forig) as fforig:
             jorig = json.loads(fforig.read())
