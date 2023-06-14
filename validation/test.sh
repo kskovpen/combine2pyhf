@@ -15,6 +15,7 @@ mount -t cvmfs cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch
 mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 
 export WS=$GITHUB_WORKSPACE
+mkdir $WS/logs
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
@@ -24,11 +25,11 @@ echo "Done"
 echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
-check "$WS/validation/cards/combine/convert.log"
+check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
-check "$WS/validation/cards/combine/validateCombine.log"
+check "$WS/logs/validateCombine.log"
 python3 $WS/converter/validatePyhf.py
-check "$WS/validation/cards/combine/validatePyhf.log"
+check "$WS/logs/validatePyhf.log"
 
 echo "Done."
 echo "Run combine tests .."
@@ -43,3 +44,5 @@ echo "Run pyhf tests .."
 echo "Done."
 echo "Run comparisons .."
 echo "All done."
+
+tar -czf $WS/log.tar.gz $WS/logs

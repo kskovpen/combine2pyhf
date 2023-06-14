@@ -20,5 +20,5 @@ jobs:
       - name: Publish results
         uses: actions/upload-artifact@v3
         with:
-          name: inputFile
-          path: /__w/combine2pyhf/combine2pyhf/validation/cards/combine/convert.log
+          name: log.tar.gz
+          path: /__w/combine2pyhf/combine2pyhf/log.tar.gz
