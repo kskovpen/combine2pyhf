@@ -37,7 +37,7 @@ python3 $WS/validation/combine.py
 
 echo "Done."
 echo "Run pyhf tests .."
-#python3 $WS/validation/pyhf.py
+python3 $WS/validation/pyhf.py
 
 echo "Done."
 echo "Run comparisons .."
