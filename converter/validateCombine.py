@@ -52,7 +52,7 @@ runs = glob.glob(wdir+'/*/')
 for r in runs:
     runName = r.split('/')[-2]
     fcv = glob.glob(wdir+'/'+runName+'/*.txt')
-    comblog.info('Validate '+r)
+    comblog.info('Validate '+runName+' (combine)')
 
     for f in fcv:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
@@ -85,6 +85,7 @@ for r in runs:
                 passedCard = False
                 
         if passedCard:
+            comblog.info('--> Compare datacards: \033[1;32mpassed\x1b[0m')
             comblog.info('--> Compare shapes')
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
@@ -102,6 +103,8 @@ for r in runs:
                     hists = compareShapes(histso, histsv)
                     if hists:
                         comblog.error('Shape comparison failed, more info below:')
+                    else:
+                        comblog.info('--> Compare shapes: \033[1;32mpassed\x1b[0m')
                     for h in hists:
                         nbins = histso[h].GetXaxis().GetNbins()
                         comblog.error('--> Original shape ('+h+'):')

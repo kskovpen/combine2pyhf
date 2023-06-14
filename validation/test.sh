@@ -2,7 +2,6 @@
 
 check() {
   if grep -q "ERROR" $1; then
-    echo "Found FAILURE"
     exit 1
   fi
 }
