@@ -78,15 +78,20 @@ if __name__ == '__main__':
         fc = glob.glob(indir+'/'+dname+'/*.txt')
         for f in fc:
             fname = f.replace('.txt', '')
+            comblog.info('--> Run fits ('+dname+')')
+            comblog.info('--> Prepare the workspace')
+            print('output file', outdir+'/'+fname+'_model.root')
             execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+outdir+'/'+fname+'_model.root '+f)
             for fit in fits:
                 # get the best-fit snapshot
+                comblog.info('--> Perform the best fit ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fit+'--saveWorkspace --expectSignal=1 -n BestFit '+opts+' '+outdir+'/'+fname+'_model.root')
                 bf = postproc(comblog, getFitInfo('higgsCombineBestFit.MultiDimFit.mH120.root'))
                 comblog.info('bf='+str(bf['r'])+', nll='+str(bf['nll']))
                 # perform a NLL scan
                 rs = [0.68, 0.84, 1, 1.16, 1.32]
                 for r in rs:
+                    comblog.info('--> Perform the fit for r='+str(r)+' ('+fit+')')
                     execute(comblog, 'combine -M MultiDimFit -d higgsCombineBestFit.MultiDimFit.mH120.root -w w --snapshotName \"MultiDimFit\" -n Fit_r'+str(r)+' --setParameters r='+str(r)+' --freezeParameters r')
                     fres = postproc(comblog, getFitInfo('higgsCombineFit_r'+str(r)+'.MultiDimFit.mH120.root'))
                     comblog.info('rf='+str(fres['r'])+', deltaNLL='+str(fres['nll']))
