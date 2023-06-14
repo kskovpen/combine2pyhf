@@ -25,9 +25,11 @@ def execute(logger, c):
     try:
         subprocess.check_output(c, shell=True)
     except subprocess.CalledProcessError as e:
-        logger.debug(e.output)
-
+        logger.info(e.output)
+        
 def shapeloc(dname, fname, combine2pyhf = False):
+    if not os.path.isfile(fname):
+        raise InputFileError
     with open(fname+'_mod', 'w') as f:
         with open(fname, 'r') as fr:
             for line in fr:
@@ -40,6 +42,12 @@ def shapeloc(dname, fname, combine2pyhf = False):
                     f.write(' '.join(words)+'\n')
                 else: f.write(line)
     os.system('mv '+fname+'_mod '+fname)
+   
+def execshapeloc(logger, dname, fname, combine2pyhf = False):
+    try:
+        shapeloc(dname, fname, combine2pyhf)
+    except InputFileError:
+        logger.info('Input datacard does not exist:', fname)
 
 comblog = logging.getLogger('convert.combine')
 # combine cards
@@ -53,12 +61,12 @@ for d in dc:
     fc = glob.glob(wd+'/cards/combine/combine2pyhf/'+dname+'/*.txt')
     for f in fc:
         fname = f.split('/')[-1]
-        comblog.debug(shapeloc(dname, f, combine2pyhf = True))
+        execshapeloc(comblog, dname, f, combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
         execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('pyhf -> combine: '+fname)
         execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
-        comblog.debug(shapeloc(dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt'))
+        execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
     
 # pyhf cards
 #dc = glob.glob(ws+'/cards/pyhf/*')
