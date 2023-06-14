@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-# test
 import os, sys, pyhf, json, glob, logging, subprocess
 from nested_diff import diff
 
