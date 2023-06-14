@@ -3,6 +3,10 @@
 import os, sys, glob, ROOT, logging, subprocess
 from HiggsAnalysis.CombinedLimit.DatacardParser import *
 
+ws = os.environ['WS']
+wd = ws+'/validation'
+wdir = wd+'/cards/combine/pyhf2combine'
+
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M',
@@ -44,10 +48,6 @@ def compareShapes(lh, rh):
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
 
-ws = os.environ['WS']
-
-wdir = ws+'/validation/cards/combine/pyhf2combine'
-
 runs = glob.glob(wdir+'/*/')
 for r in runs:
     runName = r.split('/')[-2]
@@ -60,8 +60,7 @@ for r in runs:
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-        comblog.info('--> Original datacard:', forig)
-        comblog.info('--> Converted datacard:', f)
+        comblog.info('--> Compare datacards')
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
         res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
@@ -81,8 +80,8 @@ for r in runs:
         passedCard = True
         for k in res.keys():
             if not res[k][0]:
-                print('Validation failed for '+k+':')
-                print(res[k][1], res[k][2])
+                comblog.error('Datacard comparison failed for '+k+':')
+                comblog.error(res[k][1], res[k][2])
                 passedCard = False
                 
         if passedCard:
@@ -91,8 +90,6 @@ for r in runs:
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
-                    comblog.info('Original shape file:', rfileo)
-                    comblog.info('Converted shape file:', rfilev)
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(rfilev, 'READ')
                     keyso = rfo.GetDirectory(b).GetListOfKeys()
@@ -103,14 +100,13 @@ for r in runs:
                     for hv in keysv:
                         histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
                     hists = compareShapes(histso, histsv)
+                    if hists:
+                        comblog.error('Shape comparison failed, more info below:')
                     for h in hists:
                         nbins = histso[h].GetXaxis().GetNbins()
-                        comblog.info('--> Original shape ('+h+'):')
+                        comblog.error('--> Original shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            print('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
-                        print('--> Converted shape ('+h+'):')
+                            comblog.error('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
+                        comblog.error('--> Converted shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            print('bin #',b,':', histsv[h].GetBinContent(b), '+-', histsv[h].GetBinError(b))
-                    if hists:
-                        print('Shape comparison failed, please find details above')
-                        sys.exit()
+                            comblog.error('bin #',b,':', histsv[h].GetBinContent(b), '+-', histsv[h].GetBinError(b))
