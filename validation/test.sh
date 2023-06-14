@@ -25,8 +25,7 @@ check "$WS/validation/cards/combine/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/validation/cards/combine/validateCombine.log"
 which python3
-which python
-echo ${ROOTSYS}
+python3 -m pip list
 python3 $WS/converter/validatePyhf.py
 check "$WS/validation/cards/combine/validatePyhf.log"
 
