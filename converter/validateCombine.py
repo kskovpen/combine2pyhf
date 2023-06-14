@@ -52,7 +52,7 @@ runs = glob.glob(wdir+'/*/')
 for r in runs:
     runName = r.split('/')[-2]
     fcv = glob.glob(wdir+'/'+runName+'/*.txt')
-    comblog.info('Validate ', r)
+    comblog.info('Validate '+r)
 
     for f in fcv:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
@@ -81,7 +81,7 @@ for r in runs:
         for k in res.keys():
             if not res[k][0]:
                 comblog.error('Datacard comparison failed for '+k+':')
-                comblog.error(res[k][1], res[k][2])
+                comblog.error(res[k][1]+' '+res[k][2])
                 passedCard = False
                 
         if passedCard:
@@ -106,7 +106,7 @@ for r in runs:
                         nbins = histso[h].GetXaxis().GetNbins()
                         comblog.error('--> Original shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            comblog.error('bin #',b,':', histso[h].GetBinContent(b), '+-', histso[h].GetBinError(b))
+                            comblog.error('bin #'+b+': '+histso[h].GetBinContent(b)+'+-'+histso[h].GetBinError(b))
                         comblog.error('--> Converted shape ('+h+'):')
                         for b in range(1, nbins+1):
-                            comblog.error('bin #',b,':', histsv[h].GetBinContent(b), '+-', histsv[h].GetBinError(b))
+                            comblog.error('bin #'+b+': '+histsv[h].GetBinContent(b)+'+-'+histsv[h].GetBinError(b))
