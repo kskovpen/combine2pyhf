@@ -45,7 +45,7 @@ def execshapeloc(logger, dname, fname, combine2pyhf = False):
     try:
         shapeloc(dname, fname, combine2pyhf)
     except Exception as e:
-        logger.error(e.output)
+        logger.error(e)
 
 comblog = logging.getLogger('convert.combine')
 # combine cards
