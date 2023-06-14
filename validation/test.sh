@@ -33,12 +33,10 @@ check "$WS/logs/validatePyhf.log"
 
 echo "Done."
 echo "Run combine tests .."
-
-#python3 $WS/validation/combine.py
+python3 $WS/validation/combine.py
 
 echo "Done."
 echo "Run pyhf tests .."
-
 #python3 $WS/validation/pyhf.py
 
 echo "Done."
