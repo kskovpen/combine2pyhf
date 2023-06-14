@@ -7,7 +7,7 @@ import ROOT
 def execute(logger, c):
     try:
         r = subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
-        logger.debug(r.output)
+        logger.debug(r)
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
         
