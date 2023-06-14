@@ -20,12 +20,12 @@ def postproc(logger, fname):
 def getFitInfo(fname):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
-    res = {'nll': None, 'r': None}
+    res = {'r': None, 'deltaNLL': None, 'nll': None, 'nll0': None}
     tr.GetEntry(0)
-    res['r'] = eval('tr.r_'+r)
+    res['r'] = tr.r
     res['deltaNLL'] = 2.*tr.deltaNLL
-    res['nll'] = 2.*tr.nll
-    res['nll0'] = 2.*tr.nll0        
+    res['nll'] = tr.nll
+    res['nll0'] = tr.nll0
     json.dump(res, open(fname.replace('.root', '.json'), 'w'), indent=2)
     return res
 
