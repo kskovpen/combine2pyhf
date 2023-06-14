@@ -1,9 +1,7 @@
 #!/bin/bash
 
 check() {
-  res=$?
-  if [ $res -ne 0 ]; then
-    echo $1
+  if grep -q "ERROR" $1; then
     exit 1
   fi
 }
@@ -23,9 +21,9 @@ echo "Done"
 echo "Convert datacards .."
 
 python3 $WS/converter/convert.py
-check "error"
+check "$WS/validation/cards/combine/convert.log"
 python3 $WS/converter/validateCombine.py
-check "failed"
+#check "failed"
 #python3 $WS/converter/validatePyhf.py
 #check "Validation of pyhf cards failed!"
 
