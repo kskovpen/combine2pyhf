@@ -7,6 +7,8 @@ check() {
 }
 
 pyloc=($(pip show pyhf | grep Location))[1]
+echo ${pyloc}
+echo $PYTHONPATH
 
 echo "Setting up environment .."
 
