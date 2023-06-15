@@ -17,6 +17,8 @@ pyhfoff() {
 
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
+echo $PYTHONPATH
+echo $PYTHONHOME
 
 echo "Setting up environment .."
 
