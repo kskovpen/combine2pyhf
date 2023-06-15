@@ -7,6 +7,7 @@ check() {
 }
 
 pyloc=($(pip show pyhf | grep Location))
+echo "Installed python modules (native):"
 pip list
 
 echo "Setting up environment .."
