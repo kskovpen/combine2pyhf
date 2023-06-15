@@ -3,11 +3,11 @@ FROM base as builder
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip dpkg gcc-11 fuse libgfortran5
+RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip python3-distutils virtualenv dpkg gcc-11 fuse libgfortran5
 RUN gcc --version
 
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install pyhf deepdiff virtualenv
+RUN python3 -m pip install pyhf deepdiff
 
 RUN git clone --single-branch --branch combine2pyhf https://github.com/kskovpen/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 
