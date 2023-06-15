@@ -6,17 +6,11 @@ check() {
   fi
 }
 
-pyhfcreate() {
-  PP=$PYTHONPATH; PH=$PYTHONHOME
+pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
   pip install pyhf iminuit deepdiff > /dev/null
-  PPP=$PYTHONPATH; PPH=$PYTHONHOME
-}
-
-pyhfon() {
-  export PYTHONPATH=$PPP; export PYTHONHOME=$PPH
   source pyhfenv/bin/activate
 }
 
@@ -25,7 +19,9 @@ pyhfoff() {
   export PYTHONPATH=$PP; export PYTHONHOME=$PH
 }
 
+echo "Add modules from ${pyloc}"
 pyloc=($(pip show pyhf | grep Location))
+export PYTHONPATH=$PYTHONPATH:${pyloc}
 
 echo "Setting up environment .."
 
@@ -38,6 +34,7 @@ mkdir $WS/logs
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
+PP=$PYTHONPATH; PH=$PYTHONHOME
 
 echo "Done"
 echo "Convert datacards .."
@@ -46,7 +43,7 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-pyhfcreate; python3 $WS/converter/validatePyhf.py; pyhfoff
+pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
