@@ -21,6 +21,7 @@ pyhfoff() {
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
 which python3
+which virtualenv
 
 echo "Setting up environment .."
 
