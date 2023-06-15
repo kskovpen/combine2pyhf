@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 
-__requires__ = ["pyhf==0.7.2", "numpy==1.24.3"]
-import pkg_resources
 import os, sys, math, json, glob, logging, subprocess, pyhf
 from optparse import OptionParser
 import ROOT
