@@ -33,9 +33,6 @@ def main(argv = None):
 if __name__ == '__main__':
     
     options = main()
-    
-    print(pyhf.__version__)
-    print(pyhf.__file__)
 
     ws = os.environ['WS']
     indir = ws+'/validation/cards/pyhf/combine2pyhf'
@@ -87,10 +84,11 @@ if __name__ == '__main__':
                 pyhflog.info('--> Perform the best fit ('+fit+')')
                 m.migrad()
                 bf = m.values[model.config.poi_index]
-                pyhflog.info('    bf='+str(bf)+', nll='+str(m.fval))
-                rs = [0.68, 0.84, 1, 1.16, 1.32]
+                pyhflog.info('    bf='+str(bf))
+                muv = [0.68, 0.84, 1, 1.16, 1.32]
                 pyhflog.info('--> Perform the scan ('+fit+')')
-                for r in rs:
+                nllv = []
+                for r in muv:
                     init[model.config.poi_index] = r
                     constraints = [(model.config.poi_index, r)]
                     for idx, fixed_val in constraints:
@@ -98,6 +96,10 @@ if __name__ == '__main__':
                         m.values[pname] = fixed_val
                         m.fixed[pname] = True
                     m.migrad()
-                    nll = m.fval-twice_nll(init)
-                    fres = m.values[model.config.poi_index]
-                    pyhflog.info('    r='+str(fres)+', delta_nll='+str(nll))
+                    nllv.append(m.fval)
+                bf = muv[nllv.index(min(nllv))]
+                bfnll = min(nllv)
+                for i in range(len(nllv)):
+                    nllv[i] -= bfnll
+                    nllv[i] *= 2.0
+                    pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))                

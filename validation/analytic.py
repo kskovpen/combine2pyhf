@@ -62,6 +62,7 @@ if __name__ == '__main__':
                     muv = [0.68, 0.84, 1, 1.16, 1.32]
                     
                     for fit in fits:
+                        log.info('--> Perform the scan ('+fit+')')
                         n = sig+bkg if fit == 'asi' else data
                         nllv = []
                         for mu in muv:
@@ -78,7 +79,7 @@ if __name__ == '__main__':
                                 
                         bf = muv[nllv.index(min(nllv))]
                         bfnll = min(nllv)
-                        log.info('    bf='+str(bf)+', nll='+str(bfnll))
+                        log.info('    bf='+str(bf))
     
                         for i in range(len(nllv)):
                             nllv[i] -= bfnll
