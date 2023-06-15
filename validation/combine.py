@@ -21,9 +21,10 @@ def getFitInfo(fname):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
     res = {'r': None, 'nll': None}
-    tr.GetEntry(0)
-    res['r'] = tr.r
-    res['nll'] = 2*(tr.nll0+tr.nll+tr.deltaNLL)
+    for i in range(tr.GetEntries()):
+        tr.GetEntry(i)
+        res['r'].append(tr.r)
+        res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     json.dump(res, open(fname.replace('.root', '.json'), 'w'), indent=2)
     return res
 
@@ -85,5 +86,6 @@ if __name__ == '__main__':
                 comblog.info('--> Perform the scan ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.6 --rMax 1.4 --points 5 --freezeParameters r')
                 fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root')
-                comblog.info('    r='+str(fres['r'])+', delta_nll='+str(fres['nll']))
+                for i in range(len(fres['r'])):
+                    comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
 
