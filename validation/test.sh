@@ -19,9 +19,9 @@ pyhfoff() {
   export PYTHONPATH=$PP; export PYTHONHOME=$PH
 }
 
-echo "Add modules from ${pyloc}"
 pyloc=($(pip show pyhf | grep Location))
-export PYTHONPATH=$PYTHONPATH:${pyloc}
+export PYTHONPATH=$PYTHONPATH:${pyloc[1]}
+echo "Add modules from ${pyloc}"
 
 echo "Setting up environment .."
 
