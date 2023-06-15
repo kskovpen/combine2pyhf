@@ -53,7 +53,7 @@ if __name__ == '__main__':
     logging.info('Start pyhf fits')
     pyhflog = logging.getLogger('fit.pyhf')
     
-    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))    
+#    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))    
     
     dc = glob.glob(indir+'/*')
     
