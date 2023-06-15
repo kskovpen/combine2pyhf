@@ -8,7 +8,7 @@ check() {
 
 pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
-  /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
+  /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv > /dev/null
   source pyhfenv/bin/activate
   pip install pyhf iminuit deepdiff > /dev/null
   source pyhfenv/bin/activate

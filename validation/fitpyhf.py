@@ -1,4 +1,4 @@
-import os, sys, math, json, glob, logging, subprocess, pyhf
+import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit
 from optparse import OptionParser
 
 def twice_nll(pars):
