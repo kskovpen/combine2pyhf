@@ -7,17 +7,19 @@ check() {
 }
 
 pyhfon() {
+  PP=$PYTHONPATH; PH=$PYTHONHOME
+  unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
+  pip install pyhf
 }
 
 pyhfoff() {
   deactivate
+  export PYTHONPATH=$PP; export PYTHONHOME=$PH
 }
 
 pyloc=($(pip show pyhf | grep Location))
-echo $PYTHONPATH
-echo $PYTHONHOME
 
 echo "Setting up environment .."
 
@@ -38,10 +40,6 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-unset PYTHONPATH
-unset PYTHONHOME
-echo $PYTHONPATH
-echo $PYTHONHOME
 pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 sys.exit()
 check "$WS/logs/validatePyhf.log"
