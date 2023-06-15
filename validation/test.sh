@@ -6,12 +6,18 @@ check() {
   fi
 }
 
-pyhfon() {
+pyhfcreate() {
   PP=$PYTHONPATH; PH=$PYTHONHOME
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
   pip install pyhf iminuit deepdiff > /dev/null
+}
+
+pyhfon() {
+  PP=$PYTHONPATH; PH=$PYTHONHOME
+  unset PYTHONPATH; unset PYTHONHOME
+  source pyhfenv/bin/activate
 }
 
 pyhfoff() {
@@ -40,7 +46,7 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
+pyhfcreate; python3 $WS/converter/validatePyhf.py; pyhfoff
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
