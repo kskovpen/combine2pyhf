@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 
-import os, sys, math, json, glob, logging, subprocess
+import os, sys, math, json, glob, logging, subprocess, pyhf
 from optparse import OptionParser
 import ROOT
+
+def twice_nll(pars):
+    return -2.0*model.logpdf(pars, data)[0]
 
 def execute(logger, c):
     try:
@@ -51,28 +54,50 @@ if __name__ == '__main__':
     logging.info('Start pyhf fits')
     pyhflog = logging.getLogger('fit.pyhf')
     
+    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))    
+    
     dc = glob.glob(indir+'/*')
     
-#    for d in dc:
-#        dname = d.split('/')[-1]
-#        os.chdir(indir+'/'+dname)
-#        fc = glob.glob(indir+'/'+dname+'/*.txt')
-#        for f in fc:
-#            fname = f.replace('.txt', '')
-#            comblog.info('--> Run fits ('+dname+')')
-#            comblog.info('--> Prepare the workspace')
-#            execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f)
-#            for fit in fits.keys():
-#                comblog.info('--> Perform the best fit ('+fit+')')
-#                execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
-#                bf = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
-#                bfnll = bf['nll']
-#                comblog.info('    bf='+str(bf['r'])+', nll='+str(bfnll))
-#                rs = [0.68, 0.84, 1, 1.16, 1.32]
-#                comblog.info('--> Perform the scan ('+fit+')')
-#                for r in rs:
-#                    execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Fit_r'+str(r)+' '+opts+' --setParameters r='+str(r)+' --freezeParameters r')
-#                    fres = postproc(comblog, 'higgsCombineFit_r'+str(r)+'.MultiDimFit.mH120.root')
-#                    dnll = -2.*(fres['nll']-bfnll)
-#                    comblog.info('    r='+str(fres['r'])+', dnll='+str(dnll))
-
+    for d in dc:
+        dname = d.split('/')[-1]
+        os.chdir(indir+'/'+dname)
+        fc = glob.glob(indir+'/'+dname+'/*.json')
+        for f in fc:
+            fname = f.replace('.json', '')
+            pyhflog.info('--> Run fits ('+dname+', '+fname.split('/')[-1]+')')
+            pyhflog.info('--> Prepare the workspace')
+            df = json.load(open(f))
+            wspace = pyhf.Workspace(df)
+            model = wspace.model(modifier_settings={'histosys': {'interpcode': 'code4p'}, 'normsys': {'interpcode': 'code4'}})
+            
+            init = model.config.suggested_init()
+            constraints = model.config.suggested_bounds()
+            names = model.config.par_names
+            fixed = model.config.suggested_fixed()
+            poi = names[model.config.poi_index]
+            
+            obs = wspace.data(model)
+            asimov = model.expected_data(pyhf.tensorlib.astensor(init))
+            fits = {'asi': asimov, 'obs': obs}
+            
+            m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
+            m.limits = constraints
+            for fit in fits.keys():
+                data = asimov if fit == 'asi' else obs
+                pyhflog.info('--> Perform the best fit ('+fit+')')
+                m.migrad()
+                bf = m.values[model.config.poi_index]
+                pyhflog.info('    bf='+str(bf)+', nll='+str(m.fval))
+                rs = [0.68, 0.84, 1, 1.16, 1.32]
+                pyhflog.info('--> Perform the scan ('+fit+')')
+                for r in rs:
+                    init[model.config.poi_index] = r
+                    constraints = [(model.config.poi_index, r)]
+                    for idx, fixed_val in constraints:
+                        pname = model.config.par_names[idx]
+                        m.values[pname] = fixed_val
+                        m.fixed[pname] = True
+                    m.migrad()
+                    nll = m.fval-twice_nll(init)
+                    fres = m.values[model.config.poi_index]
+                    pyhflog.info('    r='+str(fres)+', delta_nll='+str(nll))
