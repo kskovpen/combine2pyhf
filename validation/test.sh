@@ -41,7 +41,6 @@ check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
 pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
-sys.exit()
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
