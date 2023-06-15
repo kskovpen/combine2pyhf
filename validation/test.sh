@@ -7,6 +7,7 @@ check() {
 }
 
 pyloc=($(pip show pyhf | grep Location))
+pip list | grep pyhf
 
 echo "Setting up environment .."
 
@@ -21,6 +22,7 @@ cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 export PYTHONPATH=$PYTHONPATH:${pyloc[1]} # include additional modules from image
 
+pip list | grep pyhf
 echo "Done"
 echo "Convert datacards .."
 
