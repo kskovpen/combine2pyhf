@@ -20,7 +20,7 @@ def postproc(logger, fname):
 def getFitInfo(fname):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
-    res = {'r': None, 'nll': None}
+    res = {'r': [], 'nll': []}
     for i in range(tr.GetEntries()):
         tr.GetEntry(i)
         res['r'].append(tr.r)
