@@ -16,7 +16,6 @@ pyhfoff() {
 }
 
 pyloc=($(pip show pyhf | grep Location))
-echo "Installed python modules (native):"
 echo $PYTHONPATH
 echo $PYTHONHOME
 
@@ -39,9 +38,10 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
+unset $PYTHONPATH
+unset $PYTHONHOME
 echo $PYTHONPATH
 echo $PYTHONHOME
-unset $PYTHONHOME
 pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 sys.exit()
 check "$WS/logs/validatePyhf.log"
