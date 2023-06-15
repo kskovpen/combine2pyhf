@@ -6,6 +6,15 @@ check() {
   fi
 }
 
+pyhfon() {
+  virtualenv --python=/usr/bin/python3.10 pyhfenv
+  source pyhfenv/bin/activate  
+}
+
+pyhfoff() {
+  deactivate
+}
+
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
 
@@ -37,7 +46,9 @@ python3 $WS/validation/combine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
+pyhfon
 python3 $WS/validation/pyhf.py
+pyhfoff
 check "$WS/logs/pyhf.log"
 echo "Done."
 echo "Run analytical tests .."
