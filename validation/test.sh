@@ -23,6 +23,8 @@ cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 export PYTHONPATH=$PYTHONPATH:${pyloc[1]} # include additional modules from image
 
+python3 -m pip uninstall numpy
+python3 -m pip install numpy==1.24.3
 pip list
 
 echo "Done"
