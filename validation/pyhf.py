@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import pkg_resources
+pkg_resources.require("pyhf==0.7.2")
 import os, sys, math, json, glob, logging, subprocess, pyhf
 from optparse import OptionParser
 import ROOT

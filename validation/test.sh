@@ -34,13 +34,17 @@ check "$WS/logs/validatePyhf.log"
 echo "Done."
 echo "Run combine tests .."
 python3 $WS/validation/combine.py
-
+check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
 python3 $WS/validation/pyhf.py
-
+check "$WS/logs/pyhf.log"
 echo "Done."
-echo "Run comparisons .."
+echo "Run analytical tests .."
+python3 $WS/validation/analytic.py
+check "$WS/logs/analytic.log"
+echo "Done."
+
 echo "All done."
 
 cd $WS; tar -czf log.tar.gz logs
