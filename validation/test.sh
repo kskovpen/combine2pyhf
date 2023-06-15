@@ -10,6 +10,7 @@ pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
 pip list
 which python3
+python3 --version
 
 echo "Setting up environment .."
 
@@ -40,7 +41,7 @@ python3 $WS/validation/combine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
-alias python3=python3.10
+alias python3=/usr/bin/python3
 export PYTHONPATH=${pyloc[1]} # include additional modules from image
 python3 $WS/validation/pyhf.py
 check "$WS/logs/pyhf.log"
