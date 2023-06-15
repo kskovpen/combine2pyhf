@@ -58,6 +58,7 @@ if __name__ == '__main__':
                     bkg = df['channels'][0]['samples'][1]['data'][0]
                     bkgErr = df['channels'][0]['samples'][1]['modifiers'][0]['data'][0]
                     data = df['observations'][0]['data'][0]
+                    print('sig=', sig, 'sigErr=', sigErr, 'bkg=', bkg, 'bkgErr=', bkgErr, 'data=', data)
                     
                     muv = [0.68, 0.84, 1, 1.16, 1.32]
                     
