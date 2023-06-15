@@ -39,7 +39,7 @@ python3 $WS/validation/combine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
-python3 $WS/validation/pyhf.py
+/usr/bin/python3 $WS/validation/pyhf.py
 check "$WS/logs/pyhf.log"
 echo "Done."
 echo "Run analytical tests .."
