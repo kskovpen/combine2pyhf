@@ -101,5 +101,4 @@ if __name__ == '__main__':
                 bfnll = min(nllv)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
-                    nllv[i] *= 2.0
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))                
