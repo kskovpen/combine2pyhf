@@ -42,7 +42,9 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
+which virtualenv
 pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
+sys.exit()
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
