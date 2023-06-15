@@ -7,11 +7,8 @@ check() {
 }
 
 pyhfon() {
-  echo "point1"
-  virtualenv --python=/usr/bin/python3 pyhfenv
-  echo "point2"
+  /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
-  echo "point3"
 }
 
 pyhfoff() {
@@ -20,8 +17,6 @@ pyhfoff() {
 
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
-which python3
-which virtualenv
 
 echo "Setting up environment .."
 
@@ -34,7 +29,6 @@ mkdir $WS/logs
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
-which python3
 
 echo "Done"
 echo "Convert datacards .."
@@ -43,7 +37,6 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-which virtualenv
 pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 sys.exit()
 check "$WS/logs/validatePyhf.log"
