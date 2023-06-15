@@ -7,8 +7,8 @@ check() {
 }
 
 pyhfon() {
-  virtualenv --python=/usr/bin/python3.10 pyhfenv
-  source pyhfenv/bin/activate  
+  virtualenv --python=/usr/bin/python3 pyhfenv
+  source pyhfenv/bin/activate
 }
 
 pyhfoff() {
@@ -37,7 +37,7 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-python3 $WS/converter/validatePyhf.py
+pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
@@ -46,9 +46,7 @@ python3 $WS/validation/combine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
-pyhfon
-python3 $WS/validation/pyhf.py
-pyhfoff
+pyhfon; python3 $WS/validation/pyhf.py; pyhfoff
 check "$WS/logs/pyhf.log"
 echo "Done."
 echo "Run analytical tests .."
