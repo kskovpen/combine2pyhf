@@ -21,7 +21,7 @@ pyhfoff() {
 
 pyloc=($(pip show pyhf | grep Location))
 export PYTHONPATH=$PYTHONPATH:${pyloc[1]}
-echo "Add modules from ${pyloc}"
+echo "Add modules from ${pyloc[1]}"
 
 echo "Setting up environment .."
 
@@ -43,17 +43,16 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-#pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
 python3 $WS/converter/validatePyhf.py
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
 echo "Run combine tests .."
-python3 $WS/validation/combine.py
+python3 $WS/validation/fitcombine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
-pyhfon; python3 $WS/validation/pyhf.py; pyhfoff
+pyhfon; python3 $WS/validation/fitpyhf.py; pyhfoff
 check "$WS/logs/pyhf.log"
 echo "Done."
 echo "Run analytical tests .."
