@@ -12,11 +12,11 @@ pyhfcreate() {
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
   pip install pyhf iminuit deepdiff > /dev/null
+  PPP=$PYTHONPATH; PPH=$PYTHONHOME
 }
 
 pyhfon() {
-  PP=$PYTHONPATH; PH=$PYTHONHOME
-  unset PYTHONPATH; unset PYTHONHOME
+  export PYTHONPATH=$PPP; export PYTHONHOME=$PPH
   source pyhfenv/bin/activate
 }
 
