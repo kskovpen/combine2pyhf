@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import os, sys, math, json, glob, logging, subprocess, pyhf
 from optparse import OptionParser
 
@@ -35,6 +33,9 @@ def main(argv = None):
 if __name__ == '__main__':
     
     options = main()
+    
+    print(pyhf.__version__)
+    print(pyhf.__file__)
 
     ws = os.environ['WS']
     indir = ws+'/validation/cards/pyhf/combine2pyhf'
@@ -53,7 +54,7 @@ if __name__ == '__main__':
     logging.info('Start pyhf fits')
     pyhflog = logging.getLogger('fit.pyhf')
     
-#    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))    
+    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))    
     
     dc = glob.glob(indir+'/*')
     
