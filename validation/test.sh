@@ -23,6 +23,8 @@ cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 export PYTHONPATH=$PYTHONPATH:${pyloc[1]} # include additional modules from image
 
+pip list
+
 echo "Done"
 echo "Convert datacards .."
 
