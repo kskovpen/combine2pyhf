@@ -2,7 +2,6 @@
 
 import os, sys, math, json, glob, logging, subprocess, pyhf
 from optparse import OptionParser
-import ROOT
 
 def twice_nll(pars):
     return -2.0*model.logpdf(pars, data)[0]

@@ -11,7 +11,7 @@ pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv
   source pyhfenv/bin/activate
-  pip install pyhf deepdiff pyroot > /dev/null
+  pip install pyhf deepdiff > /dev/null
 }
 
 pyhfoff() {
