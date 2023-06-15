@@ -7,8 +7,11 @@ check() {
 }
 
 pyhfon() {
+  echo "point1"
   virtualenv --python=/usr/bin/python3 pyhfenv
+  echo "point2"
   source pyhfenv/bin/activate
+  echo "point3"
 }
 
 pyhfoff() {
@@ -17,6 +20,7 @@ pyhfoff() {
 
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
+which python3
 
 echo "Setting up environment .."
 
@@ -29,6 +33,7 @@ mkdir $WS/logs
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
+which python3
 
 echo "Done"
 echo "Convert datacards .."
