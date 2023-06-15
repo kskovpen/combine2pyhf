@@ -43,7 +43,8 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
+#pyhfon; python3 $WS/converter/validatePyhf.py; pyhfoff
+python3 $WS/converter/validatePyhf.py
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
