@@ -9,6 +9,7 @@ check() {
 pyloc=($(pip show pyhf | grep Location))
 echo "Installed python modules (native):"
 pip list
+which python3
 
 echo "Setting up environment .."
 
@@ -21,11 +22,7 @@ mkdir $WS/logs
 mkdir $WS/validation/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
-export PYTHONPATH=$PYTHONPATH:${pyloc[1]} # include additional modules from image
-
-python3 -m pip uninstall numpy
-python3 -m pip install numpy==1.24.3
-pip list
+which python3
 
 echo "Done"
 echo "Convert datacards .."
@@ -43,6 +40,8 @@ python3 $WS/validation/combine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
+alias python3=python3.10
+export PYTHONPATH=${pyloc[1]} # include additional modules from image
 python3 $WS/validation/pyhf.py
 check "$WS/logs/pyhf.log"
 echo "Done."
