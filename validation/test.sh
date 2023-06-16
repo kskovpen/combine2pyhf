@@ -31,7 +31,7 @@ mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 
 export WS=$GITHUB_WORKSPACE
 mkdir $WS/logs
-mkdir $WS/validation/results
+mkdir $WS/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 PP=$PYTHONPATH; PH=$PYTHONHOME
@@ -58,6 +58,9 @@ echo "Done."
 echo "Run analytical tests .."
 python3 $WS/validation/analytic.py
 check "$WS/logs/analytic.log"
+echo "Done."
+echo "Clean .."
+rm -rf .github cards converter Dockerfile README.md install.sh validation
 echo "Done."
 
 echo "All done."

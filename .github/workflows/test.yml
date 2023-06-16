@@ -23,7 +23,7 @@ jobs:
         with:
           name: actionbot
           branch: results
-          files: validation/results
+          files: results
           repository: https://github.com/kskovpen/combine2pyhf
           token: ${{ secrets.MY_SECRET_TOKEN }}
           force: true
