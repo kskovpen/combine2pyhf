@@ -11,13 +11,13 @@ def execute(logger, c):
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
         
-def postproc(logger, fname, fdir = '', fit = ''):
+def postproc(logger, fname, fdir = '', fit = '', fout = ''):
     try:
-        return getFitInfo(fname, fdir, fit)
+        return getFitInfo(fname, fdir, fit, fout)
     except Exception as e:
         logger.error(e)
         
-def getFitInfo(fname, fdir = '', fit = ''):
+def getFitInfo(fname, fdir = '', fit = '', fout = ''):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
     res = {'r': [], 'nll': []}
@@ -25,9 +25,8 @@ def getFitInfo(fname, fdir = '', fit = ''):
         tr.GetEntry(i)
         res['r'].append(tr.r)
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
-    if fdir != '':
-        fn = os.path.splitext(fname.split('/')[-1])[0]
-        json.dump(res, open(fdir+'/'+fn+'_'+fit+'_combine.json', 'w'), indent=2)
+    if fout != '':
+        json.dump(res, open(fdir+'/'+fout+'_'+fit+'_combine.json', 'w'), indent=2)
     return res
 
 def main(argv = None):
@@ -88,7 +87,7 @@ if __name__ == '__main__':
                 comblog.info('    bf='+str(bf['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.6 --rMax 1.4 --points 5 --freezeParameters r --expectSignal=1 --setParameters r=1')
-                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', wd+'/results', fit)
+                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', wd+'/results', fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
 
