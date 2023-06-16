@@ -24,7 +24,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "actionbot"
           git config user.email noreply@github.com
-          git rm results
+          git rm -r results
           git commit -m 'clean old results' results
           mv results_copy results
           git add results
