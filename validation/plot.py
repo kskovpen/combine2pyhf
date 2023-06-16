@@ -45,7 +45,7 @@ if __name__ == '__main__':
     dc = glob.glob(options.input+'/*/')
     runs = []
     for d in dc:
-        card = d.split('_')[-1]
+        card = d.split('/')[-1]
         fs = glob.glob(options.input+'/'+card+'/*combine*.json')
         for f in fs:
             proc = f.split('/')[-1]
