@@ -60,6 +60,7 @@ python3 $WS/validation/analytic.py
 check "$WS/logs/analytic.log"
 echo "Done."
 
+pyhfon
 python3 -m pip list
 echo "Run plotting .."
 python3 $WS/validation/plot.py --input $WS/results
