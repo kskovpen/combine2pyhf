@@ -20,7 +20,7 @@ if __name__ == '__main__':
     options = main()
 
     with open(options.output+'/README.md', 'w') as fr:
-        intro = '# combine2pyhf\n\n An automated tool for common validation of fit models in combine and pyhf packages.\n'
+        intro = '# combine2pyhf\n\n An automated tool for common validation of fit models in combine and pyhf packages.\n\n'
         fr.write(intro)
         dc = glob.glob(options.output+'/*/')
         for d in dc:
@@ -30,7 +30,7 @@ if __name__ == '__main__':
                 fname = options.output+'/'+dname+'/'+f.split('/')[-1]
                 mode = f.split('_')[-1].replace('.pdf', '')
                 title = dname+' ('+mode+')'
-                fr.write('**'+title+'**\n')
-                fr.write('!['+title+']('+fname+'?raw=true\n)')
+                fr.write('**'+title+'**\n\n')
+                fr.write('!['+title+']('+fname+'?raw=true)\n\n')
         fr.close()
                 
