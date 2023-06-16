@@ -5,7 +5,7 @@ check() {
     exit 1
   fi
 }
-python3 -m pip show
+python3 -m pip list
 pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv > /dev/null
@@ -60,7 +60,7 @@ python3 $WS/validation/analytic.py
 check "$WS/logs/analytic.log"
 echo "Done."
 
-python3 -m pip show
+python3 -m pip list
 echo "Run plotting .."
 python3 $WS/validation/plot.py --input $WS/results
 check "$WS/logs/plot.log"
