@@ -55,15 +55,15 @@ if __name__ == '__main__':
                         
             combinedata = json.load(open(f, 'r'))
             setprec(combinedata)
-            fpyhf = f.replace('combine', 'pyhf')
+            fpyhf = f.replace('_combine', '_pyhf')
             pyhfdata = json.load(open(fpyhf, 'r'))
             setprec(pyhfdata)
             
             data = [combinedata['nll'], pyhfdata['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
-            analyticdata = f.replace('combine', 'analytic')            
-            if os.path.isfile(f.replace('combine', 'analytic')):
+            analyticdata = f.replace('_combine', '_analytic')
+            if os.path.isfile(analyticdata):
                 analyticdata = json.load(open(analyticdata, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
