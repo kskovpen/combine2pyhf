@@ -48,8 +48,7 @@ if __name__ == '__main__':
         card = d.split('/')[-2]
         fs = glob.glob(options.input+'/'+card+'/*combine*.json')
         for f in fs:
-            proc = f.split('/')[-1]
-            mode = proc[0]
+            mode = f.split('/')[-1].split('_')[0]
                         
             combinedata = json.load(open(f, 'r'))
             setprec(combinedata)
@@ -76,7 +75,7 @@ if __name__ == '__main__':
                         line_color='darkslategray',
                         fill_color='lightskyblue',
                         align='left'),
-            cells=dict(values=combinedata['r']+data,
+            cells=dict(values=[combinedata['r'], data[0], data[1]],
                        line_color='darkslategray',
                        fill_color='lightcyan',
                        height=20,

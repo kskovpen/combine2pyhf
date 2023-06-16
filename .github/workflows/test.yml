@@ -29,6 +29,7 @@ jobs:
           mv results_copy results
           git add results
           git commit -m 'automated publication of results' results README.md
+          cat README.md
           git remote set-url origin https://x-access-token:${{ secrets.MY_SECRET_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:

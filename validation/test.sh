@@ -66,5 +66,6 @@ check "$WS/logs/plot.log"
 echo "Done."
 
 python3 $WS/validation/publish.py
+ls
 
 echo "All done."
