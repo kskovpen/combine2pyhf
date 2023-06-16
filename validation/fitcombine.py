@@ -27,7 +27,7 @@ def getFitInfo(fname, fdir = '', fit = ''):
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     if fdir != '':
         fn = os.path.splitext(fname.split('/')[-1])[0]
-        json.dump(res, open(fdir+'/'+fn+'_'+fit+'_combine.json'), 'w'), indent=2)
+        json.dump(res, open(fdir+'/'+fn+'_'+fit+'_combine.json', 'w'), indent=2)
     return res
 
 def main(argv = None):
