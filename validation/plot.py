@@ -70,12 +70,15 @@ if __name__ == '__main__':
                 if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
+            rows = [combinedata['r'], data[0], data[1]]
+            if analyticdata: rows = [combinedata['r'], data[0], data[1], data[2]]
+                    
             fig = go.Figure(data=[go.Table(
             header=dict(values=columns,
                         line_color='darkslategray',
                         fill_color='lightskyblue',
-                        align='left'),
-            cells=dict(values=[combinedata['r'], data[0], data[1]],
+                        align='left'),            
+            cells=dict(values=rows,
                        line_color='darkslategray',
                        fill_color='lightcyan',
                        height=20,

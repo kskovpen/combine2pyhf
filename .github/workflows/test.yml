@@ -21,12 +21,14 @@ jobs:
       - name: Publish results
         run: |
           mv results results_copy
+          mv README.md README.md_copy
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "actionbot"
           git config user.email noreply@github.com
           git rm -r results
           git commit -m 'clean old results' results
           mv results_copy results
+          mv README.md_copy README.md
           git add results
           git commit -m 'automated publication of results' results README.md
           cat README.md
