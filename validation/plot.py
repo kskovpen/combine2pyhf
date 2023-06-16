@@ -87,4 +87,4 @@ if __name__ == '__main__':
 
             fig.update_layout(height=23*(len(combinedata['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
-            fig.write_image(options.input+'/'+card+'/nll_'+mode+'.pdf')
+            fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png')
