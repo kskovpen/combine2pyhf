@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import os, sys, math, json, glob, logging, subprocess
 from optparse import OptionParser
 import ROOT
