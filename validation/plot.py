@@ -1,11 +1,11 @@
 from optparse import OptionParser
 import os, sys, glob, json, logging
 from decimal import *
+import pkg_resources
+pkg_resources.require('plotly==5.15.0')
 import plotly
 import plotly.graph_objects as go
 import plotly.io as pio
-print(plotly.__version__)
-print(pio.kaleido.__version__)
 pio.kaleido.scope.mathjax = None
 
 def setprec(data):
