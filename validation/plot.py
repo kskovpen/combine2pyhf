@@ -1,6 +1,5 @@
 from optparse import OptionParser
 import os, sys, glob, json, logging
-from decimal import *
 import plotly
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -8,9 +7,10 @@ pio.kaleido.scope.mathjax = None
 
 def setprec(d):
     for k in d.keys():
-        if k not in ['r']: getcontext().prec = 6
-        else: getcontext().prec = 2        
-        d[k] = [+Decimal(v) for v in d[k]]            
+        if k not in ['r']: 
+            d[k] = [math.ceil(v*1E+6)/1E+6 for v in d[k]]
+        else: 
+            d[k] = [math.ceil(v*1E+2)/1E+2 for v in d[k]]
     
 def main(argv = None):
     
@@ -67,6 +67,8 @@ if __name__ == '__main__':
                 analyticdata = json.load(open(fanalytic, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
+            print(combinedata['r'])
+            print(pyhfdata['r'])
             for rv in combinedata['r']:
                 if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
