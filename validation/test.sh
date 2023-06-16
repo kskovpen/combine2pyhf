@@ -61,7 +61,7 @@ check "$WS/logs/analytic.log"
 echo "Done."
 
 echo "Run plotting .."
-python3 $WS/validation/plot.py
+python3 $WS/validation/plot.py --input $WS/results
 check "$WS/logs/plot.log"
 echo "Done."
 
