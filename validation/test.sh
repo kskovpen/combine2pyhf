@@ -59,8 +59,5 @@ echo "Run analytical tests .."
 python3 $WS/validation/analytic.py
 check "$WS/logs/analytic.log"
 echo "Done."
-echo "Clean .."
-rm -rf .github cards converter Dockerfile README.md install.sh validation
-echo "Done."
 
 echo "All done."
