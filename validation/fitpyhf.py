@@ -107,4 +107,4 @@ if __name__ == '__main__':
                     res['nll'].append(nllv[i])
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
                 fn = os.path.splitext(fname.split('/')[-1])[0]
-                json.dump(res, open(wd+'results/'+fn+'_'+fit+'_pyhf.json', 'w'), indent=2)
+                json.dump(res, open(wd+'/results/'+fn+'_'+fit+'_pyhf.json', 'w'), indent=2)
