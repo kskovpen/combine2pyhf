@@ -20,22 +20,15 @@ jobs:
           path: /__w/combine2pyhf/combine2pyhf/logs
       - name: Publish results
         run: |
+          mv results results_copy
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "actionbot"
           git config user.email noreply@github.com
-          git add results
+          git rm results
+          git commit -m 'clean old results'
+          mv results_copy results          
           git commit -m 'automated publication of results'
           git remote set-url origin https://x-access-token:${{ secrets.MY_SECRET_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
-#      - name: Publish results
-#        uses: actions-x/commit@v6
-#        with:
-#          name: actionbot
-#          branch: test
-#          files: results
-#          repository: https://github.com/kskovpen/combine2pyhf
-#          token: ${{ secrets.MY_SECRET_TOKEN }}
-#          force: true
-#          message: 'automated publication of results'
