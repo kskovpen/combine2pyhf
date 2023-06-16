@@ -43,10 +43,13 @@ if __name__ == '__main__':
     logging.info('Start plotting')
     
     dc = glob.glob(options.input+'/*/')
-    runs = []
+    print(dc)
+    runs = []    
     for d in dc:
         card = d.split('/')[-1]
+        print('card=', card)
         fs = glob.glob(options.input+'/'+card+'/*combine*.json')
+        print(fs)
         for f in fs:
             proc = f.split('/')[-1]
             mode = proc[0]
