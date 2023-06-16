@@ -62,6 +62,7 @@ if __name__ == '__main__':
             data = [combinedata['nll'], pyhfdata['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
+            analyticdata = None
             fanalytic = f.replace('_combine', '_analytic')
             if os.path.isfile(fanalytic):
                 analyticdata = json.load(open(fanalytic, 'r'))
