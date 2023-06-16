@@ -68,8 +68,11 @@ if __name__ == '__main__':
                 data.append(analyticdata['nll'])
             if analyticdata: setprec(analyticdata)
             for rv in combinedata['r']:
-#                if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
-                if (rv not in pyhfdata['r']):
+                print('combine:', rv)
+                if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
+                    print('pyhf:', pyhfdata['r'])
+                    print((rv not in pyhfdata['r']))
+                    print(bool(rv not in pyhfdata['r']))
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
             fig = go.Figure(data=[go.Table(
