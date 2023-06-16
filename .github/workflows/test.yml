@@ -20,6 +20,7 @@ jobs:
           path: /__w/combine2pyhf/combine2pyhf/logs
       - name: Publish results
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config user.name "actionbot"
           git config user.email noreply@github.com
           git add results
