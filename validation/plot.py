@@ -62,14 +62,14 @@ if __name__ == '__main__':
             data = [combinedata['nll'], pyhfdata['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
-            analyticdata = f.replace('_combine', '_analytic')
-            if os.path.isfile(analyticdata):
-                analyticdata = json.load(open(analyticdata, 'r'))
+            fanalytic = f.replace('_combine', '_analytic')
+            if os.path.isfile(fanalytic):
+                analyticdata = json.load(open(fanalytic, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
             for rv in combinedata['r']:
                 if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
-                    logging.error('The following signal strength value was not found in pyhf fits:', rv)
+                    logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
             fig = go.Figure(data=[go.Table(
             header=dict(values=columns,
