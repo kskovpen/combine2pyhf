@@ -17,7 +17,7 @@ def main(argv = None):
 if __name__ == '__main__':
 
     options = main()
-    
+
     with open('README.md', 'w') as fr:
         intro = '# combine2pyhf\n\n Bi-directional conversion between combine and pyhf with \
         statistical tests to evalute the performance of the same input model \

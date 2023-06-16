@@ -20,6 +20,8 @@ jobs:
           path: /__w/combine2pyhf/combine2pyhf/logs
       - name: Publish results
         run: |
+          cat README.md
+          ls
           mv results results_copy
           mv README.md README.md_copy
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -31,7 +33,6 @@ jobs:
           mv README.md_copy README.md
           git add results
           git commit -m 'automated publication of results' results README.md
-          cat README.md
           git remote set-url origin https://x-access-token:${{ secrets.MY_SECRET_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:
