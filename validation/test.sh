@@ -65,4 +65,6 @@ python3 $WS/validation/plot.py --input $WS/results
 check "$WS/logs/plot.log"
 echo "Done."
 
+python3 $WS/validation/publish.py
+
 echo "All done."
