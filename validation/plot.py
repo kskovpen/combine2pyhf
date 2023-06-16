@@ -67,8 +67,7 @@ if __name__ == '__main__':
                 analyticdata = json.load(open(fanalytic, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
-            print(combinedata['r'])
-            print(pyhfdata['r'])
+            if analyticdata: setprec(analyticdata)
             for rv in combinedata['r']:
                 if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
