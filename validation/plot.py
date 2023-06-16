@@ -8,8 +8,9 @@ pio.kaleido.scope.mathjax = None
 
 def setprec(d):
     for k in d.keys():
-        if k not in ['r']:
-            d[k] = [+Decimal(v) for v in d[k]]
+        if k not in ['r']: getcontext().prec = 6
+        else: getcontext().prec = 2        
+        d[k] = [+Decimal(v) for v in d[k]]            
     
 def main(argv = None):
     
@@ -26,8 +27,6 @@ def main(argv = None):
     return options
 
 if __name__ == '__main__':
-
-    getcontext().prec = 6
     
     options = main()
     
