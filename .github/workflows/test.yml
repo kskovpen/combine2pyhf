@@ -17,8 +17,14 @@ jobs:
       - name: Run tests
         shell: bash
         run: /.dockerenv | validation/test.sh
-      - name: Publish results
+      - name: Upload logs
         uses: actions/upload-artifact@v3
         with:
-          name: log.tar.gz
-          path: /__w/combine2pyhf/combine2pyhf/log.tar.gz
+          name: logs
+          path: /__w/combine2pyhf/combine2pyhf/logs
+      - name: Publish results
+        uses: EndBug/add-and-commit@v9
+	with:
+	  add: /__w/combine2pyhf/combine2pyhf/validation/results
+	  author_name: actionbot
+	  message: 'automated publication of results'

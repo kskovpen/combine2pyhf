@@ -11,13 +11,13 @@ def execute(logger, c):
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
         
-def postproc(logger, fname):
+def postproc(logger, fname, fdir = '', fit = ''):
     try:
-        return getFitInfo(fname)
+        return getFitInfo(fdir, fit, fname)
     except Exception as e:
         logger.error(e)
         
-def getFitInfo(fname):
+def getFitInfo(fname, fdir = '', fit = ''):
     f = ROOT.TFile(fname, 'READ')
     tr = f.Get('limit')
     res = {'r': [], 'nll': []}
@@ -25,7 +25,9 @@ def getFitInfo(fname):
         tr.GetEntry(i)
         res['r'].append(tr.r)
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
-    json.dump(res, open(fname.replace('.root', '.json'), 'w'), indent=2)
+    if fdir != '':
+        fn = os.path.splitext(fname.split('/')[-1])[0]
+        json.dump(res, open(fdir+'/'+fn+'_'+fit+'_combine.json'), 'w'), indent=2)
     return res
 
 def main(argv = None):
@@ -46,7 +48,8 @@ if __name__ == '__main__':
     options = main()
 
     ws = os.environ['WS']
-    indir = ws+'/validation/cards/combine/pyhf2combine'
+    wd = ws+'/validation'
+    indir = wd+'/cards/combine/pyhf2combine'
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -85,7 +88,7 @@ if __name__ == '__main__':
                 comblog.info('    bf='+str(bf['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.6 --rMax 1.4 --points 5 --freezeParameters r --expectSignal=1 --setParameters r=1')
-                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root')
+                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', wd+'/results', fit)
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
 

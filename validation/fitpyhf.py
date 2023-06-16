@@ -87,6 +87,7 @@ if __name__ == '__main__':
                 pyhflog.info('    bf='+str(bf))
                 muv = [0.68, 0.84, 1, 1.16, 1.32]
                 pyhflog.info('--> Perform the scan ('+fit+')')
+                res = {'r': [], 'nll': []}
                 nllv = []
                 for r in muv:
                     init[model.config.poi_index] = r
@@ -101,4 +102,8 @@ if __name__ == '__main__':
                 bfnll = min(nllv)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
-                    pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))                
+                    res['r'].append(muv[i])
+                    res['nll'].append(nllv[i])
+                    pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                fn = os.path.splitext(fname.split('/')[-1])[0]
+                json.dump(res, open(wd+'results/'+fn+'_'+fit+'_pyhf.json', 'w'), indent=2)

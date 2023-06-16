@@ -81,7 +81,12 @@ if __name__ == '__main__':
                         bfnll = min(nllv)
                         log.info('    bf='+str(bf))
     
+                        res = {'r': [], 'nll': []}
                         for i in range(len(nllv)):
                             nllv[i] -= bfnll
                             nllv[i] *= 2.0
+                            res['r'].append(muv[i])
+                            res['nll'].append(nllv[i])
                             log.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                        fn = os.path.splitext(fname.split('/')[-1])[0]
+                        json.dump(res, open(wd+'results/'+fn+'_'+fit+'_analytic.json', 'w'), indent=2)

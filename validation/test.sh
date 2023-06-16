@@ -61,5 +61,3 @@ check "$WS/logs/analytic.log"
 echo "Done."
 
 echo "All done."
-
-cd $WS; tar -czf log.tar.gz logs
