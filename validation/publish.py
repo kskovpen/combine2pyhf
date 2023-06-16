@@ -29,7 +29,7 @@ if __name__ == '__main__':
             for f in fs:
                 mode = f.split('_')[-1].replace('.pdf', '')
                 title = d+' ('+mode+')'
-                fr.write(title+'\n')
+                fr.write('**'+title+'**\n')
                 fr.write('!['+title+']('+f+'?raw=true\n')
         fr.close()
                 

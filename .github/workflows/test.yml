@@ -28,7 +28,7 @@ jobs:
           git commit -m 'clean old results' results
           mv results_copy results
           git add results
-          git commit -m 'automated publication of results' results
+          git commit -m 'automated publication of results' results README.md
           git remote set-url origin https://x-access-token:${{ secrets.MY_SECRET_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:
