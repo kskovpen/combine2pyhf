@@ -27,9 +27,10 @@ if __name__ == '__main__':
             dname = d.split('/')[-2]
             fs = glob.glob(options.output+'/'+dname+'/nll*.pdf')
             for f in fs:
+                fname = options.output+'/'+dname+'/'+f.split('/')[-1]
                 mode = f.split('_')[-1].replace('.pdf', '')
                 title = dname+' ('+mode+')'
                 fr.write('**'+title+'**\n')
-                fr.write('!['+title+']('+f+'?raw=true\n')
+                fr.write('!['+title+']('+fname+'?raw=true\n)')
         fr.close()
                 
