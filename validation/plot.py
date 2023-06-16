@@ -7,7 +7,7 @@ import plotly.io as pio
 pio.kaleido.scope.mathjax = None
 
 def setprec(d):
-    for k in d.keys: d[k] = [+Decimal(v) for v in d[k]]
+    for k in d.keys(): d[k] = [+Decimal(v) for v in d[k]]
     
 def main(argv = None):
     
