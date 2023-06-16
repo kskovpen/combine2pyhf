@@ -65,6 +65,6 @@ pyhfon; python3 $WS/validation/plot.py --input $WS/results; pyhfoff
 check "$WS/logs/plot.log"
 echo "Done."
 
-python3 $WS/validation/publish.py
+python3 $WS/validation/publish.py --output $WS/results
 
 echo "All done."

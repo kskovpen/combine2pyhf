@@ -9,6 +9,7 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Publish results"
         
     parser = OptionParser(usage)
+    parser.add_option("--output", default='results', help="Output directory [default: %default]")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -18,7 +19,7 @@ if __name__ == '__main__':
 
     options = main()
 
-    with open('README.md', 'w') as fr:
+    with open(options.output+'/README.md', 'w') as fr:
         intro = '# combine2pyhf\n\n An automated tool for common validation of fit models in combine and pyhf tools.\n'
         fr.write(intro)
         dc = glob.glob('results/*/')
