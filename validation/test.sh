@@ -10,7 +10,7 @@ pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv > /dev/null
   source pyhfenv/bin/activate
-  pip install pyhf iminuit deepdiff > /dev/null
+  pip install pyhf iminuit deepdiff plotly kaleido > /dev/null
   source pyhfenv/bin/activate
 }
 
