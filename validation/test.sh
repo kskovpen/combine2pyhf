@@ -5,7 +5,7 @@ check() {
     exit 1
   fi
 }
-
+python3 -m pip show
 pyhfon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv > /dev/null
@@ -30,8 +30,8 @@ mount -t cvmfs cvmfs-config.cern.ch /cvmfs/cvmfs-config.cern.ch
 mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 
 export WS=$GITHUB_WORKSPACE
-mkdir $WS/logs
-mkdir $WS/results
+mkdir -p $WS/logs
+mkdir -p $WS/results
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 PP=$PYTHONPATH; PH=$PYTHONHOME
@@ -60,6 +60,7 @@ python3 $WS/validation/analytic.py
 check "$WS/logs/analytic.log"
 echo "Done."
 
+python3 -m pip show
 echo "Run plotting .."
 python3 $WS/validation/plot.py --input $WS/results
 check "$WS/logs/plot.log"
