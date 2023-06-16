@@ -85,7 +85,7 @@ if __name__ == '__main__':
                 bf = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
                 comblog.info('    bf='+str(bf['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
-                execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.5 --rMax 1.5 --points 5 --freezeParameters r --setParameters r=1 --alignEdges 1')
+                execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin 0.5 --rMax 1.5 --points 6 --freezeParameters r --setParameters r=1 --alignEdges 1')
                 fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', ws+'/results', fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
