@@ -7,7 +7,9 @@ import plotly.io as pio
 pio.kaleido.scope.mathjax = None
 
 def setprec(d):
-    for k in d.keys(): d[k] = [+Decimal(v) for v in d[k]]
+    for k in d.keys():
+        if k not in ['r']:
+            d[k] = [+Decimal(v) for v in d[k]]
     
 def main(argv = None):
     
@@ -52,10 +54,10 @@ if __name__ == '__main__':
             mode = proc[0]
                         
             combinedata = json.load(open(f, 'r'))
-            setprec(combinedata['nll'])
+            setprec(combinedata)
             fpyhf = f.replace('combine', 'pyhf')
             pyhfdata = json.load(open(fpyhf, 'r'))
-            setprec(pyhfdata['nll'])
+            setprec(pyhfdata)
             
             data = [combinedata['nll'], pyhfdata['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
