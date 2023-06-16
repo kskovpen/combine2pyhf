@@ -58,7 +58,7 @@ if __name__ == '__main__':
                     bkgErr = df['channels'][0]['samples'][1]['modifiers'][0]['data'][0]
                     data = df['observations'][0]['data'][0]
                     
-                    muv = [0.68, 0.84, 1, 1.16, 1.32]
+                    muv = [0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
