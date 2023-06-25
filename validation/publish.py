@@ -20,7 +20,7 @@ if __name__ == '__main__':
     options = main()
 
     with open(options.output+'/README.md', 'w') as fr:
-        intro = '# combine2pyhf\n\n An automated tool for common validation of fit models in combine and pyhf packages.\n\n'
+        intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using combine and pyhf packages.\n\n'
         fr.write(intro)
         dc = glob.glob(options.output+'/*/')
         for d in dc:
@@ -31,6 +31,9 @@ if __name__ == '__main__':
                 mode = f.split('_')[-1].replace('.png', '')
                 title = dname+' ('+mode+')'
                 fr.write('**'+title+'**\n\n')
+                fr.write('<details>\n\n')
+                fr.write('<summary>Expand</summary>\n\n')
                 fr.write('!['+title+']('+fname+'?raw=true)\n\n')
+                fr.write('</details>\n\n')
         fr.close()
                 
