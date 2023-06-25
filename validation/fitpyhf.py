@@ -10,12 +10,6 @@ def execute(logger, c):
         logger.debug(r)
     except subprocess.CalledProcessError as e:
         logger.error(e.output)
-        
-def postproc(logger, fname):
-    try:
-        return getFitInfo(fname)
-    except Exception as e:
-        logger.error(e)
 
 def main(argv = None):
     
@@ -77,12 +71,12 @@ if __name__ == '__main__':
             obs = wspace.data(model)
             asimov = model.expected_data(pyhf.tensorlib.astensor(init))
             fits = {'asi': asimov, 'obs': obs}
-            
-            m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
-            m.limits = constraints
+
             for fit in fits.keys():
                 data = asimov if fit == 'asi' else obs
                 pyhflog.info('--> Perform the best fit ('+fit+')')
+                m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
+                m.limits = constraints
                 m.migrad()
                 bf = m.values[model.config.poi_index]
                 pyhflog.info('    bf='+str(bf))
@@ -92,8 +86,8 @@ if __name__ == '__main__':
                 nllv = []
                 for r in muv:
                     init[model.config.poi_index] = r
-                    constraints = [(model.config.poi_index, r)]
-                    for idx, fixed_val in constraints:
+                    pfix = [(model.config.poi_index, r)]
+                    for idx, fixed_val in pfix:
                         pname = model.config.par_names[idx]
                         m.values[pname] = fixed_val
                         m.fixed[pname] = True
