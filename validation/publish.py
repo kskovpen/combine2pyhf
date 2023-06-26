@@ -25,7 +25,7 @@ if __name__ == '__main__':
         dc = glob.glob(options.output+'/*/')
         for d in dc:
             dname = d.split('/')[-2]
-            fs = glob.glob(options.output+'/'+dname+'/nll*.png')
+            fs = glob.glob(options.output+'/'+dname+'/nll_shape*.png')
             for f in fs:
                 fname = options.output.split('/')[-1]+'/'+dname+'/'+f.split('/')[-1]
                 mode = f.split('_')[-1].replace('.png', '')
@@ -34,6 +34,7 @@ if __name__ == '__main__':
                 fr.write('<details>\n\n')
                 fr.write('<summary>See results</summary>\n\n')
                 fr.write('!['+title+']('+fname+'?raw=true)\n\n')
+                fr.write('!['+title+']('+fname.replace('_shape', '')+'?raw=true)\n\n')
                 fr.write('</details>\n\n')
         fr.close()
                 
