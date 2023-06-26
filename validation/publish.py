@@ -32,7 +32,7 @@ if __name__ == '__main__':
                 title = dname+' ('+mode+')'
                 fr.write('**'+title+'**\n\n')
                 fr.write('<details>\n\n')
-                fr.write('<summary>Expand</summary>\n\n')
+                fr.write('<summary>See results</summary>\n\n')
                 fr.write('!['+title+']('+fname+'?raw=true)\n\n')
                 fr.write('</details>\n\n')
         fr.close()

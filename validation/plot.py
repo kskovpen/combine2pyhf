@@ -3,6 +3,7 @@ import os, sys, math, glob, json, logging
 import plotly
 import plotly.graph_objects as go
 import plotly.io as pio
+from plotly.subplots import make_subplots
 pio.kaleido.scope.mathjax = None
 
 def setprec(d):
@@ -49,14 +50,22 @@ if __name__ == '__main__':
         fs = glob.glob(options.input+'/'+card+'/*combine*.json')
         for f in fs:
             mode = f.split('/')[-1].split('_')[0]
-                        
-            combinedata = json.load(open(f, 'r'))
-            setprec(combinedata)
             fpyhf = f.replace('_combine', '_pyhf')
-            pyhfdata = json.load(open(fpyhf, 'r'))
-            setprec(pyhfdata)
             
-            data = [combinedata['nll'], pyhfdata['nll']]
+            combined = {}
+            combinedata = json.load(open(f, 'r'))
+            combined['r'] = sorted(combinedata['r'])
+            combined['nll'] = [x for _, x in sorted(zip(combinedata['r'], combinedata['nll']))]
+
+            pyhfd = {}
+            pyhfdata = json.load(open(fpyhf, 'r'))
+            pyhfd['r'] = sorted(pyhfdata['r'])
+            pyhfd['nll'] = [x for _, x in sorted(zip(pyhfdata['r'], pyhfdata['nll']))]
+                        
+            setprec(combined)
+            setprec(pyhfd)
+            
+            data = [combined['nll'], pyhfd['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
             analyticdata = None
@@ -87,4 +96,14 @@ if __name__ == '__main__':
 
             fig.update_layout(height=23*(len(combinedata['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
-            fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png')
+            fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
+            
+            combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine')
+            pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf')
+            fignll = make_subplots(specs=[[{"secondary_y": True}]])
+            fignll.add_trace(combd)
+            fignll.add_trace(pyhfd, secondary_y=True)
+            fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$-2\Delta\text{ ln N}$', margin=dict(l=5, r=5, t=5, b=5))
+            fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
+            
+            
