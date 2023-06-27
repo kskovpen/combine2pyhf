@@ -4,7 +4,7 @@ import plotly
 import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.subplots import make_subplots
-pio.kaleido.scope.mathjax = None
+piodef = pio.kaleido.scope.mathjax
 
 def setprec(d):
     for k in d.keys():
@@ -94,10 +94,12 @@ if __name__ == '__main__':
                        align='left'))
             ])
 
+            pio.kaleido.scope.mathjax = None
             fig.update_layout(height=23*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
+            pio.kaleido.scope.mathjax = piodef
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine')
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf')
             fignll = make_subplots(specs=[[{"secondary_y": True}]])
