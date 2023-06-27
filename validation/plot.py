@@ -75,12 +75,12 @@ if __name__ == '__main__':
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
             if analyticdata: setprec(analyticdata)
-            for rv in combinedata['r']:
-                if (rv not in pyhfdata['r']) or (analyticdata and rv not in analyticdata['r']):
+            for rv in combined['r']:
+                if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticdata['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
-            rows = [combinedata['r'], data[0], data[1]]
-            if analyticdata: rows = [combinedata['r'], data[0], data[1], data[2]]
+            rows = [combined['r'], data[0], data[1]]
+            if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
                     
             fig = go.Figure(data=[go.Table(
             header=dict(values=columns,
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                        align='left'))
             ])
 
-            fig.update_layout(height=23*(len(combinedata['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
+            fig.update_layout(height=23*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
