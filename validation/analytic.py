@@ -10,6 +10,9 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
+    parser.add_option("--npoints", default=20, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
+    parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -57,8 +60,8 @@ if __name__ == '__main__':
                     bkg = df['channels'][0]['samples'][1]['data'][0]
                     bkgErr = df['channels'][0]['samples'][1]['modifiers'][0]['data'][0]
                     data = df['observations'][0]['data'][0]
-                    
-                    muv = [1.0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+
+                    muv = [1.0]+list(np.arange(options.min, options.max, (options.max-options.min)/options.npoints))
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
