@@ -70,11 +70,17 @@ if __name__ == '__main__':
             
             analyticdata = None
             fanalytic = f.replace('_combine', '_analytic')
+            analyticd = {}
             if os.path.isfile(fanalytic):
                 analyticdata = json.load(open(fanalytic, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
-            if analyticdata: setprec(analyticdata)
+                analyticd['r'] = sorted(analyticdata['r'])
+                analyticd['nll'] = [x for _, x in sorted(zip(analyticdata['r'], analyticdata['nll']))]
+            if analyticdata: setprec(analyticd)
+            print(combined['r'])
+            print(pyhfd['r'])
+            print(analyticd['r'])
             for rv in combined['r']:
                 if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticdata['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
