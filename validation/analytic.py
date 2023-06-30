@@ -1,4 +1,5 @@
 import os, sys, math, json, glob, logging, subprocess
+import numpy as np
 from optparse import OptionParser
 import ROOT
 
