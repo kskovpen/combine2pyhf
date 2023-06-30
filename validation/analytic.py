@@ -62,7 +62,8 @@ if __name__ == '__main__':
                     bkgErr = df['channels'][0]['samples'][1]['modifiers'][0]['data'][0]
                     data = df['observations'][0]['data'][0]
 
-                    muv = [1.0]+list(np.arange(options.min, options.max, (options.max-options.min)/options.npoints))
+                    inc = (options.max-options.min)/options.npoints)
+                    muv = [1.0]+list(np.arange(options.min, options.max+inc, inc)
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
