@@ -62,8 +62,8 @@ if __name__ == '__main__':
             pyhfd['r'] = sorted(pyhfdata['r'])
             pyhfd['nll'] = [x for _, x in sorted(zip(pyhfdata['r'], pyhfdata['nll']))]
                         
-            setprec(combined)
-            setprec(pyhfd)
+#            setprec(combined)
+#            setprec(pyhfd)
             
             data = [combined['nll'], pyhfd['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                 data.append(analyticdata['nll'])
                 analyticd['r'] = sorted(analyticdata['r'])
                 analyticd['nll'] = [x for _, x in sorted(zip(analyticdata['r'], analyticdata['nll']))]
-            if analyticdata: setprec(analyticd)
+#            if analyticdata: setprec(analyticd)
             print(combined['r'])
             print(pyhfd['r'])
             print(analyticd['r'])
