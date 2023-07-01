@@ -1,10 +1,9 @@
 import subprocess
 
 def setprec(d):
-    for k in d.keys():
-        if k not in ['r']: prec = 1E+6
-        else: prec = 1E+2
-        d[k] = [round(v*prec)/prec for v in d[k]]
+    prec = 1E+2
+    for ik, k in enumerate(d):
+        d[ik] = round(k*prec)/prec
 
 def execute(logger, c):
     try:
