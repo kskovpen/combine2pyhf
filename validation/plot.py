@@ -76,11 +76,15 @@ if __name__ == '__main__':
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
                 analyticd['r'] = sorted(analyticdata['r'])
-                analyticd['nll'] = [x for _, x in sorted(zip(analyticdata['r'], analyticdata['nll']))]
+                analyticd['nll'] = [x for _, x in sorted(zip(analyticd['r'], analyticdata['nll']))]
             if analyticdata: setprec(analyticd)
             for rv in combined['r']:
                 if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticd['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
+                    
+            print(combined['r'])
+            print(pyhfd['r'])
+            print(analyticd['r'])
 
             rows = [combined['r'], data[0], data[1]]
             if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
@@ -108,7 +112,7 @@ if __name__ == '__main__':
             fignll = make_subplots(specs=[[{"secondary_y": True}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=True)
-            fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$-2\Delta\text{ ln N}$', margin=dict(l=5, r=5, t=5, b=5))
+            fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
             fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
             
             
