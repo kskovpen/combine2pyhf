@@ -22,7 +22,7 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
         res['bf'] = [bf['r'][0]]
         utils.setprec(res['bf'], prec=6)
         utils.setprec(res['r'])
-        print(res)
+        print(res['bf'])
     utils.setprec(res['nll'], prec=6)
     if fout != '':
         os.system('mkdir -p '+fdir+'/'+fout)
