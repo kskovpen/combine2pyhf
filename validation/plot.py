@@ -73,8 +73,6 @@ if __name__ == '__main__':
                 if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticd['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
-            print('combine', combined['r'])
-            print('pyhf', pyhfd['r'])
             rows = [combined['r'], data[0], data[1]]
             if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
                     
@@ -97,7 +95,12 @@ if __name__ == '__main__':
             
             pio.kaleido.scope.mathjax = piodef
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine')
+            print('combine:')
+            print(combined['r'], combined['nll'])
+            print('pyhf:')
+            print(pyhfd['r'], pyhfd['nll'])
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf')
+            if analyticdata: go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic')
             fignll = make_subplots(specs=[[{"secondary_y": True}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=True)
