@@ -94,16 +94,13 @@ if __name__ == '__main__':
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
             pio.kaleido.scope.mathjax = piodef
-            combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine')
-            print('combine:')
-            print(combined['r'], combined['nll'])
-            print('pyhf:')
-            print(pyhfd['r'], pyhfd['nll'])
-            pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf')
-            if analyticdata: go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic')
+            combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color="#f55a42"))
+            pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color="#4343d9"))
+            if analyticdata: go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color="#48ab37", dash='dot'))
             fignll = make_subplots(specs=[[{"secondary_y": True}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=True)
+            if analyticdata: fignll.add_trace(analyticd, secondary_y=True)
             fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
             fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
             
