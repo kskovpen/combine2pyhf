@@ -96,8 +96,6 @@ if __name__ == '__main__':
                         m.fixed[pname] = True
                     m.migrad()
                     nllv.append(m.fval)
-#                bf = muv[nllv.index(min(nllv))]
-#                bfnll = min(nllv)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
                     res['r'].append(muv[i])
