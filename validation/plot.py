@@ -97,10 +97,10 @@ if __name__ == '__main__':
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color="#f55a42"))
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color="#4343d9"))
             if analyticdata: go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color="#48ab37", dash='dot'))
-            fignll = make_subplots(specs=[[{"secondary_y": True}]])
+            fignll = make_subplots(specs=[[{"secondary_y": False}]])
             fignll.add_trace(combd)
-            fignll.add_trace(pyhfd, secondary_y=True)
-            if analyticdata: fignll.add_trace(analyticd, secondary_y=True)
+            fignll.add_trace(pyhfd, secondary_y=False)
+            if analyticdata: fignll.add_trace(analyticd, secondary_y=False)
             fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
             fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
             
