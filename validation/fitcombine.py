@@ -18,8 +18,10 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
         if tr.r in res['r']: continue
         res['r'].append(tr.r)
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
-    if bf: res['bf'] = bf['r'][0]
+    if bf: res['bf'] = [bf['r'][0]]
     utils.setprec(res['r'])
+    utils.setprec(res['nll'], prec=1E+6)
+    utils.setprec(res['bf'], prec=1E+6)
     if fout != '':
         os.system('mkdir -p '+fdir+'/'+fout)
         json.dump(res, open(fdir+'/'+fout+'/'+fit+'_combine.json', 'w'), indent=2)
@@ -33,7 +35,7 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
-    parser.add_option("--npoints", default=20, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     

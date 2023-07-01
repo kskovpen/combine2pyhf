@@ -1,7 +1,6 @@
 import subprocess
 
-def setprec(d):
-    prec = 1E+2
+def setprec(d, prec=1E+2):
     for ik, k in enumerate(d):
         d[ik] = round(k*prec)/prec
 

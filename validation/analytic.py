@@ -12,7 +12,7 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
-    parser.add_option("--npoints", default=20, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
@@ -89,13 +89,16 @@ if __name__ == '__main__':
                         log.info('    bf='+str(bf))
     
                         res = {'r': [], 'nll': []}
-                        res['bf'] = bf
+                        res['bf'] = [bf]
                         for i in range(len(nllv)):
                             nllv[i] -= bfnll
                             nllv[i] *= 2.0
                             res['r'].append(muv[i])
                             res['nll'].append(nllv[i])
                             log.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                        utils.setprec(res['r'])
+                        utils.setprec(res['nll'], prec=1E+6)
+                        utils.setprec(res['bf'], prec=1E+6)
                         fn = os.path.splitext(fname.split('/')[-1])[0]
                         os.system('mkdir -p '+ws+'/results/'+fn)
                         json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)

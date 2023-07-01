@@ -14,7 +14,7 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run pyhf tests"
     
     parser = OptionParser(usage)
-    parser.add_option("--npoints", default=20, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
@@ -77,6 +77,7 @@ if __name__ == '__main__':
                 m.limits = constraints
                 m.migrad()
                 bf = m.values[model.config.poi_index]
+                bfnll = m.fval
                 pyhflog.info('    bf='+str(bf))
                 inc = (options.max-options.min)/options.npoints
                 muv = list(np.arange(options.min, options.max+inc, inc))
@@ -84,7 +85,7 @@ if __name__ == '__main__':
                 if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
-                res['bf'] = bf
+                res['bf'] = [bf]
                 nllv = []
                 for r in muv:
                     init[model.config.poi_index] = r
@@ -95,13 +96,16 @@ if __name__ == '__main__':
                         m.fixed[pname] = True
                     m.migrad()
                     nllv.append(m.fval)
-                bf = muv[nllv.index(min(nllv))]
-                bfnll = min(nllv)
+#                bf = muv[nllv.index(min(nllv))]
+#                bfnll = min(nllv)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
                     res['r'].append(muv[i])
                     res['nll'].append(nllv[i])
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                utils.setprec(res['r'])
+                utils.setprec(res['nll'], prec=1E+6)
+                utils.setprec(res['bf'], prec=1E+6)
                 fn = os.path.splitext(fname.split('/')[-1])[0]
                 os.system('mkdir -p '+ws+'/results/'+fn)
                 json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_pyhf.json', 'w'), indent=2)
