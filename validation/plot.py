@@ -103,9 +103,9 @@ if __name__ == '__main__':
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=False)
             if analyticdata: fignll.add_trace(analyticd, secondary_y=False)
-            fignll.add_annotation(x=0, y=max(combined['nll'])/1.5, text=r"$\hat{r} = $"+str(combinedata['bf']), font=dict(family="sans serif", size=18, color=color['combine']))
-            fignll.add_annotation(x=0, y=max(combined['nll'])/1.7, text=r"$\hat{r} = $"+str(pyhfdata['bf']), font=dict(family="sans serif", size=18, color=color['pyhf']))
-            if analyticdata: fignll.add_annotation(x=0, y=max(combined['nll'])/1.9, text=r"$\hat{r} = $"+str(analyticdata['bf']), font=dict(family="sans serif", size=18, color=color['analytic']))
+            fignll.add_annotation(x=1.0, y=max(combined['nll'])/1.5, text=r'$\hat{r} = \text{'+str(combinedata['bf'])+'}$', font=dict(family="sans serif", size=16, color=color['combine']))
+            fignll.add_annotation(x=1.0, y=max(combined['nll'])/1.75, text=r'$\hat{r} = \text{'+str(pyhfdata['bf'])+'}$', font=dict(family="sans serif", size=16, color=color['pyhf']))
+            if analyticdata: fignll.add_annotation(x=1.0, y=max(combined['nll'])/2.0, text=r'$\hat{r} = \text{'+str(analyticdata['bf'])+'}$', font=dict(family="sans serif", size=16, color=color['analytic']))
             fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
             fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
             
