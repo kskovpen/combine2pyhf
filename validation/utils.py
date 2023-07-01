@@ -1,4 +1,4 @@
-import subprocess, logger
+import subprocess
 
 def setprec(d):
     for k in d.keys():
