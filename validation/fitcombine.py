@@ -16,13 +16,12 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
     for i in range(tr.GetEntries()):
         tr.GetEntry(i)
         if tr.r in res['r']: continue
-        print('Append '+str(tr.r))
         res['r'].append(tr.r)
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     if bf: 
         res['bf'] = [bf['r'][0]]
         utils.setprec(res['bf'], prec=6)
-    utils.setprec(res['r'])
+        utils.setprec(res['r'])
     utils.setprec(res['nll'], prec=6)
     if fout != '':
         os.system('mkdir -p '+fdir+'/'+fout)
