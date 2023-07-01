@@ -25,7 +25,7 @@ if __name__ == '__main__':
     
     options = main()
 
-    color = {'combine': '#f55a42', 'pyhf': '#4343d9', 'analytic': '48ab37'}
+    color = {'combine': '#f55a42', 'pyhf': '#4343d9', 'analytic': '#48ab37'}
     
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
