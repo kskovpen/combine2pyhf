@@ -82,6 +82,9 @@ if __name__ == '__main__':
                 if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticd['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
+            print('combine', combined['r'])
+            print('pyhf', pyhfd['r'])
+            print('analytic', analyticd['r'])
             rows = [combined['r'], data[0], data[1]]
             if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
                     
