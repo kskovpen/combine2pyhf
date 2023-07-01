@@ -21,6 +21,7 @@ def getFitInfo(fname, fdir = '', fit = '', fout = ''):
     res = {'r': [], 'nll': []}
     for i in range(tr.GetEntries()):
         tr.GetEntry(i)
+        if tr.r in res['r']: continue
         res['r'].append(tr.r)
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     if fout != '':

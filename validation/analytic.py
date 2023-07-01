@@ -63,7 +63,8 @@ if __name__ == '__main__':
                     data = df['observations'][0]['data'][0]
 
                     inc = (options.max-options.min)/options.npoints
-                    muv = [1.0]+list(np.arange(options.min, options.max+inc, inc))
+                    muv = list(np.arange(options.min, options.max+inc, inc))
+                    if 1.0 not in muv: muv += [1.0]
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
