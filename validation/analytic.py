@@ -89,6 +89,7 @@ if __name__ == '__main__':
                         log.info('    bf='+str(bf))
     
                         res = {'r': [], 'nll': []}
+                        res['bf'] = bf
                         for i in range(len(nllv)):
                             nllv[i] -= bfnll
                             nllv[i] *= 2.0

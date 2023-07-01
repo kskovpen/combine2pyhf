@@ -84,6 +84,7 @@ if __name__ == '__main__':
                 if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
+                res['bf'] = bf
                 nllv = []
                 for r in muv:
                     init[model.config.poi_index] = r

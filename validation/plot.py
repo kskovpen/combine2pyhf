@@ -24,6 +24,8 @@ def main(argv = None):
 if __name__ == '__main__':
     
     options = main()
+
+    color = {'combine': '#f55a42', 'pyhf': '#4343d9', 'analytic': '48ab37'}
     
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
@@ -94,13 +96,16 @@ if __name__ == '__main__':
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
             pio.kaleido.scope.mathjax = piodef
-            combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color="#f55a42"))
-            pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color="#4343d9"))
-            if analyticdata: analyticd = go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color="#48ab37", dash='dot'))
+            combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color=color['combine']))
+            pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color=color['pyhf']))
+            if analyticdata: analyticd = go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color=color['analytic'], dash='dot'))
             fignll = make_subplots(specs=[[{"secondary_y": False}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=False)
             if analyticdata: fignll.add_trace(analyticd, secondary_y=False)
+            fignll.add_annotation(x=0, y=max(combined['nll'])/1.5, text=r"$\hat{r} = $"+str(combinedata['bf']), font=dict(family="sans serif", size=18, color=color['combine']))
+            fignll.add_annotation(x=0, y=max(combined['nll'])/1.7, text=r"$\hat{r} = $"+str(pyhfdata['bf']), font=dict(family="sans serif", size=18, color=color['pyhf']))
+            if analyticdata: fignll.add_annotation(x=0, y=max(combined['nll'])/1.9, text=r"$\hat{r} = $"+str(analyticdata['bf']), font=dict(family="sans serif", size=18, color=color['analytic']))
             fignll.update_layout(xaxis_title='Signal strength', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
             fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)
             
