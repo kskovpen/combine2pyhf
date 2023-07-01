@@ -84,11 +84,11 @@ if __name__ == '__main__':
             for fit in fits.keys():
                 comblog.info('--> Perform the best fit ('+fit+')')
                 utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
-                bf = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
-                comblog.info('    bf='+str(bf['r'][0]))
+                bfres = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
+                comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1')
-                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bf, ws+'/results', fit, fname.split('/')[-1])
+                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, ws+'/results', fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
 
