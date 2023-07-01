@@ -1,16 +1,11 @@
 from optparse import OptionParser
 import os, sys, math, glob, json, logging
+import utils
 import plotly
 import plotly.graph_objects as go
 import plotly.io as pio
 from plotly.subplots import make_subplots
 piodef = pio.kaleido.scope.mathjax
-
-def setprec(d):
-    for k in d.keys():
-        if k not in ['r']: prec = 1E+6
-        else: prec = 1E+2
-        d[k] = [round(v*prec)/prec for v in d[k]]
     
 def main(argv = None):
     
@@ -61,9 +56,6 @@ if __name__ == '__main__':
             pyhfdata = json.load(open(fpyhf, 'r'))
             pyhfd['r'] = sorted(pyhfdata['r'])
             pyhfd['nll'] = [x for _, x in sorted(zip(pyhfdata['r'], pyhfdata['nll']))]
-                        
-            setprec(combined)
-            setprec(pyhfd)
             
             data = [combined['nll'], pyhfd['nll']]
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
@@ -77,14 +69,12 @@ if __name__ == '__main__':
                 data.append(analyticdata['nll'])
                 analyticd['r'] = sorted(analyticdata['r'])
                 analyticd['nll'] = [x for _, x in sorted(zip(analyticd['r'], analyticdata['nll']))]
-            if analyticdata: setprec(analyticd)
             for rv in combined['r']:
                 if (rv not in pyhfd['r']) or (analyticdata and rv not in analyticd['r']):
                     logging.error('The following signal strength value was not found in pyhf fits: '+str(rv))
 
             print('combine', combined['r'])
             print('pyhf', pyhfd['r'])
-            print('analytic', analyticd['r'])
             rows = [combined['r'], data[0], data[1]]
             if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
                     

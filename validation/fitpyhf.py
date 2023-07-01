@@ -5,13 +5,6 @@ from optparse import OptionParser
 def twice_nll(pars):
     return -2.0*model.logpdf(pars, data)[0]
 
-def execute(logger, c):
-    try:
-        r = subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
-        logger.debug(r)
-    except subprocess.CalledProcessError as e:
-        logger.error(e.output)
-
 def main(argv = None):
     
     if argv == None:
@@ -86,7 +79,8 @@ if __name__ == '__main__':
                 pyhflog.info('    bf='+str(bf))
                 inc = (options.max-options.min)/options.npoints
                 muv = list(np.arange(options.min, options.max+inc, inc))
-                if 1.0 not in muv: muv += [1.0]
+                utils.setprec(muv)
+                if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
                 nllv = []

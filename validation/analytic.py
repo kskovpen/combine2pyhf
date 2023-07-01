@@ -1,4 +1,5 @@
 import os, sys, math, json, glob, logging, subprocess
+import utils
 import numpy as np
 from optparse import OptionParser
 import ROOT
@@ -64,7 +65,8 @@ if __name__ == '__main__':
 
                     inc = (options.max-options.min)/options.npoints
                     muv = list(np.arange(options.min, options.max+inc, inc))
-                    if 1.0 not in muv: muv += [1.0]
+                    utils.setprec(muv)
+                    if 1 not in muv: muv += utils.setprec([1])
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
