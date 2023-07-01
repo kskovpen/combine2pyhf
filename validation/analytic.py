@@ -97,8 +97,8 @@ if __name__ == '__main__':
                             res['nll'].append(nllv[i])
                             log.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
                         utils.setprec(res['r'])
-                        utils.setprec(res['nll'], prec=1E+6)
-                        utils.setprec(res['bf'], prec=1E+6)
+                        utils.setprec(res['nll'], prec=6)
+                        utils.setprec(res['bf'], prec=6)
                         fn = os.path.splitext(fname.split('/')[-1])[0]
                         os.system('mkdir -p '+ws+'/results/'+fn)
                         json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)

@@ -1,8 +1,10 @@
 import subprocess
+from decimal import Decimal
 
-def setprec(d, prec=1E+2):
+def setprec(d, prec=2):
     for ik, k in enumerate(d):
-        d[ik] = round(k*prec)/prec
+        k = Decimal(str(k))
+        d[ik] = float(round(k, prec))
 
 def execute(logger, c):
     try:

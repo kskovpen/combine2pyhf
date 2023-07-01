@@ -20,9 +20,9 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     if bf: 
         res['bf'] = [bf['r'][0]]
-        utils.setprec(res['bf'], prec=1E+6)
+        utils.setprec(res['bf'], prec=6)
     utils.setprec(res['r'])
-    utils.setprec(res['nll'], prec=1E+6)
+    utils.setprec(res['nll'], prec=6)
     if fout != '':
         os.system('mkdir -p '+fdir+'/'+fout)
         json.dump(res, open(fdir+'/'+fout+'/'+fit+'_combine.json', 'w'), indent=2)
