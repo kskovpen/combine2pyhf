@@ -96,7 +96,7 @@ if __name__ == '__main__':
             pio.kaleido.scope.mathjax = piodef
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color="#f55a42"))
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color="#4343d9"))
-            if analyticdata: go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color="#48ab37", dash='dot'))
+            if analyticdata: analyticd = go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color="#48ab37", dash='dot'))
             fignll = make_subplots(specs=[[{"secondary_y": False}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=False)
