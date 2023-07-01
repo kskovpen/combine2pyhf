@@ -84,8 +84,8 @@ if __name__ == '__main__':
                 m.migrad()
                 bf = m.values[model.config.poi_index]
                 pyhflog.info('    bf='+str(bf))
-                inc = (options.max-options.min)/options.npoints)
-                muv = [1.0]+list(np.arange(options.min, options.max+inc, inc)
+                inc = (options.max-options.min)/options.npoints
+                muv = [1.0]+list(np.arange(options.min, options.max+inc, inc))
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
                 nllv = []
