@@ -38,10 +38,8 @@ for d in dc:
                 lines[il] = 'rate         -1 -1 -1 -1\n'
             elif 'autoMCStats' in l:
                 lines[il] += '\n'+l.replace('ch1', 'ch2')
-        print('###')
         with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
             for l in lines:
-                print(l)
                 fw.write(l)
 
 dc = glob.glob(ws+'/cards/combine/multi-bin/*.root')
@@ -59,4 +57,12 @@ for d in dc:
     res['channels'][-1]['name'] = "ch2"
     res['observations'].append(res['observations'][0])
     res['observations'][-1]['name'] = "ch2"
+    for im, m in enumerate(res['channels'][-1]['modifiers']):
+        if m['name'] != 'r_sig':
+            res['channels'][-1]['modifiers'][im]['name'] = m['name'].replace('ch1', 'ch2')
     json.dump(res, open(d.replace('one-bin', 'multi-bin'), 'w'), indent=2)
+    with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
+        lines = ff.readlines()
+        for l in lines:
+            print(l)
+        
