@@ -1,4 +1,5 @@
 import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit
+from timeit import default_timer as timer
 import utils
 import numpy as np
 from optparse import OptionParser
@@ -73,11 +74,14 @@ if __name__ == '__main__':
             for fit in fits.keys():
                 data = asimov if fit == 'asi' else obs
                 pyhflog.info('--> Perform the best fit ('+fit+')')
+                start = timer()
                 m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
                 m.limits = constraints
                 m.migrad()
                 bf = m.values[model.config.poi_index]
                 bfnll = m.fval
+                end = timer()
+                fittime = end-start
                 pyhflog.info('    bf='+str(bf))
                 inc = (options.max-options.min)/options.npoints
                 muv = list(np.arange(options.min, options.max+inc, inc))
@@ -101,6 +105,7 @@ if __name__ == '__main__':
                     res['r'].append(muv[i])
                     res['nll'].append(nllv[i])
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                res['time'] = fittime
                 utils.setprec(res['r'])
                 utils.setprec(res['nll'], prec=6)
                 utils.setprec(res['bf'], prec=6)

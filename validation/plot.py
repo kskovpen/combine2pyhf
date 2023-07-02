@@ -40,6 +40,11 @@ if __name__ == '__main__':
     
     logging.info('Start plotting')
     
+    layout = go.Layout(
+      paper_bgcolor='rgba(0,0,0,0)',
+      plot_bgcolor='rgba(0,0,0,0)'
+    )
+    
     dc = glob.glob(options.input+'/*/')
     runs = []    
     for d in dc:
@@ -79,19 +84,35 @@ if __name__ == '__main__':
             if analyticdata: rows = [combined['r'], data[0], data[1], data[2]]
                     
             fig = go.Figure(data=[go.Table(
+            header=dict(values=['model', 'time (combine) [s]', 'time (pyhf) [s]'],
+                        line_color='darkslategray',
+                        fill_color='lightskyblue',
+                        align='left'),
+            cells=dict(values=[[d], combined['time'], pyhfd['time']],
+                       line_color='darkslategray',
+                       fill_color='lightcyan',
+                       height=20,
+                       align='left'))
+            ], layout=layout)
+
+            pio.kaleido.scope.mathjax = None
+            fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
+            fig.write_image(options.input+'/'+card+'/time_'+mode+'.png', scale=2)
+
+            fig = go.Figure(data=[go.Table(
             header=dict(values=columns,
                         line_color='darkslategray',
                         fill_color='lightskyblue',
-                        align='left'),            
+                        align='left'),
             cells=dict(values=rows,
                        line_color='darkslategray',
                        fill_color='lightcyan',
                        height=20,
                        align='left'))
-            ])
+            ], layout=layout)
 
             pio.kaleido.scope.mathjax = None
-            fig.update_layout(height=23*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
+            fig.update_layout(height=21*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
@@ -99,7 +120,7 @@ if __name__ == '__main__':
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color=color['combine']))
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color=color['pyhf']))
             if analyticdata: analyticd = go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color=color['analytic'], dash='dot'))
-            fignll = make_subplots(specs=[[{"secondary_y": False}]])
+            fignll = make_subplots(specs=[[{"secondary_y": False}]], layout=layout)
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=False)
             if analyticdata: fignll.add_trace(analyticd, secondary_y=False)

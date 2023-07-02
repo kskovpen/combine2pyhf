@@ -19,10 +19,10 @@ if __name__ == '__main__':
 
     options = main()
 
-    desc = {'stat': 'Statistical uncertainties'}
+    desc = {'stat': 'MC statistical uncertainties'}
     
     with open(options.output+'/README.md', 'w') as fr:
-        intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using combine and pyhf packages.\n\n'
+        intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using [combine](https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit) and [pyhf](https://github.com/scikit-hep/pyhf) packages.\n\n'
         fr.write(intro)
         for ct in ['stat']:
             dc = glob.glob(options.output+'/*'+ct+'*/')
@@ -36,6 +36,7 @@ if __name__ == '__main__':
                     title = dname+' ('+mode+')'
                     fr.write('  - <details>\n\n')
                     fr.write('    <summary>'+title+'</summary>\n\n')
+                    fr.write('    !['+title+']('+fname.replace('_shape', '_time')+'?raw=true)\n\n')
                     fr.write('    !['+title+']('+fname+'?raw=true)\n\n')
                     fr.write('    !['+title+']('+fname.replace('_shape', '')+'?raw=true)\n\n')
                     fr.write('    </details>\n\n')

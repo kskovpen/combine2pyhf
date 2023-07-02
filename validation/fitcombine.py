@@ -1,4 +1,5 @@
 import os, sys, math, json, glob, logging, subprocess
+from timeit import default_timer as timer
 import utils
 from optparse import OptionParser
 import ROOT
@@ -20,9 +21,9 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
         res['nll'].append(2*(tr.nll0+tr.nll+tr.deltaNLL))
     if bf: 
         res['bf'] = [bf['r'][0]]
+        res['time'] = bf['time']
         utils.setprec(res['bf'], prec=6)
         utils.setprec(res['r'])
-        print(res['bf'])
     utils.setprec(res['nll'], prec=6)
     if fout != '':
         os.system('mkdir -p '+fdir+'/'+fout)
@@ -85,8 +86,12 @@ if __name__ == '__main__':
             utils.execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f)
             for fit in fits.keys():
                 comblog.info('--> Perform the best fit ('+fit+')')
+                start = timer()
                 utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
+                end = timer()
+                fittime = end-start
                 bfres = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
+                bfres['time'] = fittime
                 comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1')
