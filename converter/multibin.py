@@ -14,7 +14,7 @@ os.system('mkdir -p '+ws+'/cards/pyhf/multi-bin')
 # combine cards
 ro = glob.glob(ws+'/cards/combine/one-bin/*.root')
 for r in ro:
-    os.system('cp '+r+' '+ws+'/cards/combine/multi-bin/.')
+    os.system('cp '+r+' '+ws+'/cards/combine/multi-bin/'+r.split('/')[-1].replace('one-bin', 'multi-bin'))
 dc = glob.glob(ws+'/cards/combine/one-bin/*.txt')
 for d in dc:
     with open(d, 'r') as fr:
@@ -23,7 +23,7 @@ for d in dc:
             if 'imax 1 number of bins' in l:
                 lines[il] = 'imax 2 number of bins\n'
             elif 'shapes' in l:
-                lines[il] += '\n '+l.replace('ch1', 'ch2')+'\n'
+                lines[il] += '\n'+l.replace('ch1', 'ch2').replace('one-bin', 'multi-bin')+'\n'
             elif 'bin          ch1\n' == l:
                 lines[il] = 'bin          ch1 ch2\n'
             elif 'observation  -1' in l:
@@ -37,13 +37,20 @@ for d in dc:
             elif 'rate         -1 -1\n' == l:
                 lines[il] = 'rate         -1 -1 -1 -1\n'
             elif 'autoMCStats' in l:
-                lines[il] += '\n '+l.replace('ch1', 'ch2')
+                lines[il] += '\n'+l.replace('ch1', 'ch2')
         print('###')
         with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
             for l in lines:
                 print(l)
                 fw.write(l)
-            
+
+dc = glob.glob(ws+'/cards/combine/multi-bin/*.root')
+for d in dc:
+    f = ROOT.TFile(d, 'UPDATE')
+    f.WriteObject(f.GetDirectory('ch1'), 'ch2')
+    f.Write()
+    f.Close()
+
 # pyhf cards
 dc = glob.glob(ws+'/cards/pyhf/one-bin/*.json')
 for d in dc:
