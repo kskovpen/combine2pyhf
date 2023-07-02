@@ -8,8 +8,8 @@ wd = ws+'/validation'
 sys.path.append(wd)
 import utils
 
-os.system('mkdir -p '+wd+'/cards/combine/multi-bin')
-os.system('mkdir -p '+wd+'/cards/pyhf/multi-bin')
+os.system('mkdir -p '+ws+'/cards/combine/multi-bin')
+os.system('mkdir -p '+ws+'/cards/pyhf/multi-bin')
 
 # combine cards
 ro = glob.glob(ws+'/cards/combine/one-bin/*.root')
