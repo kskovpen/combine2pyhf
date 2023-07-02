@@ -36,7 +36,7 @@ if __name__ == '__main__':
                     title = dname+' ('+mode+')'
                     fr.write('  - <details>\n\n')
                     fr.write('    <summary>'+title+'</summary>\n\n')
-                    fr.write('    !['+title+']('+fname.replace('_shape', '_time')+'?raw=true)\n\n')
+                    fr.write('    !['+title+']('+fname.replace('nll_shape', 'time')+'?raw=true)\n\n')
                     fr.write('    !['+title+']('+fname+'?raw=true)\n\n')
                     fr.write('    !['+title+']('+fname.replace('_shape', '')+'?raw=true)\n\n')
                     fr.write('    </details>\n\n')
