@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import os, sys, glob, ROOT, logging, subprocess
+sys.path.append('../validation')
+import utils
 
 ws = os.environ['WS']
 wd = ws+'/validation'
@@ -20,12 +22,6 @@ console.setFormatter(formatter)
 logging.getLogger().addHandler(console)
 
 logging.info('Start conversion process')
-
-def execute(logger, c):
-    try:
-        subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
-    except subprocess.CalledProcessError as e:
-        logger.error(e.output)
         
 def shapeloc(dname, fname, tool = 'combine', combine2pyhf = False):
     with open(fname+'_mod', 'w') as f:
@@ -62,9 +58,9 @@ for d in dc:
         bbl = '--bbl ' if 'bbl' in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
-        execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('pyhf -> combine: '+fname)
-        execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
     
 # pyhf cards
@@ -81,7 +77,7 @@ for d in dc:
         fname = f.split('/')[-1]
         bbl = '--bbl ' if 'bbl' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
-        execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
@@ -89,4 +85,4 @@ for d in dc:
 ##            lines = ff.readlines()
 ##            for l in lines:
 ##                print(l)
-        execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
