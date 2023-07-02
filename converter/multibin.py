@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
 import os, sys, glob, ROOT, subprocess, json
-sys.path.append('../validation')
-import utils
 
 ws = os.environ['WS']
 wd = ws+'/validation'
+
+sys.path.append(wd)
+import utils
 
 os.system('mkdir -p '+wd+'/cards/combine/multi-bin')
 os.system('mkdir -p '+wd+'/cards/pyhf/multi-bin')
