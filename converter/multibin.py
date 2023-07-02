@@ -23,7 +23,7 @@ for d in dc:
             if 'imax 1 number of bins' in l:
                 lines[il] = 'imax 2 number of bins\n'
             elif 'shapes' in l:
-                lines[il] += '\n'+l.replace('ch1', 'ch2').replace('one-bin', 'multi-bin')+'\n'
+                lines[il] = l.replace('one-bin', 'multi-bin')+'\n'+l.replace('ch1', 'ch2').replace('one-bin', 'multi-bin')+'\n'
             elif 'bin          ch1\n' == l:
                 lines[il] = 'bin          ch1 ch2\n'
             elif 'observation  -1' in l:
