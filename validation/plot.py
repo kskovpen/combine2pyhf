@@ -120,7 +120,7 @@ if __name__ == '__main__':
             combd = go.Scatter(x=combined['r'], y=combined['nll'], name='combine', line=dict(color=color['combine']))
             pyhfd = go.Scatter(x=pyhfd['r'], y=pyhfd['nll'], name='pyhf', line=dict(color=color['pyhf']))
             if analyticdata: analyticd = go.Scatter(x=analyticd['r'], y=analyticd['nll'], name='analytic', line=dict(color=color['analytic'], dash='dot'))
-            fignll = make_subplots(specs=[[{"secondary_y": False}]], layout=layout)
+            fignll = make_subplots(specs=[[{"secondary_y": False}]])
             fignll.add_trace(combd)
             fignll.add_trace(pyhfd, secondary_y=False)
             if analyticdata: fignll.add_trace(analyticd, secondary_y=False)
