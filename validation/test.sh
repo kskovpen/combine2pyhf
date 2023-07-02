@@ -39,6 +39,8 @@ PP=$PYTHONPATH; PH=$PYTHONHOME
 echo "Done"
 echo "Convert datacards .."
 
+python3 $WS/converter/multibin.py
+check "$WS/logs/multibin.log"
 python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, glob, ROOT, subprocess
+import os, sys, glob, ROOT, subprocess, json
 sys.path.append('../validation')
 import utils
 
@@ -11,7 +11,6 @@ os.system('mkdir -p '+wd+'/cards/combine/multi-bin')
 os.system('mkdir -p '+wd+'/cards/pyhf/multi-bin')
 
 # combine cards
-comblog = logging.getLogger('multibin.combine')
 ro = glob.glob(ws+'/cards/combine/one-bin/*.root')
 for r in ro:
     os.system('cp '+r+' '+ws+'/cards/combine/multi-bin/.')
@@ -40,3 +39,13 @@ for d in dc:
                 lines[il] += '\n '+l.replace('ch1', 'ch2')
         with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
             fw.write(lines)
+            
+# pyhf cards
+dc = glob.glob(ws+'/cards/pyhf/one-bin/*.json')
+for d in dc:
+    res = json.load(open(d))
+    res['channels'].append(res['channels'][0])
+    res['channels'][-1]['name'] = "ch2"
+    res['observations'].append(res['observations'][0])
+    res['observations'][-1]['name'] = "ch2"
+    json.dump(res, open(d.replace('one-bin', 'multi-bin'), 'w'), indent=2)
