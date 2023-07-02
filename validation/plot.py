@@ -88,7 +88,7 @@ if __name__ == '__main__':
                         line_color='darkslategray',
                         fill_color='lightskyblue',
                         align='left'),
-            cells=dict(values=[[d], combined['time'], pyhfd['time']],
+            cells=dict(values=[[d], combinedata['time'], pyhfdata['time']],
                        line_color='darkslategray',
                        fill_color='lightcyan',
                        height=20,
