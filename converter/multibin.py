@@ -39,7 +39,8 @@ for d in dc:
             elif 'autoMCStats' in l:
                 lines[il] += '\n '+l.replace('ch1', 'ch2')
         with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
-            fw.write(lines)
+            for l in lines:
+                fw.write(l)
             
 # pyhf cards
 dc = glob.glob(ws+'/cards/pyhf/one-bin/*.json')
