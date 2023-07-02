@@ -88,7 +88,7 @@ if __name__ == '__main__':
                         line_color='darkslategray',
                         fill_color='lightskyblue',
                         align='left'),
-            cells=dict(values=[[d], combinedata['time'], pyhfdata['time']],
+            cells=dict(values=[[card], combinedata['time'], pyhfdata['time']],
                        line_color='darkslategray',
                        fill_color='lightcyan',
                        height=20,
@@ -96,7 +96,7 @@ if __name__ == '__main__':
             ], layout=layout)
 
             pio.kaleido.scope.mathjax = None
-            fig.update_layout(height=len(combinedata['time'])+1, margin=dict(l=10, r=10, t=10, b=10))
+            fig.update_layout(height=20, margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
             fig.write_image(options.input+'/'+card+'/time_'+mode+'.png', scale=2)
 
@@ -113,7 +113,7 @@ if __name__ == '__main__':
             ], layout=layout)
 
             pio.kaleido.scope.mathjax = None
-            fig.update_layout(height=19*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
+            fig.update_layout(height=20*(len(combined['r'])+1), margin=dict(l=10, r=10, t=10, b=10))
             fig.update_layout(margin=dict(l=5, r=5, t=5, b=5))
             fig.write_image(options.input+'/'+card+'/nll_'+mode+'.png', scale=2)
             
