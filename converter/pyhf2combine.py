@@ -88,7 +88,8 @@ if __name__ == '__main__':
     for s in samp:
         if s == poi: continue
         sampord.append(s)
-    nsamp = len(list(set(sampord)))
+    samples = list(set(sampord))
+    nsamp = len(samples)
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
     dc += 'kmax 0 number of nuisance parameters\n'
@@ -101,7 +102,7 @@ if __name__ == '__main__':
     dc += '------------------------------------\n'
     procbin, procname, procsamp, rate = [], [], [], []
     for ch in d['channels']:
-        for i, s in enumerate(sampord):
+        for i, s in enumerate(samples):
             procbin.append(ch['name'])
             procname.append(s)
             procsamp.append(str(i))
