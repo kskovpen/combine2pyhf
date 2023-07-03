@@ -111,9 +111,10 @@ if __name__ == '__main__':
     dc += 'process      '+' '.join(procsamp)+'\n'
     dc += 'rate         '+' '.join(rate)+'\n'
     dc += '------------------------------------\n'
-    if bbl: dc += 'ch1 autoMCStats 0 1 1\n'
-    else: dc += 'ch1 autoMCStats 0 100000 100000\n'
+    for ch in chans:
+        if bbl: dc += ch+' autoMCStats 0 1 1\n'
+        else: dc += ch+' autoMCStats 0 100000 100000\n'
     with open(options.output+'.txt', 'w') as f:
+        print(dc)
         f.write(dc)
         f.close()
-    
