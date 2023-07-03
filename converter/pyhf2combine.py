@@ -65,7 +65,8 @@ if __name__ == '__main__':
                         poi = s['name']
                     if 'prop' in m['name']:
                         h[hname].SetBinError(i+1, m['data'][i])
-                        
+            h[hname].Write()
+
         for obs in d['observations']:
             if obs['name'] == ch['name']:
                 hname = 'data_obs'
@@ -75,6 +76,7 @@ if __name__ == '__main__':
                 for i in range(len(data)):
                     h[hname].SetBinContent(i+1, data[i])
                     h[hname].SetBinError(i+1, math.sqrt(data[i]))
+                h[hname].Write()
              
     fr.Write()
     fr.Close()
