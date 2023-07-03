@@ -88,7 +88,7 @@ if __name__ == '__main__':
     for s in samp:
         if s == poi: continue
         sampord.append(s)
-    nsamp = len(sampord)
+    nsamp = len(list(set(sampord)))
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
     dc += 'kmax 0 number of nuisance parameters\n'
