@@ -57,10 +57,12 @@ for d in dc:
     res['channels'][-1]['name'] = "ch2"
     res['observations'].append(res['observations'][0])
     res['observations'][-1]['name'] = "ch2"
-    mod = res['channels']['samples'][-1]['modifiers']
-    for im, m in enumerate(mod):
-        if m['name'] != 'r_sig':
-            mod[im]['name'] = m['name'].replace('ch1', 'ch2')
+    samp = res['channels'][-1]['samples']
+    for isamp, s in enumerate(samp):
+        mod = samp[isamp]['modifiers']
+        for im, m in enumerate(mod):
+            if m['name'] != 'r_sig':
+                mod[im]['name'] = m['name'].replace('ch1', 'ch2')
     json.dump(res, open(d.replace('one-bin', 'multi-bin'), 'w'), indent=2)
     with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
         lines = ff.readlines()
