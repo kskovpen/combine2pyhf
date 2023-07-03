@@ -60,8 +60,12 @@ for r in runs:
     for f in fcv:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
         with open(f, 'r') as fdv:
+            lines = fdv.readlines()
+            print(lines)
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
+            lines = fdo.readlines()
+            print(lines)
             dco = parseCard(fdo, opts)
         comblog.info('--> Compare datacards: '+os.path.splitext(forig.split('/')[-1])[0])
         res = {}
