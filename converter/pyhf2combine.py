@@ -89,11 +89,8 @@ if __name__ == '__main__':
     for ch in d['channels']:
         chans.append(ch['name'])
     nchan = len(chans)
-    sampord = [poi]
-    for s in samp:
-        if s == poi: continue
-        sampord.append(s)
-    samples = list(set(sampord))
+    samples = list(set(samp))
+    samples = [poi]+samples.remove(poi)
     nsamp = len(samples)
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
