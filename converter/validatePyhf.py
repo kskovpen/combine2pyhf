@@ -30,14 +30,10 @@ for r in runs:
     for f in fcv:
         forig = f.replace('validation/', '').replace('combine2pyhf/', '').replace('cards', 'combine2pyhf/combine2pyhf/cards')
         pyhflog.info('--> Compare json: '+os.path.splitext(forig.split('/')[-1])[0])
-        print('### Original:')
         with open(forig) as fforig:
             jorig = json.loads(fforig.read())
-            print(jorig)
-        print('### Converted:')
         with open(f) as ff:
             j = json.loads(ff.read())
-            print(j)
         res = DeepDiff(jorig, j)
         if bool(res):
             pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
