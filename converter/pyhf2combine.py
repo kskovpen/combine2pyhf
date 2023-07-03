@@ -50,8 +50,8 @@ if __name__ == '__main__':
     poi = ''
     for ch in d['channels']:
         fr.cd()
-        fr.mkdir(ch['name']);
-        fr.cd(ch['name'])
+        sd = fr.mkdir(ch['name']);
+        sd.cd()
         for s in ch['samples']:
             if s not in samp: samp.append(s['name'])
             hname = s['name']
@@ -65,7 +65,7 @@ if __name__ == '__main__':
                         poi = s['name']
                     if 'prop' in m['name']:
                         h[hname].SetBinError(i+1, m['data'][i])
-            h[hname].SetDirectory(ch['name'])
+            h[hname].SetDirectory(sd)
             h[hname].Write()
 
         for obs in d['observations']:
@@ -77,7 +77,7 @@ if __name__ == '__main__':
                 for i in range(len(data)):
                     h[hname].SetBinContent(i+1, data[i])
                     h[hname].SetBinError(i+1, math.sqrt(data[i]))
-                h[hname].SetDirectory(ch['name'])
+                h[hname].SetDirectory(sd)
                 h[hname].Write()
              
     fr.Write()
