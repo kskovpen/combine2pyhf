@@ -87,6 +87,10 @@ for d in dc:
             for l in lines:
                 print(l)
         froot = ROOT.TFile('/__w/combine2pyhf/combine2pyhf/validation/cards/pyhf/pyhf2combine/multi-bin/multi-bin-stat-bbl.root', 'READ')
+        froot.cd()
+        froot.ls()
+        froot.cd('ch1')
+        froot.ls()        
         froot.cd('ch2')
         froot.ls()
         froot.Close()
