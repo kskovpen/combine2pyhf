@@ -89,7 +89,11 @@ if __name__ == '__main__':
     for ch in d['channels']:
         chans.append(ch['name'])
     nchan = len(chans)
+    print(samp)
     samples = list(set(samp))
+    print(samples)
+    print(poi)
+    print(samples.remove(poi))
     samples = [poi]+samples.remove(poi)
     nsamp = len(samples)
     dc = 'imax '+str(nchan)+' number of bins\n'
