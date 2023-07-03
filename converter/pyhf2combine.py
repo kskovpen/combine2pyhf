@@ -55,32 +55,33 @@ if __name__ == '__main__':
         for s in ch['samples']:
             if s not in samp: samp.append(s['name'])
             hname = s['name']
+            hnamep = ch['name']+'_'+hname
             data = s['data']
             nb = len(data)
-            h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
+            h[hnamep] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
             for i in range(len(data)):
-                h[hname].SetBinContent(i+1, data[i])
+                h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor' and 'r_' in m['name']:
                         poi = s['name']
                     if 'prop' in m['name']:
-                        h[hname].SetBinError(i+1, m['data'][i])
-            h[hname].SetDirectory(sd)
-            h[hname].Write()
+                        h[hnamep].SetBinError(i+1, m['data'][i])
+            h[hnamep].SetDirectory(sd)
+            h[hnamep].Write()
 
         for obs in d['observations']:
             if obs['name'] == ch['name']:
                 hname = 'data_obs'
+                hnamep = ch['name']+'_'+hname
                 data = obs['data']
                 nb = len(data)
-                h[hname] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
+                h[hnamep] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):
-                    h[hname].SetBinContent(i+1, data[i])
-                    h[hname].SetBinError(i+1, math.sqrt(data[i]))
-                h[hname].SetDirectory(sd)
-                h[hname].Write()
+                    h[hnamep].SetBinContent(i+1, data[i])
+                    h[hnamep].SetBinError(i+1, math.sqrt(data[i]))
+                h[hnamep].SetDirectory(sd)
+                h[hnamep].Write()
              
-    fr.Write()
     fr.Close()
     
     # Create datacard
