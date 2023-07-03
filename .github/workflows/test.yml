@@ -18,11 +18,6 @@ jobs:
         with:
           name: logs
           path: /__w/combine2pyhf/combine2pyhf/logs
-      - name: Upload ROOT files
-        uses: actions/upload-artifact@v3
-        with:
-          name: root
-          path: /__w/combine2pyhf/combine2pyhf/validation/cards/pyhf/pyhf2combine/multi-bin/multi-bin-stat-bbl.root
       - name: Publish results
         run: |
           mv results results_copy
