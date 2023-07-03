@@ -60,20 +60,14 @@ for r in runs:
     for f in fcv:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
         with open(f, 'r') as fdv:
-            lines = fdv.readlines()
-            print(lines)
             dcv = parseCard(fdv, opts)
         with open(forig, 'r') as fdo:
-            lines = fdo.readlines()
-            print(lines)
             dco = parseCard(fdo, opts)
         comblog.info('--> Compare datacards: '+os.path.splitext(forig.split('/')[-1])[0])
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
         res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
         res['processes'] = [compareCards(dco.processes, dcv.processes), dco.processes, dcv.processes]
-        print(dco.signals, dcv.signals)
-        print(dco.isSignal, dcv.isSignal)
         res['signals'] = [compareCards(dco.signals, dcv.signals), dco.signals, dcv.signals]
         res['isSignal'] = [compareCards(dco.isSignal, dcv.isSignal), dco.isSignal, dcv.isSignal]
         res['keyline'] = [compareCards(dco.keyline, dcv.keyline), dco.keyline, dcv.keyline]
