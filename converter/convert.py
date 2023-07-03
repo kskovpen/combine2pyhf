@@ -82,16 +82,8 @@ for d in dc:
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
-        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
-            lines = ff.readlines()
-            for l in lines:
-                print(l)
-        froot = ROOT.TFile('/__w/combine2pyhf/combine2pyhf/validation/cards/pyhf/pyhf2combine/multi-bin/multi-bin-stat-bbl.root', 'READ')
-        froot.cd()
-        froot.ls()
-        froot.cd('ch1')
-        froot.ls()        
-        froot.cd('ch2')
-        froot.ls()
-        froot.Close()
+#        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
+#            lines = ff.readlines()
+#            for l in lines:
+#                print(l)
         utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])

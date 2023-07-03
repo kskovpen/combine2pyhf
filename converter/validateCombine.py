@@ -68,6 +68,7 @@ for r in runs:
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
         res['obs'] = [compareCards(dco.obs, dcv.obs), dco.obs, dcv.obs]
         res['processes'] = [compareCards(dco.processes, dcv.processes), dco.processes, dcv.processes]
+        comblog.info(dco.signals, dcv.signals)
         res['signals'] = [compareCards(dco.signals, dcv.signals), dco.signals, dcv.signals]
         res['isSignal'] = [compareCards(dco.isSignal, dcv.isSignal), dco.isSignal, dcv.isSignal]
         res['keyline'] = [compareCards(dco.keyline, dcv.keyline), dco.keyline, dcv.keyline]
