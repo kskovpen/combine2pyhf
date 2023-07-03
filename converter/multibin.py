@@ -53,9 +53,9 @@ for d in dc:
 dc = glob.glob(ws+'/cards/pyhf/one-bin/*.json')
 for d in dc:
     res = json.load(open(d))
-    res['channels'] += 1*[res['channels'][0]]
+    res['channels'] += 1*[res['channels'][0].copy()]
     res['channels'][-1]['name'] = "ch2"
-    res['observations'] += 1*[res['observations'][0]]
+    res['observations'] += 1*[res['observations'][0].copy()]
     res['observations'][-1]['name'] = "ch2"
     samp = res['channels'][-1]['samples']
     for isamp, s in enumerate(samp):
