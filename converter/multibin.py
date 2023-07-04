@@ -73,7 +73,6 @@ if __name__ == '__main__':
                     for i in range(options.nbins): lines[il] += l.replace('ch1 ', 'ch'+str(i+2)+' ')+'\n'
             with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
                 for l in lines:
-                    print(l)
                     fw.write(l)                    
 
     dc = glob.glob(ws+'/cards/combine/multi-bin/*.root')
@@ -100,7 +99,7 @@ if __name__ == '__main__':
                     if m['name'] != 'r_sig':
                         mod[im]['name'] = m['name'].replace('ch1', ch['name'])
         json.dump(res, open(d.replace('one-bin', 'multi-bin'), 'w'), indent=2)
-#        with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
-#            lines = ff.readlines()
-#            for l in lines:
-#                print(l)
+        with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
+            lines = ff.readlines()
+            for l in lines:
+                print(l)
