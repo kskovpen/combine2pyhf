@@ -73,7 +73,8 @@ if __name__ == '__main__':
                     for i in range(options.nbins): lines[il] += l.replace('ch1 ', 'ch'+str(i+2))+' \n'
             with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
                 for l in lines:
-                    fw.write(l)
+                    print(l)
+                    fw.write(l)                    
 
     dc = glob.glob(ws+'/cards/combine/multi-bin/*.root')
     for d in dc:
