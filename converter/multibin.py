@@ -43,7 +43,7 @@ if __name__ == '__main__':
                     lines[il] = 'imax '+str(options.nbins+1)+' number of bins\n'
                 elif 'shapes' in l:
                     lines[il] = l.replace('one-bin', 'multi-bin')+'\n'
-                    for i in range(options.nbins): lines[il] += l.replace('ch1', 'ch'+str(i+2)).replace('one-bin', 'multi-bin')+'\n'
+                    for i in range(options.nbins): lines[il] += l.replace('ch1 ', 'ch'+str(i+2)+' ').replace('one-bin', 'multi-bin')+'\n'
                 elif 'bin          ch1\n' == l:
                     lines[il] = 'bin          ch1 '
                     for i in range(options.nbins): lines[il] += 'ch'+str(i+2)+' '
@@ -70,7 +70,7 @@ if __name__ == '__main__':
                     lines[il] += '\n'
                 elif 'autoMCStats' in l:
                     lines[il] += '\n'
-                    for i in range(options.nbins): lines[il] += l.replace('ch1', 'ch'+str(i+2))+'\n'
+                    for i in range(options.nbins): lines[il] += l.replace('ch1 ', 'ch'+str(i+2))+' \n'
             with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
                 for l in lines:
                     fw.write(l)
