@@ -100,7 +100,7 @@ if __name__ == '__main__':
                     if m['name'] != 'r_sig':
                         mod[im]['name'] = m['name'].replace('ch1', ch['name'])
         json.dump(res, open(d.replace('one-bin', 'multi-bin'), 'w'), indent=2)
-        with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
-            lines = ff.readlines()
-            for l in lines:
-                print(l)
+#        with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
+#            lines = ff.readlines()
+#            for l in lines:
+#                print(l)
