@@ -87,10 +87,11 @@ if __name__ == '__main__':
     dc = glob.glob(ws+'/cards/pyhf/one-bin/*.json')
     for d in dc:
         res = json.load(open(d))
-        res['channels'] += options.nbins*[copy.deepcopy(res['channels'][0])]
-        for i in range(options.nbins): res['channels'][i+1]['name'] = 'ch'+str(i+2)
-        res['observations'] += options.nbins*[copy.deepcopy(res['observations'][0])]
-        for i in range(options.nbins): res['observations'][i+1]['name'] = 'ch'+str(i+2)
+        for i in range(options.nbins):
+            res['channels'] += [copy.deepcopy(res['channels'][0])]
+            res['channels'][-1]['name'] = 'ch'+str(i+2)
+            res['observations'] += [copy.deepcopy(res['observations'][0])]
+            res['observations'][-1]['name'] = 'ch'+str(i+2)
         for ch in res['channels']:
             samp = ch['samples']
             for isamp, s in enumerate(samp):
