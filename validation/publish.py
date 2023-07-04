@@ -26,6 +26,7 @@ if __name__ == '__main__':
         fr.write(intro)
         for ct in ['stat']:
             dc = glob.glob(options.output+'/*'+ct+'*/')
+            dc.sort(key=os.path.getmtime)
             fr.write('- '+desc[ct]+'\n\n')
             for d in dc:
                 dname = d.split('/')[-2]
