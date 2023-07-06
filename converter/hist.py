@@ -50,10 +50,10 @@ if __name__ == '__main__':
                 data[ibin][proc] = d[ib]
                 for m in mods:
                     if ibin not in uncorrup.keys(): uncorrup[ibin] = 0
-                    if m['type'] in ['staterror']:
+                    if 'prop' in m['name']:
                         uncorrup[ibin] += m['data'][ib]**2
                     if ibin not in uncorrdown.keys(): uncorrdown[ibin] = 0
-                    if m['type'] in ['staterror']:
+                    if 'prop' in m['name']:
                         uncorrdown[ibin] += m['data'][ib]**2
                 if ibin not in pred.keys(): pred[ibin] = 0
                 pred[ibin] += d[ib]
