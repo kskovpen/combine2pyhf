@@ -50,6 +50,7 @@ dc = glob.glob(ws+'/cards/combine/*')
 for d in dc:
     dname = d.split('/')[-1]
     comblog.info('Convert '+dname+' (combine)')
+    os.system('mkdir -p '+ws+'/results/'+dname)
     os.system('mkdir -p '+wd+'/cards/combine/combine2pyhf/'+dname)
     os.system('mkdir -p '+wd+'/cards/combine/pyhf2combine/'+dname)
     os.system('cp '+ws+'/cards/combine/'+dname+'/* '+wd+'/cards/combine/combine2pyhf/'+dname+'/.')
@@ -60,6 +61,8 @@ for d in dc:
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
         utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        comblog.info('combine -> pyhf: plot distributions')
+        utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/'+dname+'/hist')
         comblog.info('pyhf -> combine: '+fname)
         utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
@@ -70,6 +73,7 @@ dc = glob.glob(ws+'/cards/pyhf/*')
 for d in dc:
     dname = d.split('/')[-1]
     pyhflog.info('Convert '+dname+' (pyhf)')
+    os.system('mkdir -p '+ws+'/results/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/pyhf2combine/'+dname)
     os.system('mkdir -p '+wd+'/cards/pyhf/combine2pyhf/'+dname)
     os.system('cp '+ws+'/cards/pyhf/'+dname+'/* '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/.')
@@ -82,6 +86,8 @@ for d in dc:
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
+        pyhflog.info('combine -> pyhf: plot distributions')
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/plot.py --input '+f+' --output '+ws+'/results/'+dname+'/hist')
 #        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 #            lines = ff.readlines()
 #            for l in lines:
