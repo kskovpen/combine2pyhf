@@ -87,7 +87,7 @@ if __name__ == '__main__':
         pldata.append(dp)
         plcol.append(colors[ip])
     
-    ax.hist(plbins, len(plbins)+1, weights=pldata, stacked=True, label=procs, color=plcol)
+    ax.hist(plbins, len(obsdata), weights=pldata, stacked=True, label=procs, color=plcol)
     ax.errorbar(obsbins, obsdata, yerr=obsdataerr, fmt='.', color='black', lw=2, alpha=1.0, label='data')
     yerrup = [v for k, v in uncorrup.items()]
     yerrdown = [v for k, v in uncorrdown.items()]
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     ax.set_xlabel('Bins')
     ax.set_ylabel('Events')
     ax.set_ylim([0.0, 1.2*ymax])
-    ax.set_xticks(np.arange(0.5, len(plbins)+1.5, 1.0))
+    ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
     xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
     ax.set_xticklabels(xlabels)
     handles, labels = plt.gca().get_legend_handles_labels()    

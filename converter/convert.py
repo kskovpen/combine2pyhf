@@ -87,7 +87,7 @@ for d in dc:
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
         pyhflog.info('combine -> pyhf: plot distributions')
-        utils.execute(pyhflog, 'python3 '+ws+'/converter/plot.py --input '+f+' --output '+ws+'/results/'+dname+'/hist')
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/'+dname+'/hist')
 #        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 #            lines = ff.readlines()
 #            for l in lines:
