@@ -84,7 +84,8 @@ for r in runs:
         for k in res.keys():
             if not res[k][0]:
                 comblog.error('Datacard comparison failed for '+k+':')
-                comblog.error(','.join(res[k][1])+' vs '+','.join(res[k][2]))
+                print('Original:', res[k][1])
+                print('Converted:', res[k][2])
                 passedCard = False
                 
         if passedCard:
