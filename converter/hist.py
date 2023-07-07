@@ -102,6 +102,7 @@ if __name__ == '__main__':
     ax.set_ylabel('Events')
     ax.set_ylim([0.0, 1.2*ymax])
     ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
+    plt.draw()
     xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
     ax.set_xticklabels(xlabels)
     handles, labels = plt.gca().get_legend_handles_labels()    
