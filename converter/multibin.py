@@ -70,6 +70,7 @@ if __name__ == '__main__':
                     lines[il] += '\n'
                 elif 'lnN' in l or ('shape' in l and not 'shapes' in l):
                     ld = l.split()
+                    lines[il] = l
                     for i in range(options.nbins): lines[il] += ' '+ld[-2]+' '+ld[-1]+' '
                     lines[il] += '\n'
                 elif 'autoMCStats' in l:
@@ -78,10 +79,10 @@ if __name__ == '__main__':
             with open(d.replace('one-bin', 'multi-bin'), 'w') as fw:
                 for l in lines:
                     fw.write(l)
-            with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
-                lines = ff.readlines()
-                for l in lines:
-                    print(l)
+#            with open(d.replace('one-bin', 'multi-bin'), 'r') as ff:
+#                lines = ff.readlines()
+#                for l in lines:
+#                    print(l)
 
     dc = glob.glob(ws+'/cards/combine/multi-bin/*.root')
     for d in dc:
