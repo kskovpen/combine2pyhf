@@ -62,7 +62,7 @@ for d in dc:
         comblog.info('combine -> pyhf: '+fname)
         utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('combine -> pyhf: plot distributions')
-        utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/'+fname+'/hist')
+        utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/'+os.path.splitext(fname)[0]+'/hist')
         comblog.info('pyhf -> combine: '+fname)
         utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
@@ -87,7 +87,7 @@ for d in dc:
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
         pyhflog.info('combine -> pyhf: plot distributions')
-        utils.execute(pyhflog, 'python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/'+fname+'/hist')
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/'+os.path.splitext(fname)[0]+'/hist')
 #        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 #            lines = ff.readlines()
 #            for l in lines:
