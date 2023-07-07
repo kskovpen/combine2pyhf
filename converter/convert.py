@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, glob, ROOT, logging, subprocess
+import os, sys, glob, logging, subprocess
 
 ws = os.environ['WS']
 wd = ws+'/validation'
