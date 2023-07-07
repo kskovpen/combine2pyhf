@@ -6,34 +6,6 @@
 
   - <details>
 
-    <summary>multi-bin-stat-bbl (obs)</summary>
-
-    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/time_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-stat-bbl (asi)</summary>
-
-    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/time_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>multi-bin-stat-full (obs)</summary>
 
     ![multi-bin-stat-full (obs)](results/multi-bin-stat-full/hist.png?raw=true)
@@ -62,29 +34,29 @@
 
   - <details>
 
-    <summary>one-bin-stat-bbl (obs)</summary>
+    <summary>multi-bin-stat-bbl (obs)</summary>
 
-    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/hist.png?raw=true)
+    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/hist.png?raw=true)
 
-    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/time_obs.png?raw=true)
+    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/time_obs.png?raw=true)
 
-    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
+    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
 
-    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/nll_obs.png?raw=true)
+    ![multi-bin-stat-bbl (obs)](results/multi-bin-stat-bbl/nll_obs.png?raw=true)
 
     </details>
 
   - <details>
 
-    <summary>one-bin-stat-bbl (asi)</summary>
+    <summary>multi-bin-stat-bbl (asi)</summary>
 
-    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/hist.png?raw=true)
+    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/hist.png?raw=true)
 
-    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/time_asi.png?raw=true)
+    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/time_asi.png?raw=true)
 
-    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
+    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
 
-    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/nll_asi.png?raw=true)
+    ![multi-bin-stat-bbl (asi)](results/multi-bin-stat-bbl/nll_asi.png?raw=true)
 
     </details>
 
@@ -113,6 +85,34 @@
     ![one-bin-stat-full (asi)](results/one-bin-stat-full/nll_shape_asi.png?raw=true)
 
     ![one-bin-stat-full (asi)](results/one-bin-stat-full/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (obs)</summary>
+
+    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/time_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/one-bin-stat-bbl/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (asi)</summary>
+
+    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/time_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/one-bin-stat-bbl/nll_asi.png?raw=true)
 
     </details>
 
