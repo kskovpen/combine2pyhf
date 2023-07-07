@@ -98,13 +98,14 @@ if __name__ == '__main__':
     ax.set_xlabel('Bins')
     ax.set_ylabel('Events')
     ax.set_ylim([0.0, 1.2*ymax])
-#    ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
-#    xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
-#    ax.set_xticklabels(xlabels)
-#    handles, labels = plt.gca().get_legend_handles_labels()    
-#    order = [len(labels)-1]
-#    for v in range(len(labels)):
-#        if v in order: continue
-#        else: order.append(v)
-#    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1)
+    ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
+    print(ax.get_xticklabels())
+    xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
+    ax.set_xticklabels(xlabels)
+    handles, labels = plt.gca().get_legend_handles_labels()    
+    order = [len(labels)-1]
+    for v in range(len(labels)):
+        if v in order: continue
+        else: order.append(v)
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1)
     fig.savefig(options.output+'.png', dpi=300)
