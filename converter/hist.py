@@ -4,6 +4,7 @@ import os, sys, math, glob, json
 import numpy as np
 from optparse import OptionParser
 from collections import OrderedDict
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
@@ -25,6 +26,8 @@ def main(argv = None):
 if __name__ == '__main__':
                                     
     options = main()
+    
+    os.system('rm -rf '+mpl.get_cachedir()+'/font*')
     
     data, pred, uncorrup, uncorrdown = OrderedDict(), OrderedDict(), OrderedDict(), OrderedDict()
     colors = [plt.cm.Pastel1(i) for i in range(100)]

@@ -10,7 +10,7 @@ pyenvon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyenv > /dev/null
   source pyenv/bin/activate
-  pip install pyhf iminuit deepdiff plotly kaleido matplotlib > /dev/null
+  pip install pyhf iminuit deepdiff plotly kaleido > /dev/null
   source pyenv/bin/activate
 }
 
@@ -40,7 +40,7 @@ echo "Done"
 echo "Convert datacards .."
 
 python3 $WS/converter/multibin.py
-pyenvon; python3 $WS/converter/convert.py; pyenvoff
+python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
