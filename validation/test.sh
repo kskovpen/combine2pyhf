@@ -6,15 +6,15 @@ check() {
   fi
 }
 
-pyhfon() {
+pyenvon() {
   unset PYTHONPATH; unset PYTHONHOME
-  /usr/bin/virtualenv --python=/usr/bin/python3 pyhfenv > /dev/null
-  source pyhfenv/bin/activate
-  pip install pyhf iminuit deepdiff plotly kaleido > /dev/null
-  source pyhfenv/bin/activate
+  /usr/bin/virtualenv --python=/usr/bin/python3 pyenv > /dev/null
+  source pyenv/bin/activate
+  pip install pyhf iminuit deepdiff plotly kaleido matplotlib > /dev/null
+  source pyenv/bin/activate
 }
 
-pyhfoff() {
+pyenvoff() {
   deactivate
   export PYTHONPATH=$PP; export PYTHONHOME=$PH
 }
@@ -40,7 +40,7 @@ echo "Done"
 echo "Convert datacards .."
 
 python3 $WS/converter/multibin.py
-python3 $WS/converter/convert.py
+pyenvon; python3 $WS/converter/convert.py; pyenvoff
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
@@ -53,7 +53,7 @@ python3 $WS/validation/fitcombine.py
 check "$WS/logs/combine.log"
 echo "Done."
 echo "Run pyhf tests .."
-pyhfon; python3 $WS/validation/fitpyhf.py; pyhfoff
+pyenvon; python3 $WS/validation/fitpyhf.py; pyenvoff
 check "$WS/logs/pyhf.log"
 echo "Done."
 echo "Run analytical tests .."
@@ -62,7 +62,7 @@ check "$WS/logs/analytic.log"
 echo "Done."
 
 echo "Run plotting .."
-pyhfon; python3 $WS/validation/plot.py --input $WS/results; pyhfoff
+pyenvon; python3 $WS/validation/plot.py --input $WS/results; pyenvoff
 check "$WS/logs/plot.log"
 echo "Done."
 
