@@ -70,7 +70,7 @@ if __name__ == '__main__':
                     lines[il] += '\n'
                 elif 'lnN' in l or ('shape' in l and not 'shapes' in l):
                     ld = l.split()
-                    lines[il] = ''.join(ld)[:-2]
+                    lines[il] = l[:-2]
                     for i in range(options.nbins): lines[il] += ' '+ld[-2]+' '+ld[-1]+' '
                     lines[il] += '\n'
                 elif 'autoMCStats' in l:
