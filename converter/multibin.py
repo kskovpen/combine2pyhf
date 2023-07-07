@@ -68,6 +68,10 @@ if __name__ == '__main__':
                     lines[il] = 'rate         -1 -1 '
                     for i in range(options.nbins): lines[il] += '-1 -1 '
                     lines[il] += '\n'
+                elif 'lnN' in l or ('shape' in l and not 'shapes' in l):
+                    ld = l.split()
+                    for i in range(options.nbins): lines[il] += ' '+ld[-2]+' '+ld[-1]+' '
+                    lines[il] += '\n'
                 elif 'autoMCStats' in l:
                     lines[il] += '\n'
                     for i in range(options.nbins): lines[il] += l.replace('ch1 ', 'ch'+str(i+2)+' ')+'\n'

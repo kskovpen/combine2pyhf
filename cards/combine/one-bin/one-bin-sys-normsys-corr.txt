@@ -12,4 +12,4 @@ process      sig bkg
 process      0 1
 rate         -1 -1
 ------------------------------------
-comsys    lnN    1.1 1.2
+sys    lnN    1.1 1.2
