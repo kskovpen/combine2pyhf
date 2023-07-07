@@ -4,8 +4,14 @@ import os, sys, math, glob, json
 import numpy as np
 from optparse import OptionParser
 from collections import OrderedDict
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+
+print(mpl.__version__)
+print(mpl.get_cachedir())
+d = glob.glob(mpl.get_cachedir()+'/*')
+print(d)
 
 def main(argv = None):
     
@@ -99,6 +105,8 @@ if __name__ == '__main__':
     ax.set_ylabel('Events')
     ax.set_ylim([0.0, 1.2*ymax])
     ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
+    print(obsbins)
+    print(np.arange(0.5, len(obsbins)+0.5, 1.0))
     print(ax.get_xticklabels())
     xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
     ax.set_xticklabels(xlabels)
