@@ -139,13 +139,6 @@ if __name__ == '__main__':
     dc += 'process      '+' '.join(procsamp)+'\n'
     dc += 'rate         '+' '.join(rate)+'\n'
     dc += '------------------------------------\n'
-    
-    mods = {}
-    for ch in d['channels']:
-        for s in ch['samples']:
-            for m in s['modifiers']:
-                if m['name'] not in mods.keys():
-                    mods[m['name']] = m
                     
     for m in mods.keys():
         s = mods[m]
