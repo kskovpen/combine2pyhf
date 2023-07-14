@@ -99,6 +99,13 @@ if __name__ == '__main__':
              
     fr.Close()
     
+    frr = ROOT.TFile(options.output+'.root', 'READ')
+    keyso = frr.GetDirectory('ch1').GetListOfKeys()
+    for k in keyso:
+        hp = k.ReadObj()
+        print(hp.GetName(), hp.Print("all"))
+    frr.Close()
+    
     # Create datacard
     
     mods, nuis = {}, []
