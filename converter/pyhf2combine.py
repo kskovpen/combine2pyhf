@@ -58,16 +58,31 @@ if __name__ == '__main__':
             hnamep = ch['name']+'_'+hname
             data = s['data']
             nb = len(data)
-            h[hnamep] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
+            bins = array('f', list(np.arange(nb+1)))
+            h[hnamep] = ROOT.TH1F(hname, hname, nb, bins)
+            for m in s['modifiers']:
+                if m['type'] in ['histosys']:
+                    hsys = hnamep+'_'+m['name']
+                    hsysname = hname+'_'+m['name']
+                    h[hsys+'Up'] = ROOT.TH1F(hsysname+'Up', hsysname+'Up', nb, bins)
+                    h[hsys+'Down'] = ROOT.TH1F(hsysname+'Down', hsysname+'Down', nb, bins)                    
             for i in range(len(data)):
                 h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor' and 'r_' in m['name']:
                         poi = s['name']
-                    if 'prop' in m['name']:
+                    elif 'prop' in m['name']:
                         h[hnamep].SetBinError(i+1, m['data'][i])
-            h[hnamep].SetDirectory(sd)
-            h[hnamep].Write()
+                    elif m['type'] in ['histosys']:
+                        vup = m['data']['hi'][i]
+                        vdown = m['data']['lo'][i]
+                        hsys = hnamep+'_'+m['name']
+                        h[hsys+'Up'].SetBinContent(i+1, vup)
+                        h[hsys+'Down'].SetBinContent(i+1, vdown)
+                        
+        for hk in h.keys():
+            h[hk].SetDirectory(sd)
+            h[hk].Write()
 
         for obs in d['observations']:
             if obs['name'] == ch['name']:
@@ -115,9 +130,50 @@ if __name__ == '__main__':
     dc += 'process      '+' '.join(procsamp)+'\n'
     dc += 'rate         '+' '.join(rate)+'\n'
     dc += '------------------------------------\n'
-    for ch in chans:
-        if bbl: dc += ch+' autoMCStats 0 1 1\n'
-        else: dc += ch+' autoMCStats 0 100000 100000\n'
+    
+    mods = {}
+    for ch in d['channels']:
+        for s in ch['samples']:
+            for m in s['modifiers']:
+                if m['name'] not in mods.keys():
+                    mods[m['name']] = m
+                    
+    for m in mods.keys():
+        s = mods[m]
+        sysl = ''
+        if s['type'] not in ['histosys', 'normsys']: continue
+        if s['type'] == 'histosys':
+            sysl += s['name']+' shape '
+            for ch in d['channels']:
+                for samp in ch['samples']:
+                    found = False
+                    for sysn in samp['modifiers']:
+                        if sysn['name'] == s['name']:
+                            sysl += ' 1.0 '
+                            found = True
+                            break
+                    if not found: sysl += ' - '
+        elif s['type'] == 'normsys':
+            sysl += s['name']+' lnN '
+            for ch in d['channels']:
+                for samp in ch['samples']:
+                    found = False
+                    for sysn in samp['modifiers']:
+                        if sysn['name'] == s['name']:
+                            sysl += ' '+str(sysn['data']['hi'])
+                            found = True
+                            break
+                    if not found: sysl += ' - '
+        if sysl != '':
+            sysl += '\n'
+            dc += sysl
+            
+    if 'prop' in mods.keys():
+        dc += '------------------------------------\n'
+        for ch in chans:
+            if bbl: dc += ch+' autoMCStats 0 1 1\n'
+            else: dc += ch+' autoMCStats 0 100000 100000\n'
+            
     with open(options.output+'.txt', 'w') as f:
         f.write(dc)
         f.close()
