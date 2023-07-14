@@ -99,15 +99,6 @@ if __name__ == '__main__':
              
     fr.Close()
     
-    frr = ROOT.TFile(options.output+'.root', 'READ')
-    print("Open the file")
-    keyso = frr.GetDirectory('ch1').GetListOfKeys()
-    print(keyso)
-    for k in keyso:
-        hp = k.ReadObj()
-        print(hp.GetName(), hp.Print("all"))
-    frr.Close()
-    
     # Create datacard
     
     mods, nuis = {}, []

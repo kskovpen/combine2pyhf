@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, glob, logging, subprocess
+import os, sys, glob, logging, subprocess, ROOT
 
 ws = os.environ['WS']
 wd = ws+'/validation'
@@ -66,6 +66,15 @@ for d in dc:
         comblog.info('pyhf -> combine: '+fname)
         utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+        
+        frr = ROOT.TFile(ws+'/results/'+os.path.splitext(fname)[0]+'/hist')+'.root', 'READ')
+        print("Open the file")
+        keyso = frr.GetDirectory('ch1').GetListOfKeys()
+        print(keyso)
+        for k in keyso:
+            hp = k.ReadObj()
+            print(hp.GetName(), hp.Print("all"))
+        frr.Close()
     
 # pyhf cards
 pyhflog = logging.getLogger('convert.pyhf')
