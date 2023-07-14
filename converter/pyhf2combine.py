@@ -74,9 +74,8 @@ if __name__ == '__main__':
                     elif 'prop' in m['name']:
                         h[hnamep].SetBinError(i+1, m['data'][i])
                     elif m['type'] in ['histosys']:
-                        print(m)
-                        vup = m['data']['hi'][i]
-                        vdown = m['data']['lo'][i]
+                        vup = m['data']['hi_data'][i]
+                        vdown = m['data']['lo_data'][i]
                         hsys = hnamep+'_'+m['name']
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
