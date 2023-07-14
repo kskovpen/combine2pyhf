@@ -100,6 +100,15 @@ if __name__ == '__main__':
     fr.Close()
     
     # Create datacard
+    
+    mods, nuis = {}, []
+    for ch in d['channels']:
+        for s in ch['samples']:
+            for m in s['modifiers']:
+                if m['name'] not in mods.keys():
+                    mods[m['name']] = m
+                    if 'r_' not in m['name']: nuis.append(m['name'])
+    
     chans = []
     for ch in d['channels']:
         chans.append(ch['name'])
@@ -110,7 +119,7 @@ if __name__ == '__main__':
     nsamp = len(samples)
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
-    dc += 'kmax 0 number of nuisance parameters\n'
+    dc += 'kmax '+str(len(nuis))+' number of nuisance parameters\n'
     dc += '------------------------------------\n'
     for ch in chans:
         dc += 'shapes * '+ch+' '+options.output.split('/')[-1]+'.root '+ch+'/$PROCESS '+ch+'/$PROCESS_$SYSTEMATIC\n'
