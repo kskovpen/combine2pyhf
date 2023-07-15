@@ -68,14 +68,14 @@ if __name__ == '__main__':
             data = s['data']
             nb = len(data)
             bins = array('f', list(np.arange(nb+1)))
-            h[hnamep] = ROOT.TH1F(hname, hname, nb, bins)
+            h[hnamep] = ROOT.TH1D(hname, hname, nb, bins)
             for m in s['modifiers']:
                 if m['type'] in ['histosys']:
                     hsys = hnamep+'_'+m['name']
                     hsysname = hname+'_'+m['name']
                     hsysname = hsysname.replace('_splitns', '')
-                    h[hsys+'Up'] = ROOT.TH1F(hsysname+'Up', hsysname+'Up', nb, bins)
-                    h[hsys+'Down'] = ROOT.TH1F(hsysname+'Down', hsysname+'Down', nb, bins)                    
+                    h[hsys+'Up'] = ROOT.TH1D(hsysname+'Up', hsysname+'Up', nb, bins)
+                    h[hsys+'Down'] = ROOT.TH1D(hsysname+'Down', hsysname+'Down', nb, bins)                    
             for i in range(len(data)):
                 h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
@@ -106,7 +106,7 @@ if __name__ == '__main__':
                 hnamep = ch['name']+'_'+hname
                 data = obs['data']
                 nb = len(data)
-                h[hnamep] = ROOT.TH1F(hname, hname, nb, array('f', list(np.arange(nb+1))))
+                h[hnamep] = ROOT.TH1D(hname, hname, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):
                     h[hnamep].SetBinContent(i+1, data[i])
                     h[hnamep].SetBinError(i+1, math.sqrt(data[i]))
