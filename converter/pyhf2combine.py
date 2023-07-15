@@ -90,11 +90,8 @@ if __name__ == '__main__':
                         if 'splitns' in m['name']:
                             for mn in s['modifiers']:
                                 if mn['type'] == 'normsys' and mn['name'] == m['name']:
-                                    if abs(1.0-mn['data']['hi'])-abs(1.0-mn['data']['lo']) > 1E-5:
-                                        print('Use of asymmetric normalization uncertainty is not supported')
-                                        sys.exit()
                                     vup *= mn['data']['hi']
-                                    vdown *= 1.0/mn['data']['hi']
+                                    vdown *= mn['data']['lo']
                                     break
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
