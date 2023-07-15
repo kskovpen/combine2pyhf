@@ -44,6 +44,15 @@ if __name__ == '__main__':
                     else: stat.append(m['name'])
             if bbl: break
         if bbl: break
+        
+    # Get nuiscances
+    mods, nuis = {}, []
+    for ch in d['channels']:
+        for s in ch['samples']:
+            for m in s['modifiers']:
+                if m['name'] not in mods.keys():
+                    mods[m['name']] = m
+                    if 'r_' not in m['name'] and 'prop' not in m['name']: nuis.append(m['name'])                    
                     
     # Create shape file
     samp = []
@@ -64,6 +73,7 @@ if __name__ == '__main__':
                 if m['type'] in ['histosys']:
                     hsys = hnamep+'_'+m['name']
                     hsysname = hname+'_'+m['name']
+                    hsysname = hsysname.replace('_splitns', '')
                     h[hsys+'Up'] = ROOT.TH1F(hsysname+'Up', hsysname+'Up', nb, bins)
                     h[hsys+'Down'] = ROOT.TH1F(hsysname+'Down', hsysname+'Down', nb, bins)                    
             for i in range(len(data)):
@@ -77,6 +87,12 @@ if __name__ == '__main__':
                         vup = m['data']['hi_data'][i]
                         vdown = m['data']['lo_data'][i]
                         hsys = hnamep+'_'+m['name']
+                        if 'splitns' in m['name']:
+                            for mn in s['modifiers']:
+                                if mn['type'] == 'normsys' and mn['name'] == m['name']:
+                                    vup *= mn['data']['hi']
+                                    vdown *= mn['data']['lo']
+                                    break                                
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
                         
@@ -100,14 +116,6 @@ if __name__ == '__main__':
     fr.Close()
     
     # Create datacard
-    
-    mods, nuis = {}, []
-    for ch in d['channels']:
-        for s in ch['samples']:
-            for m in s['modifiers']:
-                if m['name'] not in mods.keys():
-                    mods[m['name']] = m
-                    if 'r_' not in m['name'] and 'prop' not in m['name']: nuis.append(m['name'])
     
     chans = []
     for ch in d['channels']:
@@ -145,7 +153,7 @@ if __name__ == '__main__':
         sysl = ''
         if s['type'] not in ['histosys', 'normsys']: continue
         if s['type'] == 'histosys':
-            sysl += s['name']+' shape '
+            sysl += s['name'].replace('_splitns', '')+' shape '
             for ch in d['channels']:
                 for samp in ch['samples']:
                     found = False
@@ -155,7 +163,7 @@ if __name__ == '__main__':
                             found = True
                             break
                     if not found: sysl += ' - '
-        elif s['type'] == 'normsys':
+        elif s['type'] == 'normsys' and 'splitns' not in s['name']:
             sysl += s['name']+' lnN '
             for ch in d['channels']:
                 for samp in ch['samples']:
