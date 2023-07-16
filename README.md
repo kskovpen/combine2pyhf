@@ -116,3 +116,231 @@
 
     </details>
 
+- Normalization uncertainties
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-corr (obs)</summary>
+
+    ![multi-bin-sys-normsys-corr (obs)](results/multi-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (obs)](results/multi-bin-sys-normsys-corr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (obs)](results/multi-bin-sys-normsys-corr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (obs)](results/multi-bin-sys-normsys-corr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-corr (asi)</summary>
+
+    ![multi-bin-sys-normsys-corr (asi)](results/multi-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (asi)](results/multi-bin-sys-normsys-corr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (asi)](results/multi-bin-sys-normsys-corr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-corr (asi)](results/multi-bin-sys-normsys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-uncorr (obs)</summary>
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/multi-bin-sys-normsys-uncorr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/multi-bin-sys-normsys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/multi-bin-sys-normsys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-uncorr (asi)</summary>
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/multi-bin-sys-normsys-uncorr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/multi-bin-sys-normsys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/multi-bin-sys-normsys-uncorr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-normsys-corr (obs)</summary>
+
+    ![one-bin-sys-normsys-corr (obs)](results/one-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/one-bin-sys-normsys-corr/time_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/one-bin-sys-normsys-corr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/one-bin-sys-normsys-corr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-normsys-corr (asi)</summary>
+
+    ![one-bin-sys-normsys-corr (asi)](results/one-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/one-bin-sys-normsys-corr/time_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/one-bin-sys-normsys-corr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/one-bin-sys-normsys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-normsys-uncorr (obs)</summary>
+
+    ![one-bin-sys-normsys-uncorr (obs)](results/one-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (obs)](results/one-bin-sys-normsys-uncorr/time_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (obs)](results/one-bin-sys-normsys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (obs)](results/one-bin-sys-normsys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-normsys-uncorr (asi)</summary>
+
+    ![one-bin-sys-normsys-uncorr (asi)](results/one-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (asi)](results/one-bin-sys-normsys-uncorr/time_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (asi)](results/one-bin-sys-normsys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-uncorr (asi)](results/one-bin-sys-normsys-uncorr/nll_asi.png?raw=true)
+
+    </details>
+
+- Shape uncertainties
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-corr (obs)</summary>
+
+    ![multi-bin-sys-histosys-corr (obs)](results/multi-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/multi-bin-sys-histosys-corr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/multi-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/multi-bin-sys-histosys-corr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-corr (asi)</summary>
+
+    ![multi-bin-sys-histosys-corr (asi)](results/multi-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/multi-bin-sys-histosys-corr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/multi-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/multi-bin-sys-histosys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-uncorr (obs)</summary>
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/multi-bin-sys-histosys-uncorr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/multi-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/multi-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-uncorr (asi)</summary>
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/multi-bin-sys-histosys-uncorr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/multi-bin-sys-histosys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/multi-bin-sys-histosys-uncorr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-corr (obs)</summary>
+
+    ![one-bin-sys-histosys-corr (obs)](results/one-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/one-bin-sys-histosys-corr/time_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/one-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/one-bin-sys-histosys-corr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-corr (asi)</summary>
+
+    ![one-bin-sys-histosys-corr (asi)](results/one-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/one-bin-sys-histosys-corr/time_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/one-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/one-bin-sys-histosys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-uncorr (obs)</summary>
+
+    ![one-bin-sys-histosys-uncorr (obs)](results/one-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (obs)](results/one-bin-sys-histosys-uncorr/time_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (obs)](results/one-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (obs)](results/one-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-uncorr (asi)</summary>
+
+    ![one-bin-sys-histosys-uncorr (asi)](results/one-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (asi)](results/one-bin-sys-histosys-uncorr/time_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (asi)](results/one-bin-sys-histosys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-uncorr (asi)](results/one-bin-sys-histosys-uncorr/nll_asi.png?raw=true)
+
+    </details>
+
