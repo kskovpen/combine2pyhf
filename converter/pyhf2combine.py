@@ -178,7 +178,12 @@ if __name__ == '__main__':
             sysl += '\n'
             dc += sysl
             
-    if 'prop' in mods.keys():
+    hasStat = False
+    for m in mods.keys():
+        if 'prop' in m:
+            hasStat = True
+            break
+    if hasStat:
         dc += '------------------------------------\n'
         for ch in chans:
             if bbl: dc += ch+' autoMCStats 0 1 1\n'
