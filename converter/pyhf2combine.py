@@ -56,7 +56,7 @@ if __name__ == '__main__':
                     
     # Create shape file
     samp = []
-    poi = ''
+    poi = []
     for ch in d['channels']:
         fr.cd()
         sd = fr.mkdir(ch['name']);
@@ -79,9 +79,9 @@ if __name__ == '__main__':
             for i in range(len(data)):
                 h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
-                    if m['type'] == 'normfactor' and 'r_' in m['name']:
-                        poi = s['name']
-                    elif 'prop' in m['name']:
+                    if m['type'] == 'normfactor':
+                        poi.append([s['name'], m['name'], ch['name']])
+                    elif 'prop' in m['name'] or 'staterror' in m['type']:
                         h[hnamep].SetBinError(i+1, m['data'][i])
                     elif m['type'] in ['histosys']:
                         vup = m['data']['hi_data'][i]
@@ -95,7 +95,7 @@ if __name__ == '__main__':
                                     break
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
-                        
+
         for hk in h.keys():
             h[hk].SetDirectory(sd)
             h[hk].Write()
@@ -106,12 +106,12 @@ if __name__ == '__main__':
                 hnamep = ch['name']+'_'+hname
                 data = obs['data']
                 nb = len(data)
-                h[hnamep] = ROOT.TH1D(hname, hname, nb, array('f', list(np.arange(nb+1))))
+                h[hnamep] = ROOT.TH1D(hnamep, hnamep, nb, array('f', list(np.arange(nb+1))))
                 for i in range(len(data)):
                     h[hnamep].SetBinContent(i+1, data[i])
                     h[hnamep].SetBinError(i+1, math.sqrt(data[i]))
                 h[hnamep].SetDirectory(sd)
-                h[hnamep].Write()
+                h[hnamep].Write(hname)
              
     fr.Close()
     
@@ -122,8 +122,13 @@ if __name__ == '__main__':
         chans.append(ch['name'])
     nchan = len(chans)
     samples = list(set(samp))
-    samples.remove(poi)
-    samples = [poi]+samples
+    poisig = ''
+    normf = []
+    for p in poi:
+        if 'r_' in p[1] or 'XS' in p[1]: poisig = p[0]
+        else: normf.append(p)
+    samples.remove(poisig)
+    samples = [poisig]+samples
     nsamp = len(samples)
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
@@ -178,9 +183,13 @@ if __name__ == '__main__':
             sysl += '\n'
             dc += sysl
             
+    
+    for p in normf:
+        dc += p[1]+' rateParam '+p[0]+' '+p[2]+' 1 [0.,10.]\n'
+
     hasStat = False
     for m in mods.keys():
-        if 'prop' in m:
+        if 'prop' in m or 'staterror' in mods[m]['type']:
             hasStat = True
             break
     if hasStat:
