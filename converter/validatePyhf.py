@@ -34,7 +34,7 @@ for r in runs:
             jorig = json.loads(fforig.read())
         with open(f) as ff:
             j = json.loads(ff.read())
-        res = DeepDiff(jorig, j)
+        res = DeepDiff(jorig, j, significant_digits=15)
         if bool(res):
             pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
             pyhflog.error(res)

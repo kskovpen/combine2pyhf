@@ -19,18 +19,28 @@ if __name__ == '__main__':
 
     options = main()
 
+    desc = {'stat': 'MC statistical uncertainties', 'normsys': 'Normalization uncertainties', 'histosys': 'Shape uncertainties'}
+    
     with open(options.output+'/README.md', 'w') as fr:
-        intro = '# combine2pyhf\n\n An automated tool for common validation of fit models in combine and pyhf packages.\n\n'
+        intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using [combine](https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit) and [pyhf](https://github.com/scikit-hep/pyhf) packages.\n\n'
         fr.write(intro)
-        dc = glob.glob(options.output+'/*/')
-        for d in dc:
-            dname = d.split('/')[-2]
-            fs = glob.glob(options.output+'/'+dname+'/nll*.png')
-            for f in fs:
-                fname = options.output.split('/')[-1]+'/'+dname+'/'+f.split('/')[-1]
-                mode = f.split('_')[-1].replace('.png', '')
-                title = dname+' ('+mode+')'
-                fr.write('**'+title+'**\n\n')
-                fr.write('!['+title+']('+fname+'?raw=true)\n\n')
+        for ct in ['stat', 'normsys', 'histosys']:
+            dc = glob.glob(options.output+'/*'+ct+'*/')
+            dc.sort(key=os.path.getmtime)
+            fr.write('- '+desc[ct]+'\n\n')
+            for d in dc:
+                dname = d.split('/')[-2]
+                fs = glob.glob(options.output+'/'+dname+'/nll_shape*.png')
+                for f in fs:
+                    fname = options.output.split('/')[-1]+'/'+dname+'/'+f.split('/')[-1]
+                    mode = f.split('_')[-1].replace('.png', '')
+                    title = dname+' ('+mode+')'
+                    fr.write('  - <details>\n\n')
+                    fr.write('    <summary>'+title+'</summary>\n\n')
+                    fr.write('    !['+title+']('+fname.replace('nll_shape', 'hist').replace('_asi', '').replace('_obs', '')+'?raw=true)\n\n')
+                    fr.write('    !['+title+']('+fname.replace('nll_shape', 'time')+'?raw=true)\n\n')
+                    fr.write('    !['+title+']('+fname+'?raw=true)\n\n')
+                    fr.write('    !['+title+']('+fname.replace('_shape', '')+'?raw=true)\n\n')
+                    fr.write('    </details>\n\n')
         fr.close()
                 

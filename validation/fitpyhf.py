@@ -1,21 +1,11 @@
 import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit
+from timeit import default_timer as timer
+import utils
+import numpy as np
 from optparse import OptionParser
 
 def twice_nll(pars):
     return -2.0*model.logpdf(pars, data)[0]
-
-def execute(logger, c):
-    try:
-        r = subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
-        logger.debug(r)
-    except subprocess.CalledProcessError as e:
-        logger.error(e.output)
-        
-def postproc(logger, fname):
-    try:
-        return getFitInfo(fname)
-    except Exception as e:
-        logger.error(e)
 
 def main(argv = None):
     
@@ -25,6 +15,9 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run pyhf tests"
     
     parser = OptionParser(usage)
+    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
+    parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -77,35 +70,45 @@ if __name__ == '__main__':
             obs = wspace.data(model)
             asimov = model.expected_data(pyhf.tensorlib.astensor(init))
             fits = {'asi': asimov, 'obs': obs}
-            
-            m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
-            m.limits = constraints
+
             for fit in fits.keys():
                 data = asimov if fit == 'asi' else obs
                 pyhflog.info('--> Perform the best fit ('+fit+')')
+                start = timer()
+                m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
+                m.limits = constraints
                 m.migrad()
                 bf = m.values[model.config.poi_index]
+                bfnll = m.fval
+                end = timer()
+                fittime = end-start
                 pyhflog.info('    bf='+str(bf))
-                muv = [1.0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+                inc = (options.max-options.min)/options.npoints
+                muv = list(np.arange(options.min, options.max+inc, inc))
+                utils.setprec(muv)
+                if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
+                res['bf'] = [bf]
                 nllv = []
                 for r in muv:
                     init[model.config.poi_index] = r
-                    constraints = [(model.config.poi_index, r)]
-                    for idx, fixed_val in constraints:
+                    pfix = [(model.config.poi_index, r)]
+                    for idx, fixed_val in pfix:
                         pname = model.config.par_names[idx]
                         m.values[pname] = fixed_val
                         m.fixed[pname] = True
                     m.migrad()
                     nllv.append(m.fval)
-                bf = muv[nllv.index(min(nllv))]
-                bfnll = min(nllv)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
                     res['r'].append(muv[i])
                     res['nll'].append(nllv[i])
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                res['time'] = fittime
+                utils.setprec(res['r'])
+                utils.setprec(res['nll'], prec=6)
+                utils.setprec(res['bf'], prec=6)
                 fn = os.path.splitext(fname.split('/')[-1])[0]
                 os.system('mkdir -p '+ws+'/results/'+fn)
                 json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_pyhf.json', 'w'), indent=2)

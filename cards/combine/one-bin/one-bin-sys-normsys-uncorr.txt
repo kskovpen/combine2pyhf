@@ -1,0 +1,16 @@
+imax 1 number of bins
+jmax 1 number of processes minus 1
+kmax 2 number of nuisance parameters
+------------------------------------
+shapes * ch1 one-bin-sys-normsys-uncorr.root ch1/$PROCESS ch1/$PROCESS_$SYSTEMATIC
+------------------------------------
+bin          ch1
+observation  -1
+------------------------------------
+bin          ch1 ch1
+process      sig bkg
+process      0 1
+rate         -1 -1
+------------------------------------
+sigsys    lnN    1.1 -
+bkgsys    lnN    - 1.2

@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 
-import os, sys, glob, ROOT, logging, subprocess
+import os, sys, glob, logging, subprocess, ROOT
 
 ws = os.environ['WS']
 wd = ws+'/validation'
+
+sys.path.append(wd)
+import utils
 
 os.system('mkdir -p '+wd+'/cards/combine')
 os.system('mkdir -p '+wd+'/cards/pyhf')
@@ -20,12 +23,6 @@ console.setFormatter(formatter)
 logging.getLogger().addHandler(console)
 
 logging.info('Start conversion process')
-
-def execute(logger, c):
-    try:
-        subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
-    except subprocess.CalledProcessError as e:
-        logger.error(e.output)
         
 def shapeloc(dname, fname, tool = 'combine', combine2pyhf = False):
     with open(fname+'_mod', 'w') as f:
@@ -59,13 +56,24 @@ for d in dc:
     fc = glob.glob(wd+'/cards/combine/combine2pyhf/'+dname+'/*.txt')
     for f in fc:
         fname = f.split('/')[-1]
+        os.system('mkdir -p '+ws+'/results/'+os.path.splitext(fname)[0])
         bbl = '--bbl ' if 'bbl' in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
-        execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        comblog.info('combine -> pyhf: plot distributions')
+        utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/'+os.path.splitext(fname)[0]+'/hist')
         comblog.info('pyhf -> combine: '+fname)
-        execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+        
+#        frr = ROOT.TFile((wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])+'.root', 'READ')
+#        keyso = frr.GetDirectory('ch1').GetListOfKeys()
+#        print(keyso)
+#        for k in keyso:
+#            hp = k.ReadObj()
+#            print(hp.GetName(), hp.Print("all"))
+#        frr.Close()
     
 # pyhf cards
 pyhflog = logging.getLogger('convert.pyhf')
@@ -79,14 +87,17 @@ for d in dc:
     fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
     for f in fc:
         fname = f.split('/')[-1]
+        os.system('mkdir -p '+ws+'/results/'+os.path.splitext(fname)[0])
         bbl = '--bbl ' if 'bbl' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
-        execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
-##        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
-##            lines = ff.readlines()
-##            for l in lines:
-##                print(l)
-        execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt  --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        pyhflog.info('combine -> pyhf: plot distributions')
+        utils.execute(pyhflog, 'python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/'+os.path.splitext(fname)[0]+'/hist')
+#        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
+#            lines = ff.readlines()
+#            for l in lines:
+#                print(l)
+        utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])

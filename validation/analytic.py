@@ -1,4 +1,6 @@
 import os, sys, math, json, glob, logging, subprocess
+import utils
+import numpy as np
 from optparse import OptionParser
 import ROOT
 
@@ -10,6 +12,9 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
+    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
+    parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -57,8 +62,11 @@ if __name__ == '__main__':
                     bkg = df['channels'][0]['samples'][1]['data'][0]
                     bkgErr = df['channels'][0]['samples'][1]['modifiers'][0]['data'][0]
                     data = df['observations'][0]['data'][0]
-                    
-                    muv = [1.0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+
+                    inc = (options.max-options.min)/options.npoints
+                    muv = list(np.arange(options.min, options.max+inc, inc))
+                    utils.setprec(muv)
+                    if 1 not in muv: muv += utils.setprec([1])
                     
                     for fit in fits:
                         log.info('--> Perform the scan ('+fit+')')
@@ -81,12 +89,16 @@ if __name__ == '__main__':
                         log.info('    bf='+str(bf))
     
                         res = {'r': [], 'nll': []}
+                        res['bf'] = [bf]
                         for i in range(len(nllv)):
                             nllv[i] -= bfnll
                             nllv[i] *= 2.0
                             res['r'].append(muv[i])
                             res['nll'].append(nllv[i])
                             log.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
+                        utils.setprec(res['r'])
+                        utils.setprec(res['nll'], prec=6)
+                        utils.setprec(res['bf'], prec=6)
                         fn = os.path.splitext(fname.split('/')[-1])[0]
                         os.system('mkdir -p '+ws+'/results/'+fn)
                         json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)
