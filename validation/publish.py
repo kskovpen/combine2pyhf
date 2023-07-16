@@ -19,12 +19,12 @@ if __name__ == '__main__':
 
     options = main()
 
-    desc = {'stat': 'MC statistical uncertainties'}
+    desc = {'stat': 'MC statistical uncertainties', 'normsys': 'Normalization uncertainties', 'histosys': 'Shape uncertainties'}
     
     with open(options.output+'/README.md', 'w') as fr:
         intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using [combine](https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit) and [pyhf](https://github.com/scikit-hep/pyhf) packages.\n\n'
         fr.write(intro)
-        for ct in ['stat']:
+        for ct in ['stat', 'normsys', 'histosys']:
             dc = glob.glob(options.output+'/*'+ct+'*/')
             dc.sort(key=os.path.getmtime)
             fr.write('- '+desc[ct]+'\n\n')

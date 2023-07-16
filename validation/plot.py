@@ -131,4 +131,4 @@ if __name__ == '__main__':
             if analyticdata: fignll.add_annotation(x=1.0, y=ymax-3.*ymax/10, text=r'$\hat{\mu}\text{ = '+str(analyticdata['bf'][0])+'}$', font=dict(family="sans serif", size=16, color=color['analytic']))
             fignll.update_annotations(showarrow=False)
             fignll.update_layout(xaxis_title='r', yaxis_title=r'$\text{-2 }\Delta\text{ ln L}$', margin=dict(l=5, r=5, t=5, b=5))
-            fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)                        
+            fignll.write_image(options.input+'/'+card+'/nll_shape_'+mode+'.png', scale=2)

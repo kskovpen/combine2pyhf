@@ -29,35 +29,95 @@ if __name__ == '__main__':
     
     os.system('rm -rf '+mpl.get_cachedir()+'/font*')
     
-    data, pred, uncorrup, uncorrdown = OrderedDict(), OrderedDict(), OrderedDict(), OrderedDict()
+    data, pred, uncorrup, uncorrdown, corrup, corrdown = (OrderedDict() for _ in range(6))
     colors = [plt.cm.Pastel1(i) for i in range(100)]
 
     res = json.load(open(options.input))
     chs = res['channels']
     obs = res['observations']
+    
+    nuis = {}
+    for ch in chs:
+        for s in ch['samples']:            
+            for m in s['modifiers']:
+                if 'r_' not in m['name'] and 'prop' not in m['name']:
+                    if m['name'] not in nuis.keys(): nuis[m['name']] = [s]
+                    else: nuis[m['name']].append(s)
+    
     obsdata, obsdataerr, obsbins = [], [], []
     procs = []
     ibin = 0
     for ich, ch in enumerate(chs):
         obsd = obs[ich]['data']
         samps = ch['samples']
+        
+        nbins = len(samps[0]['data'])
+        
+        dnup, dndown = [], []
+        for m in nuis.keys():
+            if len(nuis[m]) > 1:
+                if m not in corrup.keys():
+                    corrup[m] = []
+                    corrdown[m] = []
+                    for ib in range(nbins):
+                        corrup[m].append(0)
+                        corrdown[m].append(0)
+                        for s in nuis[m]:
+                            for samp in samps:
+                                if samp['name'] == s['name']:
+                                    for ist, st in enumerate(samp['modifiers']):
+                                        if st['name'] == m:
+                                            if st['type'] in ['histosys']:
+                                                corrup[m][-1] += samp['modifiers'][ist]['data']['hi_data'][ib]-samp['data'][ib]
+                                                corrdown[m][-1] += samp['modifiers'][ist]['data']['lo_data'][ib]-samp['data'][ib]
+                                            elif st['type'] in ['normsys']:
+                                                corrup[m][-1] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['hi']-1.0)
+                                                corrdown[m][-1] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['lo']-1.0)
+
+        for im, m in enumerate(corrup.keys()):
+            for ib in range(nbins):
+                if im == 0: 
+                    dnup.append(corrup[m][ib]**2)
+                    dndown.append(corrdown[m][ib]**2)
+                else: 
+                    dnup[ib] += corrup[m][ib]**2
+                    dndown[ib] += corrdown[m][ib]**2
+        if len(corrup.keys()) > 0:
+            for ib in range(nbins):
+                dnup[ib] = math.sqrt(dnup[ib])
+                dndown[ib] = math.sqrt(dndown[ib])
+        
         for samp in samps:
             proc = samp['name']
             mods = samp['modifiers']
             if proc not in procs: procs.append(proc)
             d = samp['data']
-            nbins = len(d)
+#            nbins = len(d)
+            
             for ib in range(nbins):
                 ibin = nbins*ich+ib
                 if ibin not in data.keys(): data[ibin] = {}
                 data[ibin][proc] = d[ib]
                 for m in mods:
+                    
                     if ibin not in uncorrup.keys(): uncorrup[ibin] = 0
                     if 'prop' in m['name']:
                         uncorrup[ibin] += m['data'][ib]**2
+                    if m['name'] in nuis.keys() and len(nuis[m['name']]) < 2:
+                        if m['type'] in ['histosys']:
+                            uncorrup[ibin] += (m['data']['hi_data'][ib]-d[ib])**2
+                        elif m['type'] in ['normsys']:
+                            uncorrup[ibin] += ((m['data']['hi']-1.0)*d[ib])**2
+                        
                     if ibin not in uncorrdown.keys(): uncorrdown[ibin] = 0
                     if 'prop' in m['name']:
                         uncorrdown[ibin] += m['data'][ib]**2
+                    if m['name'] in nuis.keys() and len(nuis[m['name']]) < 2:
+                        if m['type'] in ['histosys']:
+                            uncorrdown[ibin] += (m['data']['lo_data'][ib]-d[ib])**2
+                        elif m['type'] in ['normsys']:
+                            uncorrdown[ibin] += ((m['data']['lo']-1.0)*d[ib])**2
+                        
                 if ibin not in pred.keys(): pred[ibin] = 0
                 pred[ibin] += d[ib]
         for ib in range(nbins):
@@ -65,10 +125,26 @@ if __name__ == '__main__':
             obsbins.append(ibin+0.5)
             obsdata.append(obsd[ib])
             obsdataerr.append(math.sqrt(obsdata[-1]))
+        
+    totalup, totaldown = [], []
+    for ib in range(len(uncorrup.keys())):
+        totalup.append(0)
+        totaldown.append(0)
+    if len(totalup) == 0:
+        for ib in range(len(dnup)):
+            totalup.append(0)
+            totaldown.append(0)
+    
     for ib in uncorrup.keys():
         uncorrup[ib] = math.sqrt(uncorrup[ib])
+        totalup[ib] += uncorrup[ib]
     for ib in uncorrdown.keys():
         uncorrdown[ib] = math.sqrt(uncorrdown[ib])
+        totaldown[ib] += uncorrdown[ib]
+
+    for ib in range(len(dnup)):
+        totalup[ib] = math.sqrt(totalup[ib]**2+dnup[ib]**2)
+        totaldown[ib] = math.sqrt(totaldown[ib]**2+dndown[ib]**2)
 
     ymax = 0
     for ib in data.keys():
@@ -92,8 +168,8 @@ if __name__ == '__main__':
     
     ax.hist(plbins, len(obsdata), weights=pldata, stacked=True, label=procs, color=plcol)
     ax.errorbar(obsbins, obsdata, yerr=obsdataerr, fmt='.', color='black', lw=2, alpha=1.0, label='data')
-    yerrup = [v for k, v in uncorrup.items()]
-    yerrdown = [v for k, v in uncorrdown.items()]
+    yerrup = totalup
+    yerrdown = totaldown
     ypred = [v for k, v in pred.items()]
     for iy, y in enumerate(ypred):
         ax.add_patch(patches.Rectangle((obsbins[iy]-0.5, ypred[iy]+(yerrup[iy]-yerrdown[iy])/2.0-(yerrup[iy]+yerrdown[iy])/2.0), 1.0, yerrup[iy]+yerrdown[iy], alpha=0.1, fc='black', hatch='/', edgecolor='black', linewidth=0.0))
