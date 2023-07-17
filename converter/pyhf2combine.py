@@ -37,7 +37,7 @@ if __name__ == '__main__':
         for s in ch['samples']:
             stat = []
             for m in s['modifiers']:
-                if 'prop' in m['name'] and m['type'] == 'staterror':
+                if 'prop' in m['name'] or m['type'] == 'staterror':
                     if m['name'] in stat:
                         bbl = True
                         break
@@ -176,7 +176,7 @@ if __name__ == '__main__':
                     found = False
                     for sa in ch['samples']:
                         if sa['name'] == samp:
-                            for sysn in samp['modifiers']:
+                            for sysn in sa['modifiers']:
                                 if sysn['name'] == s['name']:
                                     sysl += ' '+str(sysn['data']['hi'])
                                     found = True
