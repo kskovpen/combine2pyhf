@@ -46,9 +46,11 @@ if __name__ == '__main__':
         if bbl: break
         
     # Get nuiscances
-    mods, nuis = {}, []
+    mods, nuis, samples = {}, [], []
     for ch in d['channels']:
         for s in ch['samples']:
+            if s['name'] not in samples:
+                samples.append(s['name'])
             for m in s['modifiers']:
                 if m['name'] not in mods.keys():
                     mods[m['name']] = m
@@ -95,6 +97,13 @@ if __name__ == '__main__':
                                     break
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
+                        
+        chsamp = [s['name'] for s in ch['samples']]
+        for s in samples:
+            if s not in chsamp:
+                hname = s
+                hnamep = ch['name']+'_'+s
+                h[hnamep] = ROOT.TH1D(hname, hname, nb, bins)
 
         for hk in h.keys():
             h[hk].SetDirectory(sd)
