@@ -140,10 +140,11 @@ if __name__ == '__main__':
     dc += 'bin          '+' '.join(chans)+'\n'
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\n'
     dc += '------------------------------------\n'
-    procbin, procname, procsamp, rate = [], [], [], []
-    for ch in d['channels']:
+    procbin, procname, procsamp, rate, samplenames = [], [], [], [], []
+    for ich, ch in enumerate(d['channels']):
         for i, s in enumerate(samples):
             procbin.append(ch['name'])
+            if ich == 0: samplenames.append(s)
             procname.append(s)
             procsamp.append(str(i))
             rate.append(str(-1))
@@ -171,13 +172,15 @@ if __name__ == '__main__':
         elif s['type'] == 'normsys' and 'splitns' not in s['name']:
             sysl += s['name']+' lnN '
             for ch in d['channels']:
-                for samp in ch['samples']:
+                for samp in samplenames:                    
                     found = False
-                    for sysn in samp['modifiers']:
-                        if sysn['name'] == s['name']:
-                            sysl += ' '+str(sysn['data']['hi'])
-                            found = True
-                            break
+                    for sa in ch['samples']:
+                        if sa['name'] == samp:
+                            for sysn in samp['modifiers']:
+                                if sysn['name'] == s['name']:
+                                    sysl += ' '+str(sysn['data']['hi'])
+                                    found = True
+                                    break
                     if not found: sysl += ' - '
         if sysl != '':
             sysl += '\n'
