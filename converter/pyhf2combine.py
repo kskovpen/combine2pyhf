@@ -52,7 +52,7 @@ if __name__ == '__main__':
             for m in s['modifiers']:
                 if m['name'] not in mods.keys():
                     mods[m['name']] = m
-                    if 'normfactor' not in m['type'] and 'prop' not in m['name']: nuis.append(m['name'])                    
+                    if m['type'] not in ['normfactor', 'staterror', 'lumi'] and 'prop' not in m['name']: nuis.append(m['name'])
                     
     # Create shape file
     samp = []
