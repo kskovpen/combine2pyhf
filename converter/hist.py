@@ -120,15 +120,17 @@ if __name__ == '__main__':
             obsdataerr.append(math.sqrt(obsdata[-1]))
             
     for ich, ch in enumerate(chs):
+        samps = ch['samples']
+        nbins = len(samps[0]['data'])
         for im, m in enumerate(corrup[ich].keys()):
             for ib in range(len(corrup[ich][m])):
                 ibin = nbins*ich+ib
                 if im == 0: 
                     dnup.append(corrup[ich][m][ibin]**2)
                     dndown.append(corrdown[ich][m][ibin]**2)
-                else: 
-                    dnup[ib] += corrup[ich][m][ibin]**2
-                    dndown[ib] += corrdown[ich][m][ibin]**2
+                else:
+                    dnup[ibin] += corrup[ich][m][ibin]**2
+                    dndown[ibin] += corrdown[ich][m][ibin]**2
         if len(corrup[ich].keys()) > 0:
             for ib in range(len(corrup[ich][m])):
                 ibin = nbins*ich+ib
@@ -167,8 +169,9 @@ if __name__ == '__main__':
     for ip, p in enumerate(procs):
         dp, dbins = [], []
         for ib in data.keys():
+            if p not in data[ib].keys(): continue
             dbins.append(int(ib))
-            dp.append(data[ib][p])        
+            dp.append(data[ib][p])
         dbins.append(dbins[-1]+1.0)
         dp.append(0)
         plbins.append(dbins)
