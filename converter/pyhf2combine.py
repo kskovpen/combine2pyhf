@@ -188,7 +188,7 @@ if __name__ == '__main__':
             
     
     for p in normf:
-        dc += p[1]+' rateParam '+p[0]+' '+p[2]+' 1 [0.,10.]\n'
+        dc += p[1]+' rateParam '+p[2]+' '+p[0]+' 1 [0.,10.]\n'
 
     hasStat = False
     for m in mods.keys():
