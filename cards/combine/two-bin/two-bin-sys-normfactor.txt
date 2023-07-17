@@ -1,4 +1,4 @@
-imax 2 number of bins
+imax 1 number of bins
 jmax 1 number of processes minus 1
 kmax 1 number of nuisance parameters
 ------------------------------------
