@@ -173,7 +173,7 @@ if __name__ == '__main__':
                 for samp in ch['samples']:
                     found = False
                     for sysn in samp['modifiers']:
-                        if sysn['name'] == s['name']:
+                        if sysn['name'].replace('_splitns', '') == s['name'].replace('_splitns', ''):
                             sysl += ' 1.0 '
                             found = True
                             break
