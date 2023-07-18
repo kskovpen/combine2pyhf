@@ -57,14 +57,12 @@ if __name__ == '__main__':
                     if m['type'] not in ['normfactor', 'staterror', 'lumi'] and 'prop' not in m['name']: nuis.append(m['name'])
                     
     # Create shape file
-    samp = []
     poi = []
     for ch in d['channels']:
         fr.cd()
         sd = fr.mkdir(ch['name']);
         sd.cd()
         for s in ch['samples']:
-            if s not in samp: samp.append(s['name'])
             hname = s['name']
             hnamep = ch['name']+'_'+hname
             data = s['data']
@@ -127,10 +125,12 @@ if __name__ == '__main__':
     # Create datacard
     
     chans = []
+    samples = []
     for ch in d['channels']:
         chans.append(ch['name'])
+        for samp in ch['samples']:
+            samples.append(samp['name'])
     nchan = len(chans)
-    samples = list(set(samp))
     poisig = ''
     normf = []
     for p in poi:
