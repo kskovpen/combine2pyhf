@@ -138,7 +138,7 @@ if __name__ == '__main__':
         else: normf.append(p)
     samples.remove(poisig)
     samples = [poisig]+samples
-    nsamp = len(samples)
+    nsamp = len(set(samples))
     dc = 'imax '+str(nchan)+' number of bins\n'
     dc += 'jmax '+str(nsamp-1)+' number of processes minus 1\n'
     dc += 'kmax '+str(len(nuis))+' number of nuisance parameters\n'
