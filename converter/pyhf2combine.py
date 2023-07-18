@@ -29,8 +29,6 @@ if __name__ == '__main__':
     
     fr = ROOT.TFile(options.output+'.root', "RECREATE")
     
-    h = {}
-    
     # BB-lite check
     bbl = False
     for ch in d['channels']:
@@ -59,6 +57,7 @@ if __name__ == '__main__':
     # Create shape file
     poi = []
     for ch in d['channels']:
+        h = {}
         fr.cd()
         sd = fr.mkdir(ch['name']);
         sd.cd()
