@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, math, json
+import os, sys, math, json, itertools
 import numpy as np
 from array import array
 from optparse import OptionParser
@@ -195,7 +195,8 @@ if __name__ == '__main__':
             sysl += '\n'
             dc += sysl
             
-    
+    normf.sort()
+    normf = list(k for k, _ in itertools.groupby(normf))
     for p in normf:
         dc += p[1]+' rateParam '+p[2]+' '+p[0]+' 1 [0.,10.]\n'
 
