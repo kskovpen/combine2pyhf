@@ -126,10 +126,11 @@ if __name__ == '__main__':
     
     chans = []
     samples = []
-    for ch in d['channels']:
+    for ich, ch in enumerate(d['channels']):
         chans.append(ch['name'])
-        for samp in ch['samples']:
-            samples.append(samp['name'])
+        if ich == 0:
+            for samp in ch['samples']:
+                samples.append(samp['name'])
     nchan = len(chans)
     poisig = ''
     normf = []
