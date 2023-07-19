@@ -102,7 +102,7 @@ for r in runs:
                     nomv = dcv.shapeMap[b][p][1]
                     syso = dco.shapeMap[b][p][2]
                     sysv = dcv.shapeMap[b][p][2]
-                    systNames = [s[0] for s in syso]
+                    systNames = [s[0] for s in dco.systs]
                     print(systNames)
                     for proc in dco.processes:
                         for syst in ['']+systNames:
