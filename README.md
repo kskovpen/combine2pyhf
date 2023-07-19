@@ -344,3 +344,37 @@
 
     </details>
 
+- Unconstrained parameters
+
+  - <details>
+
+    <summary>two-bin-sys-normfactor (obs)</summary>
+
+    ![two-bin-sys-normfactor (obs)](results/two-bin-sys-normfactor/hist.png?raw=true)
+
+    ![two-bin-sys-normfactor (obs)](results/two-bin-sys-normfactor/time_obs.png?raw=true)
+
+    ![two-bin-sys-normfactor (obs)](results/two-bin-sys-normfactor/nll_shape_obs.png?raw=true)
+
+    ![two-bin-sys-normfactor (obs)](results/two-bin-sys-normfactor/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>two-bin-sys-normfactor (asi)</summary>
+
+    ![two-bin-sys-normfactor (asi)](results/two-bin-sys-normfactor/hist.png?raw=true)
+
+    ![two-bin-sys-normfactor (asi)](results/two-bin-sys-normfactor/time_asi.png?raw=true)
+
+    ![two-bin-sys-normfactor (asi)](results/two-bin-sys-normfactor/nll_shape_asi.png?raw=true)
+
+    ![two-bin-sys-normfactor (asi)](results/two-bin-sys-normfactor/nll_asi.png?raw=true)
+
+    </details>
+
+- ATLAS cards
+
+- CMS cards
+
