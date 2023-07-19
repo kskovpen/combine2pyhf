@@ -162,18 +162,21 @@ if __name__ == '__main__':
     dc += 'process      '+' '.join(procsamp)+'\n'
     dc += 'rate         '+' '.join(rate)+'\n'
     dc += '------------------------------------\n'
-                    
+
+    sysd = []
     for m in mods.keys():
         s = mods[m]
         sysl = ''
         if s['type'] not in ['histosys', 'normsys']: continue
+        sname = s['name'].replace('_splitns', '')
+        if sname in sysd: continue
         if s['type'] == 'histosys':
-            sysl += s['name'].replace('_splitns', '')+' shape '
+            sysl += sname+' shape '
             for ch in d['channels']:
                 for samp in ch['samples']:
                     found = False
                     for sysn in samp['modifiers']:
-                        if sysn['name'].replace('_splitns', '') == s['name'].replace('_splitns', ''):
+                        if sysn['name'].replace('_splitns', '') == sname:
                             sysl += ' 1.0 '
                             found = True
                             break
@@ -194,6 +197,7 @@ if __name__ == '__main__':
         if sysl != '':
             sysl += '\n'
             dc += sysl
+            sysd.append(sname)
             
     normf.sort()
     normf = list(k for k, _ in itertools.groupby(normf))
