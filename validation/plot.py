@@ -71,7 +71,7 @@ if __name__ == '__main__':
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
             analyticdata = None
-            fanalytic = f.replace('_combine', '_analytic')
+            fanalytic = f.replace('combine', 'analytic')
             analyticd = {}
             if os.path.isfile(fanalytic):
                 analyticdata = json.load(open(fanalytic, 'r'))

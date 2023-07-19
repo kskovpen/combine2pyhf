@@ -100,5 +100,5 @@ if __name__ == '__main__':
                         utils.setprec(res['nll'], prec=6)
                         utils.setprec(res['bf'], prec=6)
                         fn = os.path.splitext(fname.split('/')[-1])[0]
-                        os.system('mkdir -p '+ws+'/results/'+fn)
-                        json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)
+                        os.system('mkdir -p '+ws+'/results/analytic/'+fn)
+                        json.dump(res, open(ws+'/results/analytic/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)
