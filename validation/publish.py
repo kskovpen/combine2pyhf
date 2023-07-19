@@ -19,14 +19,15 @@ if __name__ == '__main__':
 
     options = main()
 
-    desc = {'stat': 'MC statistical uncertainties', 'normsys': 'Normalization uncertainties', 'histosys': 'Shape uncertainties', 'normfactor': 'Unconstrained parameters', 'atlas': 'ATLAS cards', 'cms': 'CMS cards'}
+    desc = {'stat': 'MC statistical uncertainties', 'normsys': 'Normalization uncertainties', 'histosys': 'Shape uncertainties', 'normfactor': 'Unconstrained parameters', 'atlas': 'ATLAS analyses', 'cms': 'CMS analyses'}
     
     with open(options.output+'/README.md', 'w') as fr:
         intro = '# combine2pyhf\n\n An automated tool for a common validation of fit models using [combine](https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit) and [pyhf](https://github.com/scikit-hep/pyhf) packages.\n\n'
         fr.write(intro)
         for dd in ['combine', 'pyhf']:
-            fr.write('- Results for '+dd+' inputs\n\n')
+            fr.write('## Results for '+dd+' inputs\n\n')
             for ct in ['stat', 'normsys', 'histosys', 'normfactor', 'atlas', 'cms']:
+                if (ct == 'atlas' and dd == 'combine') or (ct == 'cms' and dd == 'pyhf'): continue
                 dc = glob.glob(options.output+'/'+dd+'/*'+ct+'*/')
                 dc.sort(key=os.path.getmtime)
                 fr.write('- '+desc[ct]+'\n\n')
