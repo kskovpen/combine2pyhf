@@ -102,11 +102,10 @@ for r in runs:
                     nomv = dcv.shapeMap[b][p][1]
                     syso = dco.shapeMap[b][p][2]
                     sysv = dcv.shapeMap[b][p][2]
-                    print(list(dco.systs))
-                    print(list(dcv.systs))
-                    print(['']+list(dco.systs))
+                    systNames = [s[0] for s in syso]
+                    print(systNames)
                     for proc in dco.processes:
-                        for syst in ['']+list(dco.systs):
+                        for syst in ['']+systNames:
                             if syst == '':
                                 nomName = nomo.replace('$PROCESS', proc)
                                 histso[nomName] = rfo.Get(nomName).Clone(nomName+'_original')
