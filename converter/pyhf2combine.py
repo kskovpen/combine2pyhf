@@ -53,6 +53,8 @@ if __name__ == '__main__':
                 if m['name'] not in mods.keys():
                     mods[m['name']] = m
                     if m['type'] not in ['normfactor', 'staterror', 'lumi'] and 'prop' not in m['name']: nuis.append(m['name'])
+    nuis = [s.replace('_splitns', '') for i, s in enumerate(nuis)]
+    nuis = list(set(nuis))
                     
     # Create shape file
     poi = []
