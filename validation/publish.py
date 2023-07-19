@@ -34,7 +34,7 @@ if __name__ == '__main__':
                     dname = d.split('/')[-2]
                     fs = glob.glob(options.output+'/'+dd+'/'+dname+'/nll_shape*.png')
                     for f in fs:
-                        fname = options.output.split('/')[-1]+'/'+dname+'/'+f.split('/')[-1]
+                        fname = options.output.split('/')[-1]+'/'+dd+'/'+dname+'/'+f.split('/')[-1]
                         mode = f.split('_')[-1].replace('.png', '')
                         title = dname+' ('+mode+')'
                         fr.write('  - <details>\n\n')
