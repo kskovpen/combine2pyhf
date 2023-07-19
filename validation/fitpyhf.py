@@ -18,6 +18,7 @@ def main(argv = None):
     parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
+    parser.add_option("--combine", action="store_true", help="Run on combine inputs")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -29,13 +30,14 @@ if __name__ == '__main__':
 
     ws = os.environ['WS']
     wd = ws+'/validation'
-#    indir = wd+'/cards/pyhf/combine2pyhf'
-    indir = wd+'/cards/combine/combine2pyhf'
+    indir = wd+'/cards/combine/combine2pyhf' if options.combine else wd+'/cards/pyhf/combine2pyhf'
+    logf = ws+'/logs/combine_fitpyhf.log' if options.combine else logf = ws+'/logs/pyhf_fitpyhf.log'
+    output = ws+'/results/combine' if options.combine else ws+'/results/pyhf'
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename=ws+'/logs/pyhf.log',
+                        filename=logf,
                         filemode='w')
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
@@ -111,5 +113,5 @@ if __name__ == '__main__':
                 utils.setprec(res['nll'], prec=6)
                 utils.setprec(res['bf'], prec=6)
                 fn = os.path.splitext(fname.split('/')[-1])[0]
-                os.system('mkdir -p '+ws+'/results/'+fn)
-                json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_pyhf.json', 'w'), indent=2)
+                os.system('mkdir -p '+output+'/'+fn)
+                json.dump(res, open(output+'/'+fn+'/'+fit+'_pyhf.json', 'w'), indent=2)

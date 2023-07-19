@@ -31,7 +31,8 @@ mount -t cvmfs sft.cern.ch /cvmfs/sft.cern.ch
 
 export WS=$GITHUB_WORKSPACE
 mkdir -p $WS/logs
-mkdir -p $WS/results
+mkdir -p $WS/results/combine
+mkdir -p $WS/results/pyhf
 cd /HiggsAnalysis/CombinedLimit
 . env_lcg.sh
 PP=$PYTHONPATH; PH=$PYTHONHOME
@@ -48,13 +49,21 @@ python3 $WS/converter/validatePyhf.py
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
-echo "Run combine tests .."
-python3 $WS/validation/fitcombine.py
-check "$WS/logs/combine.log"
+echo "Run combine fits on combine inputs .."
+python3 $WS/validation/fitcombine.py --combine
+check "$WS/logs/combine_fitcombine.log"
 echo "Done."
-echo "Run pyhf tests .."
+echo "Run pyhf fits on combine inputs .."
+pyenvon; python3 $WS/validation/fitpyhf.py --combine; pyenvoff
+check "$WS/logs/combine_fitpyhf.log"
+echo "Done."
+echo "Run pyhf fits on pyhf inputs .."
+python3 $WS/validation/fitcombine.py
+check "$WS/logs/pyhf_fitpyhf.log"
+echo "Done."
+echo "Run combine fits on pyhf inputs .."
 pyenvon; python3 $WS/validation/fitpyhf.py; pyenvoff
-check "$WS/logs/pyhf.log"
+check "$WS/logs/combine_fitpyhf.log"
 echo "Done."
 echo "Run analytical tests .."
 python3 $WS/validation/analytic.py
@@ -62,8 +71,10 @@ check "$WS/logs/analytic.log"
 echo "Done."
 
 echo "Run plotting .."
-pyenvon; python3 $WS/validation/plot.py --input $WS/results; pyenvoff
-check "$WS/logs/plot.log"
+pyenvon; python3 $WS/validation/plot.py --input $WS/results/combine --combine; pyenvoff
+check "$WS/logs/plot_combine.log"
+pyenvon; python3 $WS/validation/plot.py --input $WS/results/pyhf; pyenvoff
+check "$WS/logs/plot_pyhf.log"
 echo "Done."
 
 python3 $WS/validation/publish.py --output $WS/results
