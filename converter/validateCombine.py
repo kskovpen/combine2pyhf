@@ -91,6 +91,8 @@ for r in runs:
         if passedCard:
             comblog.info('--> Compare datacards: \033[1;32mpassed\x1b[0m')
             comblog.info('--> Compare shapes: '+os.path.splitext(forig.split('/')[-1])[0])
+            print('Original:', dco.shapeMap.keys())
+            print('Converted:', dcv.shapeMap.keys())
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
