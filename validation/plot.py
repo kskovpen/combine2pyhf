@@ -41,7 +41,7 @@ if __name__ == '__main__':
     console.setFormatter(formatter)
     logging.getLogger().addHandler(console)
     
-    logging.info('Start plotting')
+    logging.info('Start plotting '+('results for combine inputs' if options.combine else 'results for pyhf inputs'))
     
     layout = go.Layout(
       paper_bgcolor='rgba(0,0,0,0)',
