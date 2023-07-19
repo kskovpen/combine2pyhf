@@ -91,35 +91,40 @@ for r in runs:
         if passedCard:
             comblog.info('--> Compare datacards: \033[1;32mpassed\x1b[0m')
             comblog.info('--> Compare shapes: '+os.path.splitext(forig.split('/')[-1])[0])
-            print('Original:', dco.shapeMap.keys())
-            for sh in dco.shapeMap.keys():
-                print(sh, dco.shapeMap[sh])
-            print('Converted:', dcv.shapeMap.keys())
-            for sh in dcv.shapeMap.keys():
-                print(sh, dcv.shapeMap[sh])
+            histso, histsv = {}, {}
             for b in dco.shapeMap.keys():
                 for p in dco.shapeMap[b].keys():
                     rfileo = dco.shapeMap[b][p][0]
                     rfilev = dcv.shapeMap[b][p][0]
                     rfo = ROOT.TFile(wdir.replace('validation/', '').replace('pyhf2combine', '')+'/'+runName+'/'+rfileo, 'READ')
                     rfv = ROOT.TFile(rfilev, 'READ')
-                    keyso = rfo.GetDirectory(b).GetListOfKeys()
-                    keysv = rfv.GetDirectory(b).GetListOfKeys()
-                    histso, histsv = {}, {}
-                    for ho in keyso:
-                        histso[ho.ReadObj().GetName()] = ho.ReadObj().Clone(ho.ReadObj().GetName()+'_original')
-                    for hv in keysv:
-                        histsv[hv.ReadObj().GetName()] = hv.ReadObj().Clone(hv.ReadObj().GetName()+'_converted')
-                    hists = compareShapes(histso, histsv)
-                    if hists:
-                        comblog.info('--> Compare shapes: \033[1;31mfailed\x1b[0m')
-                    else:
-                        comblog.info('--> Compare shapes: \033[1;32mpassed\x1b[0m')
-                    for h in hists:
-                        nbins = histso[h].GetXaxis().GetNbins()
-                        comblog.error('--> Original shape ('+h+'):')
-                        for b in range(1, nbins+1):
-                            comblog.error('bin #'+str(b)+': '+str(histso[h].GetBinContent(b))+'+-'+str(histso[h].GetBinError(b)))
-                        comblog.error('--> Converted shape ('+h+'):')
-                        for b in range(1, nbins+1):
-                            comblog.error('bin #'+str(b)+': '+str(histsv[h].GetBinContent(b))+'+-'+str(histsv[h].GetBinError(b)))
+                    nomo = dco.shapeMap[b][p][1]
+                    nomv = dcv.shapeMap[b][p][1]
+                    syso = dco.shapeMap[b][p][2]
+                    sysv = dcv.shapeMap[b][p][2]
+                    for proc in dco.processes:
+                        for syst in ['']+dco.systs:
+                            if syst == '':
+                                nomName = nomo.replace('$PROCESS', proc)
+                                histso[nomName] = rfo.Get(nomName).Clone(nomName+'_original')
+                                nomName = nomv.replace('$PROCESS', proc)
+                                histsv[nomName] = rfv.Get(nomName).Clone(nomName+'_converted')
+                            else:
+                                systName = syso.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
+                                histso[systName] = rfo.Get(systName).Clone(systName+'_original')
+                                systName = sysv.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
+                                histsv[systName] = rfv.Get(systName).Clone(systName+'_converted')
+                                
+            hists = compareShapes(histso, histsv)
+            if hists:
+                comblog.info('--> Compare shapes: \033[1;31mfailed\x1b[0m')
+            else:
+                comblog.info('--> Compare shapes: \033[1;32mpassed\x1b[0m')
+                for h in hists:
+                    nbins = histso[h].GetXaxis().GetNbins()
+                    comblog.error('--> Original shape ('+h+'):')
+                    for b in range(1, nbins+1):
+                        comblog.error('bin #'+str(b)+': '+str(histso[h].GetBinContent(b))+'+-'+str(histso[h].GetBinError(b)))
+                    comblog.error('--> Converted shape ('+h+'):')
+                    for b in range(1, nbins+1):
+                        comblog.error('bin #'+str(b)+': '+str(histsv[h].GetBinContent(b))+'+-'+str(histsv[h].GetBinError(b)))
