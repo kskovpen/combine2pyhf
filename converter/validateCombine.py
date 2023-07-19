@@ -108,13 +108,21 @@ for r in runs:
                         for syst in ['']+systNames:
                             if syst == '':
                                 nomName = nomo.replace('$PROCESS', proc)
+                                if not rfo.GetListOfKeys().Contains(nomName): continue
                                 histso[nomName] = rfo.Get(nomName).Clone(nomName+'_original')
                                 nomName = nomv.replace('$PROCESS', proc)
+                                if not rfv.GetListOfKeys().Contains(nomName):
+                                    comblog.error('Missing histogram in the converted file: '+nomName)
+                                    continue
                                 histsv[nomName] = rfv.Get(nomName).Clone(nomName+'_converted')
                             else:
                                 systName = syso.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
+                                if not rfo.GetListOfKeys().Contains(systName): continue
                                 histso[systName] = rfo.Get(systName).Clone(systName+'_original')
                                 systName = sysv.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
+                                if not rfv.GetListOfKeys().Contains(systName):
+                                    comblog.error('Missing histogram in the converted file: '+systName)
+                                    continue
                                 histsv[systName] = rfv.Get(systName).Clone(systName+'_converted')
                                 
             hists = compareShapes(histso, histsv)
