@@ -56,7 +56,7 @@ for d in dc:
     fc = glob.glob(wd+'/cards/combine/combine2pyhf/'+dname+'/*.txt')
     for f in fc:
         fname = f.split('/')[-1]
-        os.system('mkdir -p '+ws+'/results/'+os.path.splitext(fname)[0])
+        os.system('mkdir -p '+ws+'/results/combine/'+os.path.splitext(fname)[0])
         bbl = '--bbl ' if 'bbl' in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
@@ -87,7 +87,7 @@ for d in dc:
     fc = glob.glob(wd+'/cards/pyhf/pyhf2combine/'+dname+'/*.json')
     for f in fc:
         fname = f.split('/')[-1]
-        os.system('mkdir -p '+ws+'/results/'+os.path.splitext(fname)[0])
+        os.system('mkdir -p '+ws+'/results/pyhf/'+os.path.splitext(fname)[0])
         bbl = '--bbl ' if 'bbl' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
         utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
