@@ -33,13 +33,10 @@ if __name__ == '__main__':
     bbl = False
     for ch in d['channels']:
         for s in ch['samples']:
-            stat = []
             for m in s['modifiers']:
-                if 'prop' in m['name'] or m['type'] == 'staterror':
-                    if m['name'] in stat:
-                        bbl = True
-                        break
-                    else: stat.append(m['name'])
+                if 'prop' in m['name'] or m['type'] == 'staterror' or m['type'] == 'shapesys':
+                    bbl = True
+                    break
             if bbl: break
         if bbl: break
         
