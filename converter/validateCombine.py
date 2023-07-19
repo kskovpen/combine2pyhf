@@ -103,7 +103,6 @@ for r in runs:
                     syso = dco.shapeMap[b][p][2]
                     sysv = dcv.shapeMap[b][p][2]
                     systNames = [s[0] for s in dco.systs]
-                    print(systNames)
                     for proc in dco.processes:
                         for syst in ['']+systNames:
                             if syst == '':
