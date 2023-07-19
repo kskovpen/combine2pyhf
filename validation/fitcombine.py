@@ -22,6 +22,8 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
     if bf: 
         res['bf'] = [bf['r'][0]]
         res['time'] = bf['time']
+        for ir in range(len(res['nll'])):
+            res['nll'][ir] -= res['bf']
         utils.setprec(res['bf'], prec=6)
         utils.setprec(res['r'])
     utils.setprec(res['nll'], prec=6)
