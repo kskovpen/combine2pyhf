@@ -56,7 +56,7 @@ if __name__ == '__main__':
     ws = os.environ['WS']
     wd = ws+'/validation'
     indir = wd+'/cards/combine/pyhf2combine' if options.combine else wd+'/cards/pyhf/pyhf2combine'
-    logf = ws+'/logs/combine_fitcombine.log' if options.combine else logf = ws+'/logs/pyhf_fitcombine.log'
+    logf = ws+'/logs/combine_fitcombine.log' if options.combine else ws+'/logs/pyhf_fitcombine.log'
     output = ws+'/results/combine' if options.combine else ws+'/results/pyhf'
 
     logging.basicConfig(level=logging.DEBUG,
