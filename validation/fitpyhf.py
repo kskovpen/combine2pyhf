@@ -29,7 +29,8 @@ if __name__ == '__main__':
 
     ws = os.environ['WS']
     wd = ws+'/validation'
-    indir = wd+'/cards/pyhf/combine2pyhf'
+#    indir = wd+'/cards/pyhf/combine2pyhf'
+    indir = wd+'/cards/combine/combine2pyhf'
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
