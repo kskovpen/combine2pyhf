@@ -64,7 +64,7 @@ for d in dc:
         comblog.info('combine -> pyhf: plot distributions')
         utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/combine/'+os.path.splitext(fname)[0]+'/hist')
         comblog.info('pyhf -> combine: '+fname)
-        utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --normshape --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
         
 #        frr = ROOT.TFile((wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])+'.root', 'READ')

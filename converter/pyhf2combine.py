@@ -16,6 +16,7 @@ def main(argv = None):
     parser = OptionParser(usage)
     parser.add_option("--input", default='datacard.json', help="Input pyhf json file [default: %default]")
     parser.add_option("--output", default='datacard', help="Output combine datacard file name [default: %default]")
+    parser.add_option("--normshape", action='store_true', help="Enable histosys split into normalization and shape components")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -216,7 +217,7 @@ if __name__ == '__main__':
         if hasStat:
             if bbl: dc += ch+' autoMCStats 0 1 2\n'
             else: dc += ch+' autoMCStats 0 100000 2\n'
-        else: dc += ch+' autoMCStats -1 1 2\n'
+        elif not options.normshape: dc += ch+' autoMCStats -1 1 2\n'
             
     with open(options.output+'.txt', 'w') as f:
         f.write(dc)
