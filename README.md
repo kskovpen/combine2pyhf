@@ -526,34 +526,6 @@
 
   - <details>
 
-    <summary>multi-bin-sys-normsys-uncorr (obs)</summary>
-
-    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/time_obs.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-sys-normsys-uncorr (asi)</summary>
-
-    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/time_asi.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>multi-bin-sys-normsys-corr (obs)</summary>
 
     ![multi-bin-sys-normsys-corr (obs)](results/pyhf/multi-bin-sys-normsys-corr/hist.png?raw=true)
@@ -577,6 +549,34 @@
     ![multi-bin-sys-normsys-corr (asi)](results/pyhf/multi-bin-sys-normsys-corr/nll_shape_asi.png?raw=true)
 
     ![multi-bin-sys-normsys-corr (asi)](results/pyhf/multi-bin-sys-normsys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-uncorr (obs)</summary>
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (obs)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-normsys-uncorr (asi)</summary>
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-normsys-uncorr (asi)](results/pyhf/multi-bin-sys-normsys-uncorr/nll_asi.png?raw=true)
 
     </details>
 
