@@ -51,7 +51,7 @@ for r in runs:
                                 del mods[im]
                                 break
             
-        res = DeepDiff(jorig, j, significant_digits=15)
+        res = DeepDiff(jorig, j, significant_digits=15, ignore_order=True)
         if bool(res):
             pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
             pyhflog.error(res)
