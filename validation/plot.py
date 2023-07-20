@@ -72,6 +72,7 @@ if __name__ == '__main__':
             
             analyticdata = None
             fanalytic = f.replace('combine', 'analytic')
+            logging.info(fanalytic)
             analyticd = {}
             if os.path.isfile(fanalytic):
                 analyticdata = json.load(open(fanalytic, 'r'))
