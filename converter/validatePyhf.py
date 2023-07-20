@@ -34,6 +34,23 @@ for r in runs:
             jorig = json.loads(fforig.read())
         with open(f) as ff:
             j = json.loads(ff.read())
+        
+        for ich, ch in enumerate(j['channels']):
+            for isamp, s in enumerate(ch['samples']):
+                for im, m in enumerate(s['modifiers']):
+                    if 'splitns' in m['name'] and m['type'] == 'normsys':
+                        for imm, mm in enumerate(s['modifiers']):
+                            if m['name'] == mm['name'] and mm['type'] == 'histosys':
+                                mods = j['channels'][ich]['samples'][isamp]['modifiers']
+                                normsys = mods[im]
+                                histosys = mods[imm]
+                                for ib, b in enumerate(histosys['data']['hi_data']):
+                                    histosys['data']['hi_data'][ib] *= normsys['data']['hi']
+                                    histosys['data']['lo_data'][ib] *= normsys['data']['lo']
+                                histosys['name'] = histosys['name'].replace('_splitns', '')
+                                del mods[im]
+                                break
+            
         res = DeepDiff(jorig, j, significant_digits=15)
         if bool(res):
             pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
