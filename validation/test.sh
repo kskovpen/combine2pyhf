@@ -59,11 +59,11 @@ check "$WS/logs/combine_fitpyhf.log"
 echo "Done."
 echo "Run combine fits on pyhf inputs .."
 python3 $WS/validation/fitcombine.py
-check "$WS/logs/pyhf_fitpyhf.log"
+check "$WS/logs/pyhf_fitcombine.log"
 echo "Done."
 echo "Run pyhf fits on pyhf inputs .."
 pyenvon; python3 $WS/validation/fitpyhf.py; pyenvoff
-check "$WS/logs/combine_fitpyhf.log"
+check "$WS/logs/pyhf_fitpyhf.log"
 echo "Done."
 echo "Run analytical tests .."
 python3 $WS/validation/analytic.py
