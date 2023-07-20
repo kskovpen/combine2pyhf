@@ -65,7 +65,10 @@
                             ]
                         ],
                         "fixed": false,
-                        "name": "bkgnorm"
+                        "name": "bkgnorm",
+                        "inits": [
+                            1.0
+                        ]
                     }
                 ],
                 "poi": "r_sig"
