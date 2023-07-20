@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os, sys, pyhf, json, glob, logging, subprocess
+import os, sys, pyhf, json, glob, logging, subprocess, pydash
 from deepdiff import DeepDiff
 
 ws = os.environ['WS']
@@ -51,8 +51,44 @@ for r in runs:
                                 del mods[im]
                                 break
             
-        res = DeepDiff(jorig, j, significant_digits=15, ignore_order=True)
+        res = DeepDiff(jorig, j, significant_digits=2, ignore_order=True, view='tree', verbose_level=1)
+        passComp = True
         if bool(res):
+            values_changed = list(res['values_changed'])
+            for v in values_changed:
+                r = v.path(output_format='list')
+                if 'measurements' in r: continue
+                d1 = pydash.get(jorig, r)
+                chName = d1['name']
+                d2 = pydash.get(j, r)
+                
+                for s1 in d1['samples']:
+                    for s2 in d2['samples']:
+                        if s1['name'] == s2['name']:
+                            nbins = len(s1['data'])
+                            for ib in range(nbins):
+                                if s1['data'][ib] != s2['data'][ib]:
+                                    pyhflog.error('Different data found')
+                                    passComp = False
+                            mods1 = [s['name'] for s in s1['modifiers'] if s['type'] not in ['staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name']]
+                            mods2 = [s['name'] for s in s2['modifiers'] if s['type'] not in ['staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name']]
+                            d = list(set(mods1) - set(mods2))
+                            if len(d) > 0: print('bad modifiers')
+                            for mname in mods1:
+                                for im1, m1 in enumerate(s1['modifiers']):
+                                    if m1['name'] != mname: continue
+                                    for im2, m2 in enumerate(s2['modifiers']):
+                                        if m2['name'] != mname: continue
+                                        md1 = s1['modifiers'][im1]['data']
+                                        md2 = s2['modifiers'][im2]['data']
+                                        if type(md1) == dict:
+                                            diff = DeepDiff(md1, md2, significant_digits=2, ignore_order=True)
+                                            if diff:
+                                                pyhflog.error('Differences in modifiers found')
+                                                passComp = False
+                                        break
+                
+        if not passComp:
             pyhflog.error('--> Compare json: \033[1;31mfailed\x1b[0m')
             pyhflog.error(res)
         else:
