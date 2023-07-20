@@ -74,7 +74,6 @@ if __name__ == '__main__':
             fanalytic = f.replace('_combine', '_analytic').replace('combine/', 'analytic/')
             analyticd = {}
             if os.path.isfile(fanalytic):
-                logging.info('Found analytic results')
                 analyticdata = json.load(open(fanalytic, 'r'))
                 columns.append('Analytic')
                 data.append(analyticdata['nll'])
