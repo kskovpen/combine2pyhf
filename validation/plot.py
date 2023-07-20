@@ -71,8 +71,7 @@ if __name__ == '__main__':
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
             analyticdata = None
-            fanalytic = f.replace('combine', 'analytic')
-            print(fanalytic)
+            fanalytic = f.replace('_combine', '_analytic').replace('combine/', 'analytic/')
             analyticd = {}
             if os.path.isfile(fanalytic):
                 logging.info('Found analytic results')
