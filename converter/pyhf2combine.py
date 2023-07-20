@@ -189,7 +189,10 @@ if __name__ == '__main__':
                         if sa['name'] == samp:
                             for sysn in sa['modifiers']:
                                 if sysn['name'] == s['name']:
-                                    sysl += ' '+str(sysn['data']['hi'])
+                                    if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-5:
+                                        sysl += ' '+str(sysn['data']['hi'])
+                                    else:
+                                        sysl += ' '+str(sysn['data']['hi'])+'/'+str(sysn['data']['lo'])                                        
                                     found = True
                                     break
                     if not found: sysl += ' - '
@@ -208,11 +211,12 @@ if __name__ == '__main__':
         if 'prop' in m or 'staterror' in mods[m]['type']:
             hasStat = True
             break
-    if hasStat:
-        dc += '------------------------------------\n'
-        for ch in chans:
-            if bbl: dc += ch+' autoMCStats 0 1 1\n'
-            else: dc += ch+' autoMCStats 0 100000 100000\n'
+    dc += '------------------------------------\n'
+    for ch in chans:
+        if hasStat:
+            if bbl: dc += ch+' autoMCStats 0 1 2\n'
+            else: dc += ch+' autoMCStats 0 100000 2\n'
+        else: dc += ch+' autoMCStats -1 1 2\n'
             
     with open(options.output+'.txt', 'w') as f:
         f.write(dc)
