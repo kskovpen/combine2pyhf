@@ -88,7 +88,7 @@ for d in dc:
     for f in fc:
         fname = f.split('/')[-1]
         os.system('mkdir -p '+ws+'/results/pyhf/'+os.path.splitext(fname)[0])
-        bbl = '--bbl ' if 'bbl' in fname else ''
+        bbl = '--bbl ' if 'bbl' in fname or 'atlas' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
         utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
