@@ -192,7 +192,7 @@ if __name__ == '__main__':
                                     if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-5:
                                         sysl += ' '+str(sysn['data']['hi'])
                                     else:
-                                        sysl += ' '+str(sysn['data']['hi'])+'/'+str(sysn['data']['lo'])                                        
+                                        sysl += ' '+str(sysn['data']['lo'])+'/'+str(sysn['data']['hi'])
                                     found = True
                                     break
                     if not found: sysl += ' - '
