@@ -27,7 +27,7 @@ jobs:
           git rm -r results
           git commit -m 'clean old results' results
           mv results_copy results
-	  find validation/cards/. \( -name '*.json' -o -name '*.txt' -o -name '*.root' ! -name 'higgsCombine*' \) | cpio -pdm results
+          find validation/cards/. \( -name '*.json' -o -name '*.txt' -o -name '*.root' ! -name 'higgsCombine*' \) | cpio -pdm results
           mv results/README.md README.md
           git add results
           git commit -m 'automated publication of results' results README.md
