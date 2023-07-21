@@ -1,4 +1,4 @@
-import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit, jax, torch
+import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit, torch
 from timeit import default_timer as timer
 import utils
 import numpy as np
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     logging.info('Start pyhf fits')
     pyhflog = logging.getLogger('fit.pyhf')
     
-    loggin.info('Available backends: numpy ('+str(numpy.__version__)+'), jax ('+str(jax.__version__)+'), torch ('+str(torch.__version__)+')')
+    loggin.info('Available backends: numpy ('+str(numpy.__version__)+'), torch ('+str(torch.__version__)+')')
     
 #    pyhf.set_backend('numpy', pyhf.optimize.minuit_optimizer(verbose=2))
     pyhf.set_backend('pytorch', pyhf.optimize.minuit_optimizer(verbose=2))
