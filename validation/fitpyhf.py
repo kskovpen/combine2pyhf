@@ -1,4 +1,4 @@
-import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit, torch
+import os, sys, math, json, glob, logging, subprocess, pyhf, iminuit
 from timeit import default_timer as timer
 import utils
 import numpy as np
