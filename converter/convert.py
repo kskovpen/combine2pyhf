@@ -57,7 +57,7 @@ for d in dc:
     for f in fc:
         fname = f.split('/')[-1]
         os.system('mkdir -p '+ws+'/results/combine/'+os.path.splitext(fname)[0])
-        bbl = '--bbl ' if 'bbl' in fname else ''
+        bbl = '--bbl ' if 'bbl' in fname else '' or 'cms-' in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
         utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
@@ -88,7 +88,7 @@ for d in dc:
     for f in fc:
         fname = f.split('/')[-1]
         os.system('mkdir -p '+ws+'/results/pyhf/'+os.path.splitext(fname)[0])
-        bbl = '--bbl ' if 'bbl' in fname or 'atlas' in fname else ''
+        bbl = '--bbl ' if 'bbl' in fname or 'atlas-' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
         utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
