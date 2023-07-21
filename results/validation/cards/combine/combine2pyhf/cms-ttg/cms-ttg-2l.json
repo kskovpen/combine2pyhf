@@ -1379,8 +1379,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_ee_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 1.2398150668832562,
                                 0.8537499768112513,
@@ -2734,8 +2734,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_ee_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 1.6585531399267062,
                                 1.001930542708856,
@@ -2837,8 +2837,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_ee_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 5.139515035964648,
                                 2.690870737913886,
@@ -4248,8 +4248,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_ee_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 4.773052821913935,
                                 2.662779847603905,
@@ -5603,8 +5603,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_ee_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 0.4241191255209345,
                                 0.3077222245682523,
@@ -6992,8 +6992,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_mumu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.4363549397668944,
                                 0.9999893301137524,
@@ -8283,8 +8283,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_mumu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.9464810135574968,
                                 1.150791941916399,
@@ -8386,8 +8386,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_mumu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 6.306722640645254,
                                 2.8844475680131825,
@@ -9797,8 +9797,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_mumu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 5.620033486177122,
                                 3.597084972693831,
@@ -11136,8 +11136,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_mumu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 0.530805576650776,
                                 0.2937565026796084,
@@ -12465,8 +12465,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_emu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 2.4680804262582963,
                                 1.6398573011186042,
@@ -13688,8 +13688,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_emu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 3.2226284372109943,
                                 1.9889625982531907,
@@ -13791,8 +13791,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_emu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 8.78471777802236,
                                 4.021797100408328,
@@ -15038,8 +15038,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_emu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 1.9950199094901069,
                                 0.936051774430901,
@@ -16325,8 +16325,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2016_sr_emu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2016_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 0.6015182974806801,
                                 0.3541082622984459,
@@ -17730,8 +17730,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_ee_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 1.3177066849278651,
                                 0.899126157459751,
@@ -19053,8 +19053,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_ee_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 1.5683683288511336,
                                 1.0636469572651215,
@@ -19156,8 +19156,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_ee_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 7.06264472206862,
                                 1.5768813867584863,
@@ -20575,8 +20575,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_ee_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 4.1715638349133926,
                                 2.80813296842043,
@@ -21930,8 +21930,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_ee_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 1.070720384019026,
                                 0.2200854514310591,
@@ -23327,8 +23327,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_mumu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.5753890546274099,
                                 1.0718259961098844,
@@ -24674,8 +24674,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_mumu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.7717310824854373,
                                 1.2933975926093806,
@@ -24777,8 +24777,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_mumu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 7.418364022339889,
                                 3.696525460660427,
@@ -26196,8 +26196,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_mumu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 5.639117054432321,
                                 4.140444939644505,
@@ -27551,8 +27551,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_mumu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.762487641804526,
                                 1.2261680553928962,
@@ -28888,8 +28888,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_emu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 2.701560707222626,
                                 1.7582343518537082,
@@ -30191,8 +30191,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_emu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 2.857110812480854,
                                 1.63326434983027,
@@ -30294,8 +30294,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_emu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 10.952003089842894,
                                 4.715537076445531,
@@ -31501,8 +31501,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_emu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 1.3760034916505892,
                                 0.8727715659953477,
@@ -32796,8 +32796,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2017_sr_emu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2017_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 2.081035490456837,
                                 0.0,
@@ -34165,8 +34165,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_ee_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 2.001735665893591,
                                 1.4645163325663522,
@@ -35484,8 +35484,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_ee_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 2.1589386049161425,
                                 1.6546450404679949,
@@ -35587,8 +35587,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_ee_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 7.158198970572635,
                                 3.3873511677354204,
@@ -36970,8 +36970,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_ee_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 7.009215832909373,
                                 5.264515375841637,
@@ -38297,8 +38297,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_ee_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_ee",
+                            "type": "staterror",
                             "data": [
                                 2.082087420793857,
                                 2.036720707493155,
@@ -39658,8 +39658,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_mumu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 2.2545295511450556,
                                 1.6174795187442554,
@@ -40977,8 +40977,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_mumu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 2.4167162450278474,
                                 1.6148043561655325,
@@ -41080,8 +41080,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_mumu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 8.319054129604496,
                                 3.655050460453855,
@@ -42463,8 +42463,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_mumu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 8.86995839154027,
                                 7.276517620337769,
@@ -43782,8 +43782,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_mumu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_mumu",
+                            "type": "staterror",
                             "data": [
                                 1.4089172684049849,
                                 1.0951821359477947,
@@ -45083,8 +45083,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_emu_TTGamma",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 3.9297234669553682,
                                 2.6905533498897216,
@@ -46334,8 +46334,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_emu_singleTop",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 3.916599034501907,
                                 2.6134222641941056,
@@ -46437,8 +46437,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_emu_nonprompt",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 12.814090842897889,
                                 5.633691246070082,
@@ -47624,8 +47624,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_emu_ZG",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 2.262908178476733,
                                 1.5738030373923275,
@@ -48883,8 +48883,8 @@
                             }
                         },
                         {
-                            "name": "prop_biny2018_sr_emu_other",
-                            "type": "shapesys",
+                            "name": "prop_biny2018_sr_emu",
+                            "type": "staterror",
                             "data": [
                                 3.8091694142049386,
                                 1.5538950247187648,
