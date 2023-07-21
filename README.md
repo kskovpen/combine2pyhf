@@ -784,34 +784,6 @@
 
   - <details>
 
-    <summary>atlas-ttz-4l (obs)</summary>
-
-    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/hist.png?raw=true)
-
-    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/time_obs.png?raw=true)
-
-    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_shape_obs.png?raw=true)
-
-    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>atlas-ttz-4l (asi)</summary>
-
-    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/hist.png?raw=true)
-
-    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/time_asi.png?raw=true)
-
-    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/nll_shape_asi.png?raw=true)
-
-    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>atlas-ttz-3l (obs)</summary>
 
     ![atlas-ttz-3l (obs)](results/pyhf/atlas-ttz-3l/hist.png?raw=true)
@@ -835,6 +807,34 @@
     ![atlas-ttz-3l (asi)](results/pyhf/atlas-ttz-3l/nll_shape_asi.png?raw=true)
 
     ![atlas-ttz-3l (asi)](results/pyhf/atlas-ttz-3l/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-ttz-4l (obs)</summary>
+
+    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/hist.png?raw=true)
+
+    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/time_obs.png?raw=true)
+
+    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_shape_obs.png?raw=true)
+
+    ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-ttz-4l (asi)</summary>
+
+    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/hist.png?raw=true)
+
+    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/time_asi.png?raw=true)
+
+    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/nll_shape_asi.png?raw=true)
+
+    ![atlas-ttz-4l (asi)](results/pyhf/atlas-ttz-4l/nll_asi.png?raw=true)
 
     </details>
 
