@@ -10,7 +10,7 @@ pyenvon() {
   unset PYTHONPATH; unset PYTHONHOME
   /usr/bin/virtualenv --python=/usr/bin/python3 pyenv > /dev/null
   source pyenv/bin/activate
-  pip install pyhf iminuit deepdiff plotly kaleido pydash > /dev/null
+  pip install pyhf iminuit deepdiff plotly kaleido pydash jax jaxlib > /dev/null
   source pyenv/bin/activate
 }
 

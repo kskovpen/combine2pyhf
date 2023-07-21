@@ -65,34 +65,6 @@ and [pyhf](https://github.com/scikit-hep/pyhf) packages.
 
   - <details>
 
-    <summary>one-bin-stat-bbl (obs)</summary>
-
-    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/hist.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/time_obs.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>one-bin-stat-bbl (asi)</summary>
-
-    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/hist.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/time_asi.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>one-bin-stat-full (obs)</summary>
 
     ![one-bin-stat-full (obs)](results/combine/one-bin-stat-full/hist.png?raw=true)
@@ -116,6 +88,34 @@ and [pyhf](https://github.com/scikit-hep/pyhf) packages.
     ![one-bin-stat-full (asi)](results/combine/one-bin-stat-full/nll_shape_asi.png?raw=true)
 
     ![one-bin-stat-full (asi)](results/combine/one-bin-stat-full/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (obs)</summary>
+
+    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/time_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/combine/one-bin-stat-bbl/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (asi)</summary>
+
+    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/time_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/combine/one-bin-stat-bbl/nll_asi.png?raw=true)
 
     </details>
 
@@ -469,34 +469,6 @@ and [pyhf](https://github.com/scikit-hep/pyhf) packages.
 
   - <details>
 
-    <summary>one-bin-stat-bbl (obs)</summary>
-
-    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/hist.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/time_obs.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
-
-    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>one-bin-stat-bbl (asi)</summary>
-
-    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/hist.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/time_asi.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
-
-    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>one-bin-stat-full (obs)</summary>
 
     ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/hist.png?raw=true)
@@ -520,6 +492,34 @@ and [pyhf](https://github.com/scikit-hep/pyhf) packages.
     ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_shape_asi.png?raw=true)
 
     ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (obs)</summary>
+
+    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/time_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
+
+    ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-bbl (asi)</summary>
+
+    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/hist.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/time_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/nll_shape_asi.png?raw=true)
+
+    ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/nll_asi.png?raw=true)
 
     </details>
 
