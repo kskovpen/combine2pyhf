@@ -36,15 +36,18 @@ if __name__ == '__main__':
     chs = res['channels']
     obs = res['observations']
     
-    nuis = {}
+    nuis = []
     for ch in chs:
-        for s in ch['samples']:            
+        nuis.append({})
+        for isamp, s in enumerate(ch['samples']):
             for m in s['modifiers']:
                 if 'r_' not in m['name'] and 'prop' not in m['name']:
-                    if m['name'] not in nuis.keys(): nuis[m['name']] = [s]
-                    else: nuis[m['name']].append(s)
+                    if m['name'] not in nuis[-1].keys(): nuis[-1][m['name']] = [ch['samples'][isamp]['name']]
+                    else: nuis[-1][m['name']].append(ch['samples'][isamp]['name'])
     
     obsdata, obsdataerr, obsbins = [], [], []
+    dnup, dndown = [], []
+    corrup, corrdown = [], []
     procs = []
     ibin = 0
     for ich, ch in enumerate(chs):
@@ -53,40 +56,30 @@ if __name__ == '__main__':
         
         nbins = len(samps[0]['data'])
         
-        dnup, dndown = [], []
-        for m in nuis.keys():
-            if len(nuis[m]) > 1:
-                if m not in corrup.keys():
-                    corrup[m] = []
-                    corrdown[m] = []
+        corrup.append(OrderedDict())
+        corrdown.append(OrderedDict())
+        
+        for m in nuis[ich].keys():
+            if len(nuis[ich][m]) > 1:                
+                if m not in corrup[ich].keys():
+                    corrup[ich][m] = {}
+                    corrdown[ich][m] = {}
                     for ib in range(nbins):
-                        corrup[m].append(0)
-                        corrdown[m].append(0)
-                        for s in nuis[m]:
+                        ibin = nbins*ich+ib
+                        corrup[ich][m][ibin] = 0
+                        corrdown[ich][m][ibin] = 0
+                        for s in nuis[ich][m]:
                             for samp in samps:
-                                if samp['name'] == s['name']:
+                                if samp['name'] == s:
                                     for ist, st in enumerate(samp['modifiers']):
                                         if st['name'] == m:
                                             if st['type'] in ['histosys']:
-                                                corrup[m][-1] += samp['modifiers'][ist]['data']['hi_data'][ib]-samp['data'][ib]
-                                                corrdown[m][-1] += samp['modifiers'][ist]['data']['lo_data'][ib]-samp['data'][ib]
+                                                corrup[ich][m][ibin] += samp['modifiers'][ist]['data']['hi_data'][ib]-samp['data'][ib]
+                                                corrdown[ich][m][ibin] += samp['modifiers'][ist]['data']['lo_data'][ib]-samp['data'][ib]
                                             elif st['type'] in ['normsys']:
-                                                corrup[m][-1] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['hi']-1.0)
-                                                corrdown[m][-1] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['lo']-1.0)
+                                                corrup[ich][m][ibin] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['hi']-1.0)
+                                                corrdown[ich][m][ibin] += samp['data'][ib]*abs(samp['modifiers'][ist]['data']['lo']-1.0)
 
-        for im, m in enumerate(corrup.keys()):
-            for ib in range(nbins):
-                if im == 0: 
-                    dnup.append(corrup[m][ib]**2)
-                    dndown.append(corrdown[m][ib]**2)
-                else: 
-                    dnup[ib] += corrup[m][ib]**2
-                    dndown[ib] += corrdown[m][ib]**2
-        if len(corrup.keys()) > 0:
-            for ib in range(nbins):
-                dnup[ib] = math.sqrt(dnup[ib])
-                dndown[ib] = math.sqrt(dndown[ib])
-        
         for samp in samps:
             proc = samp['name']
             mods = samp['modifiers']
@@ -103,7 +96,7 @@ if __name__ == '__main__':
                     if ibin not in uncorrup.keys(): uncorrup[ibin] = 0
                     if 'prop' in m['name']:
                         uncorrup[ibin] += m['data'][ib]**2
-                    if m['name'] in nuis.keys() and len(nuis[m['name']]) < 2:
+                    if m['name'] in nuis[ich].keys() and len(nuis[ich][m['name']]) < 2:
                         if m['type'] in ['histosys']:
                             uncorrup[ibin] += (m['data']['hi_data'][ib]-d[ib])**2
                         elif m['type'] in ['normsys']:
@@ -112,7 +105,7 @@ if __name__ == '__main__':
                     if ibin not in uncorrdown.keys(): uncorrdown[ibin] = 0
                     if 'prop' in m['name']:
                         uncorrdown[ibin] += m['data'][ib]**2
-                    if m['name'] in nuis.keys() and len(nuis[m['name']]) < 2:
+                    if m['name'] in nuis[ich].keys() and len(nuis[ich][m['name']]) < 2:
                         if m['type'] in ['histosys']:
                             uncorrdown[ibin] += (m['data']['lo_data'][ib]-d[ib])**2
                         elif m['type'] in ['normsys']:
@@ -125,7 +118,25 @@ if __name__ == '__main__':
             obsbins.append(ibin+0.5)
             obsdata.append(obsd[ib])
             obsdataerr.append(math.sqrt(obsdata[-1]))
-        
+            
+    for ich, ch in enumerate(chs):
+        samps = ch['samples']
+        nbins = len(samps[0]['data'])
+        for im, m in enumerate(corrup[ich].keys()):
+            for ib in range(len(corrup[ich][m])):
+                ibin = nbins*ich+ib
+                if im == 0: 
+                    dnup.append(corrup[ich][m][ibin]**2)
+                    dndown.append(corrdown[ich][m][ibin]**2)
+                else:
+                    dnup[ibin] += corrup[ich][m][ibin]**2
+                    dndown[ibin] += corrdown[ich][m][ibin]**2
+        if len(corrup[ich].keys()) > 0:
+            for ib in range(len(corrup[ich][m])):
+                ibin = nbins*ich+ib
+                dnup[ibin] = math.sqrt(dnup[ibin])
+                dndown[ibin] = math.sqrt(dndown[ibin])
+
     totalup, totaldown = [], []
     for ib in range(len(uncorrup.keys())):
         totalup.append(0)
@@ -158,8 +169,9 @@ if __name__ == '__main__':
     for ip, p in enumerate(procs):
         dp, dbins = [], []
         for ib in data.keys():
+            if p not in data[ib].keys(): continue
             dbins.append(int(ib))
-            dp.append(data[ib][p])        
+            dp.append(data[ib][p])
         dbins.append(dbins[-1]+1.0)
         dp.append(0)
         plbins.append(dbins)

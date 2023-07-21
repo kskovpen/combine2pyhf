@@ -16,6 +16,7 @@ def main(argv = None):
         
     parser = OptionParser(usage)
     parser.add_option("--input", default='results', help="Input directory with results [default: %default]")
+    parser.add_option("--combine", action="store_true", help="Run on combine inputs")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -25,12 +26,14 @@ if __name__ == '__main__':
     
     options = main()
 
+    logf = os.environ['WS']+'/logs/plot_combine.log' if options.combine else os.environ['WS']+'/logs/plot_pyhf.log'
+    
     color = {'combine': '#f55a42', 'pyhf': '#4343d9', 'analytic': '#48ab37'}
     
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename=os.environ['WS']+'/logs/plot.log',
+                        filename=logf,
                         filemode='w')
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
@@ -38,7 +41,7 @@ if __name__ == '__main__':
     console.setFormatter(formatter)
     logging.getLogger().addHandler(console)
     
-    logging.info('Start plotting')
+    logging.info('Plot '+('results for combine inputs' if options.combine else 'results for pyhf inputs')+' ..')
     
     layout = go.Layout(
       paper_bgcolor='rgba(0,0,0,0)',
@@ -68,7 +71,7 @@ if __name__ == '__main__':
             columns = ['r', 'deltaNLL (combine)', 'deltaNLL (pyhf)']
             
             analyticdata = None
-            fanalytic = f.replace('_combine', '_analytic')
+            fanalytic = f.replace('_combine', '_analytic').replace('combine/', 'analytic/')
             analyticd = {}
             if os.path.isfile(fanalytic):
                 analyticdata = json.load(open(fanalytic, 'r'))

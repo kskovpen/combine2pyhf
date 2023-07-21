@@ -22,6 +22,8 @@ def getFitInfo(fname, bf = None, fdir = '', fit = '', fout = ''):
     if bf: 
         res['bf'] = [bf['r'][0]]
         res['time'] = bf['time']
+        for iv in range(len(res['nll'])):
+            res['nll'][iv] -= bf['nll'][0]
         utils.setprec(res['bf'], prec=6)
         utils.setprec(res['r'])
     utils.setprec(res['nll'], prec=6)
@@ -38,9 +40,10 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
-    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--npoints", default=10, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
+    parser.add_option("--combine", action="store_true", help="Run on combine inputs")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -52,12 +55,14 @@ if __name__ == '__main__':
 
     ws = os.environ['WS']
     wd = ws+'/validation'
-    indir = wd+'/cards/combine/pyhf2combine'
+    indir = wd+'/cards/combine/pyhf2combine' if options.combine else wd+'/cards/pyhf/pyhf2combine'
+    logf = ws+'/logs/combine_fitcombine.log' if options.combine else ws+'/logs/pyhf_fitcombine.log'
+    output = ws+'/results/combine' if options.combine else ws+'/results/pyhf'
 
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filename=ws+'/logs/combine.log',
+                        filename=logf,
                         filemode='w')
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
@@ -95,7 +100,7 @@ if __name__ == '__main__':
                 comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1')
-                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, ws+'/results', fit, fname.split('/')[-1])
+                fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, output, fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
 

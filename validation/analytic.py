@@ -12,7 +12,7 @@ def main(argv = None):
     usage = "usage: %prog [options]\n Run combine tests"
     
     parser = OptionParser(usage)
-    parser.add_option("--npoints", default=50, type=int, help="Number of points to scan [default: %default]")
+    parser.add_option("--npoints", default=10, type=int, help="Number of points to scan [default: %default]")
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     
@@ -100,5 +100,5 @@ if __name__ == '__main__':
                         utils.setprec(res['nll'], prec=6)
                         utils.setprec(res['bf'], prec=6)
                         fn = os.path.splitext(fname.split('/')[-1])[0]
-                        os.system('mkdir -p '+ws+'/results/'+fn)
-                        json.dump(res, open(ws+'/results/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)
+                        os.system('mkdir -p '+ws+'/results/analytic/'+fn)
+                        json.dump(res, open(ws+'/results/analytic/'+fn+'/'+fit+'_analytic.json', 'w'), indent=2)
