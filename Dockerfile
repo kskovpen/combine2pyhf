@@ -8,6 +8,7 @@ RUN gcc --version
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install pyhf deepdiff kaleido plotly matplotlib pydash jax jaxlib
+RUN python3 -m pip install --upgrade jax jaxlib
 
 RUN git clone --single-branch --branch combine2pyhf https://github.com/kskovpen/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 
