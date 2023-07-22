@@ -43,11 +43,6 @@ def execshapeloc(logger, dname, fname, tool = 'combine', combine2pyhf = False):
         shapeloc(dname, fname, tool, combine2pyhf)
     except Exception as e:
         logger.error(e)
-
-with open('/HiggsAnalysis/CombinedLimit/build/lib/python/HiggsAnalysis/CombinedLimit/DatacardConverter.py', 'r') as ff:
-    lines = ff.readlines()
-    for l in lines:
-        print(l)
         
 # combine cards
 comblog = logging.getLogger('convert.combine')
