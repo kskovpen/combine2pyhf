@@ -50,6 +50,7 @@ if __name__ == '__main__':
     corrup, corrdown = [], []
     procs = []
     ibin = 0
+    ntotbin = 0
     for ich, ch in enumerate(chs):
         obsd = obs[ich]['data']
         samps = ch['samples']
@@ -65,7 +66,7 @@ if __name__ == '__main__':
                     corrup[ich][m] = {}
                     corrdown[ich][m] = {}
                     for ib in range(nbins):
-                        ibin = nbins*ich+ib
+                        ibin = ntotbin+ib
                         corrup[ich][m][ibin] = 0
                         corrdown[ich][m][ibin] = 0
                         for s in nuis[ich][m]:
@@ -88,7 +89,7 @@ if __name__ == '__main__':
 #            nbins = len(d)
             
             for ib in range(nbins):
-                ibin = nbins*ich+ib
+                ibin = ntotbin+ib
                 if ibin not in data.keys(): data[ibin] = {}
                 data[ibin][proc] = d[ib]
                 for m in mods:
@@ -119,23 +120,25 @@ if __name__ == '__main__':
             obsdata.append(obsd[ib])
             obsdataerr.append(math.sqrt(obsdata[-1]))
             
+        ntotbin += nbins
+            
+    ntotbin = 0
     for ich, ch in enumerate(chs):
         samps = ch['samples']
         nbins = len(samps[0]['data'])
         for im, m in enumerate(corrup[ich].keys()):
-            for ib in range(len(corrup[ich][m])):
-                ibin = nbins*ich+ib
+            for ib in range(nbins):
+                ibin = ntotbin+ib
                 if im == 0: 
                     dnup.append(corrup[ich][m][ibin]**2)
                     dndown.append(corrdown[ich][m][ibin]**2)
                 else:
                     dnup[ibin] += corrup[ich][m][ibin]**2
                     dndown[ibin] += corrdown[ich][m][ibin]**2
-        if len(corrup[ich].keys()) > 0:
-            for ib in range(len(corrup[ich][m])):
-                ibin = nbins*ich+ib
-                dnup[ibin] = math.sqrt(dnup[ibin])
-                dndown[ibin] = math.sqrt(dndown[ibin])
+        ntotbin += nbins
+    for ib in range(len(dnup)):
+        dnup[ib] = math.sqrt(dnup[ib])
+        dndown[ib] = math.sqrt(dndown[ib])
 
     totalup, totaldown = [], []
     for ib in range(len(uncorrup.keys())):
