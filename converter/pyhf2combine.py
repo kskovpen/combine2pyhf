@@ -138,7 +138,6 @@ if __name__ == '__main__':
         if (('r_' in p[1]) and not 'atlas-' in options.input) \
         or (('XS' in p[1] or 'mu_tttt' in p[1]) and 'atlas-' in options.input):
             poisig = p[0]
-            break
         else: normf.append(p)
     samples.remove(poisig)
     samples = [poisig]+samples
