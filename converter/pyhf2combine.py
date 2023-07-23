@@ -135,7 +135,7 @@ if __name__ == '__main__':
     poisig = ''
     normf = []
     for p in poi:
-        if (('r_' in p[1]) and 'cms-' in options.input) \
+        if (('r_' in p[1]) and not 'atlas-' in options.input) \
         or (('XS' in p[1] or 'mu_tttt' in p[1]) and 'atlas-' in options.input):
             poisig = p[0]
             break
