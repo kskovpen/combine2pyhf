@@ -41,7 +41,7 @@ if __name__ == '__main__':
             if bbl: break
         if bbl: break
         
-    # Get nuiscances
+    # Get nuisances
     mods, nuis, samples = {}, [], []
     for ch in d['channels']:
         for s in ch['samples']:
@@ -79,7 +79,8 @@ if __name__ == '__main__':
                 h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
                     if m['type'] == 'normfactor':
-                        poi.append([s['name'], m['name'], ch['name']])
+                        poidesc = [s['name'], m['name'], ch['name']]
+                        if poidesc not in poi: poi.append(poidesc)
                     elif 'prop' in m['name'] or 'staterror' in m['type']:
                         h[hnamep].SetBinError(i+1, m['data'][i])
                     elif m['type'] in ['histosys']:
@@ -134,7 +135,10 @@ if __name__ == '__main__':
     poisig = ''
     normf = []
     for p in poi:
-        if 'r_' in p[1] or 'XS' in p[1]: poisig = p[0]
+        if (('r_' in p[1]) and 'cms-' in options.input) \
+        or (('XS' in p[1] or 'mu_tttt' in p[1]) and 'atlas-' in options.input):
+            poisig = p[0]
+            break
         else: normf.append(p)
     samples.remove(poisig)
     samples = [poisig]+samples
@@ -189,7 +193,7 @@ if __name__ == '__main__':
                     for sa in ch['samples']:
                         if sa['name'] == samp:
                             for sysn in sa['modifiers']:
-                                if sysn['name'] == s['name']:
+                                if sysn['name'] == s['name'] and sysn['type'] == s['type']:
                                     if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-5:
                                         sysl += ' '+str(sysn['data']['hi'])
                                     else:
