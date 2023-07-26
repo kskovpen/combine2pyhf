@@ -196,6 +196,13 @@ if __name__ == '__main__':
     dc += '------------------------------------\n'
 
     sysd = []
+    modsc = mods.copy()
+    for m1 in mods.keys():
+        if '_mergedns' in m1:
+            sname = m1.replace('_mergedns', '')
+            if sname in modsc.keys():
+                modsc.pop(sname)
+    
     for m in mods.keys():
         s = mods[m]
         for se in s:
@@ -203,7 +210,7 @@ if __name__ == '__main__':
             sysl = ''
             if se['type'] not in ['histosys', 'normsys']: continue
             sname = se['name'].replace('_mergedns', '')
-            # if sname in sysd: continue
+            if sname in sysd: continue
             if se['type'] == 'histosys':
                 sysl += sname+' shape '
                 for ch in d['channels']:
