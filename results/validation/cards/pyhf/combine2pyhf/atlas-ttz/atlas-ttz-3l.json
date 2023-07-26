@@ -18604,6 +18604,37 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "Fakes_1b4j",
+                    "data": [
+                        29.97840863983579
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "MMFakeStat",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.3,
+                                "lo": 0.7
+                            }
+                        },
+                        {
+                            "name": "MMFakeSyst",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.4,
+                                "lo": 0.6
+                            }
+                        },
+                        {
+                            "name": "prop_bintrilepZ1b4j",
+                            "type": "staterror",
+                            "data": [
+                                1.7958529909467982
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -27497,6 +27528,37 @@
                             "type": "staterror",
                             "data": [
                                 1.3897644801549918
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Fakes_CRWZ",
+                    "data": [
+                        86.08328483873022
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "MMFakeStat",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.3,
+                                "lo": 0.7
+                            }
+                        },
+                        {
+                            "name": "MMFakeSyst",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.4,
+                                "lo": 0.6
+                            }
+                        },
+                        {
+                            "name": "prop_binCRWZ",
+                            "type": "staterror",
+                            "data": [
+                                5.12580907064556
                             ]
                         }
                     ]

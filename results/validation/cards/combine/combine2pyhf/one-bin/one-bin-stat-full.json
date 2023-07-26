@@ -15,8 +15,8 @@
                             "type": "normfactor"
                         },
                         {
-                            "name": "prop_binch1_sig",
-                            "type": "shapesys",
+                            "name": "prop_binch1",
+                            "type": "staterror",
                             "data": [
                                 1.4363549397668944
                             ]
@@ -30,8 +30,8 @@
                     ],
                     "modifiers": [
                         {
-                            "name": "prop_binch1_bkg",
-                            "type": "shapesys",
+                            "name": "prop_binch1",
+                            "type": "staterror",
                             "data": [
                                 6.306722640645254
                             ]
