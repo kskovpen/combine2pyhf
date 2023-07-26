@@ -124,7 +124,7 @@ if __name__ == '__main__':
                         if (not found) and (len(modsnormshape[m['name']]) == 2):
                             vup = data[i]*m['data']['hi']
                             vdown = data[i]*m['data']['lo']
-                            if vdown < 1E-5: vdown = 1E-5
+                            if vdown < 1E-7: vdown = 1E-7
                             h[hsys+'Up'].SetBinContent(i+1, vup)
                             h[hsys+'Down'].SetBinContent(i+1, vdown)
                         
@@ -245,10 +245,10 @@ if __name__ == '__main__':
                                 ndata = sum(sa['data'])
                                 for sysn in sa['modifiers']:
                                     if sysn['name'] == se['name'] and sysn['type'] == se['type']:
-                                        if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-5:
+                                        if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-7:
                                             sysl += ' '+str(sysn['data']['hi'])
                                         else:
-                                            if sysn['data']['lo'] < 1E-5: sysn['data']['lo'] = 1E-5
+                                            if sysn['data']['lo'] < 1E-7: sysn['data']['lo'] = 1E-7
                                             sysl += ' '+str(sysn['data']['lo'])+'/'+str(sysn['data']['hi'])
                                         found = True
                                         break
