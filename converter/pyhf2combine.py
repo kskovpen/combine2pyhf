@@ -206,7 +206,7 @@ if __name__ == '__main__':
     for m in mods.keys():
         s = mods[m]
         for se in s:
-            if m in sysd: continue
+#            if m in sysd: continue
             sysl = ''
             if se['type'] not in ['histosys', 'normsys']: continue
             sname = se['name'].replace('_mergedns', '')
@@ -319,5 +319,5 @@ if __name__ == '__main__':
         elif not options.normshape: dcmod += ch+' autoMCStats -1 1 2\n'
             
     with open(options.output+'.txt', 'w') as f:
-        f.write(dc)
+        f.write(dcmod)
         f.close()

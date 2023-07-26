@@ -67,11 +67,11 @@ for d in dc:
         utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --normshape --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
 
-        if 'normfactor' in fname:
-            with open(wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
-                lines = ff.readlines()
-                for l in lines:
-                    print(l)
+#        if 'normfactor' in fname:
+#            with open(wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
+#                lines = ff.readlines()
+#                for l in lines:
+#                    print(l)
         
 #        frr = ROOT.TFile((wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])+'.root', 'READ')
 #        keyso = frr.GetDirectory('ch1').GetListOfKeys()
