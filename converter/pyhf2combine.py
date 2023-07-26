@@ -245,10 +245,10 @@ if __name__ == '__main__':
                                         found = True
                                         break
                         if (not found) and (ndata > 0): sysl += ' - '
-            if sysl != '':
-                sysl += '\n'
-                dc += sysl
-                sysd.append(sname)
+        if sysl != '':
+            sysl += '\n'
+            dc += sysl
+            sysd.append(sname)
                 
     # add normsys to histosys
     dcmod = dc
