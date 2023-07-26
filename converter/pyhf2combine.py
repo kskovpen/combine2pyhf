@@ -199,6 +199,7 @@ if __name__ == '__main__':
     for m in mods.keys():
         s = mods[m]
         for se in s:
+            if m in sysd: continue
             sysl = ''
             if se['type'] not in ['histosys', 'normsys']: continue
             sname = se['name'].replace('_mergedns', '')
@@ -245,10 +246,10 @@ if __name__ == '__main__':
                                         found = True
                                         break
                         if (not found) and (ndata > 0): sysl += ' - '
-        if sysl != '':
-            sysl += '\n'
-            dc += sysl
-            sysd.append(sname)
+            if sysl != '':
+                sysl += '\n'
+                dc += sysl
+                sysd.append(sname)
                 
     # add normsys to histosys
     dcmod = dc
