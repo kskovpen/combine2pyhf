@@ -61,8 +61,14 @@ for r in runs:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
         with open(f, 'r') as fdv:
             dcv = parseCard(fdv, opts)
+            olines = fdv.readlines()
+            for l in olines:
+                print(l)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
+            olines = fdo.readlines()
+            for l in olines:
+                print(l)
         comblog.info('--> Compare datacards: '+os.path.splitext(forig.split('/')[-1])[0])
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
