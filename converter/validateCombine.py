@@ -61,16 +61,17 @@ for r in runs:
         forig = f.replace('validation/', '').replace('pyhf2combine/', '')
         with open(f, 'r') as fdv:
             dcv = parseCard(fdv, opts)
-            if 'normfactor' in f:
-                olines = fdv.readlines()
-                for l in olines:
-                    comblog.info(l)
+#            if 'normfactor' in f:
+#                olines = fdv.readlines()
+#                for l in olines:
+#                    comblog.info(l)
         with open(forig, 'r') as fdo:
             dco = parseCard(fdo, opts)
-            if 'normfactor' in forig:
-                olines = fdo.readlines()
-                for l in olines:
-                    comblog.info(l)
+#            if 'normfactor' in forig:
+#                olines = fdo.readlines()
+#                for l in olines:
+#                    comblog.info(l)
+        comblog.info('TESTTEST')
         comblog.info('--> Compare datacards: '+os.path.splitext(forig.split('/')[-1])[0])
         res = {}
         res['bins'] = [compareCards(dco.bins, dcv.bins), dco.bins, dcv.bins]
