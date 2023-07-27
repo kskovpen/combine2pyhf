@@ -73,8 +73,8 @@ for r in runs:
                                     if s1['data'][ib] != s2['data'][ib]:
                                         pyhflog.error('Different data found')
                                         passComp = False
-                                mods1 = [s['name'] for s in s1['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
-                                mods2 = [s['name'] for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
+                                mods1 = [s['name'].replace('_splitns', '') for s in s1['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
+                                mods2 = [s['name'].replace('_splitns', '') for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
                                 d = list(set(mods1) - set(mods2))
                                 if len(d) > 0: 
                                     pyhflog.error('Different number of modifiers found')
