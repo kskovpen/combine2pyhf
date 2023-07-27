@@ -63,7 +63,8 @@ for r in runs:
                     d1 = pydash.get(jorig, r)
                     chName = d1['name']
                     d2 = pydash.get(j, r)
-                
+
+                    if 'samples' not in d1.keys(): continue
                     for s1 in d1['samples']:
                         for s2 in d2['samples']:
                             if s1['name'] == s2['name']:
