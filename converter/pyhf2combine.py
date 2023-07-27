@@ -90,10 +90,11 @@ if __name__ == '__main__':
                     hsys = hnamep+'_'+m['name']
                     hsysname = hname+'_'+m['name']
                     hsysname = hsysname.replace('_mergedns', '')
-                    
-                    if hsys+'Up' not in h:
-                        h[hsys+'Up'] = ROOT.TH1D(hsysname+'Up', hsysname+'Up', nb, bins)
-                        h[hsys+'Down'] = ROOT.TH1D(hsysname+'Down', hsysname+'Down', nb, bins)                    
+
+                    hsname = hsys.replace('_mergedns', '')
+                    if hsname+'Up' not in h:
+                        h[hsname+'Up'] = ROOT.TH1D(hsysname+'Up', hsysname+'Up', nb, bins)
+                        h[hsname+'Down'] = ROOT.TH1D(hsysname+'Down', hsysname+'Down', nb, bins)                    
             for i in range(len(data)):
                 h[hnamep].SetBinContent(i+1, data[i])
                 for m in s['modifiers']:
@@ -103,7 +104,7 @@ if __name__ == '__main__':
                     elif 'prop' in m['name'] or 'staterror' in m['type']:
                         h[hnamep].SetBinError(i+1, m['data'][i])
                     elif m['type'] in ['histosys']:
-                        hsys = hnamep+'_'+m['name']
+                        hsys = (hnamep+'_'+m['name']).replace('_mergedns', '')
                         vup = m['data']['hi_data'][i]
                         vdown = m['data']['lo_data'][i]
                         if 'mergedns' in m['name']:
@@ -115,7 +116,7 @@ if __name__ == '__main__':
                         h[hsys+'Up'].SetBinContent(i+1, vup)
                         h[hsys+'Down'].SetBinContent(i+1, vdown)
                     elif m['type'] in ['normsys']:
-                        hsys = hnamep+'_'+m['name']
+                        hsys = (hnamep+'_'+m['name']).replace('_mergedns', '')
                         found = False
                         for mn in s['modifiers']:
                             if mn['type'] == 'histosys' and mn['name'] == m['name']:
@@ -179,16 +180,21 @@ if __name__ == '__main__':
     dc += 'bin          '+' '.join(chans)+'\n'
     dc += 'observation  '+' '.join(np.repeat('-1 ', nchan))+'\n'
     dc += '------------------------------------\n'
-    procbin, procname, procsamp, rate, samplenames = [], [], [], [], []
+    procbin, procname, procsamp, rate, samplenames, smap = [], [], [], [], [], {}
+    it = 0
     for ich, ch in enumerate(d['channels']):
+        smap[ch['name']] = {}
         for i, s in enumerate(samples):
             if ich == 0: samplenames.append(s)
             for sn in ch['samples']:
                 if sn['name'] == s and sum(sn['data']) > 0:
+                    smap[ch['name']][s] = it
+                    it += 1
                     procbin.append(ch['name'])
                     procname.append(s)
                     procsamp.append(str(i))
                     rate.append(str(-1))
+                    break
     dc += 'bin          '+' '.join(procbin)+'\n'
     dc += 'process      '+' '.join(procname)+'\n'
     dc += 'process      '+' '.join(procsamp)+'\n'
@@ -210,7 +216,7 @@ if __name__ == '__main__':
             sysl = ''
             if se['type'] not in ['histosys', 'normsys']: continue
             sname = se['name'].replace('_mergedns', '')
-            if sname in sysd: continue
+            if sname in sysd and 'atlas-' not in options.input: continue
             if se['type'] == 'histosys':
                 sysl += sname+' shape '
                 for ch in d['channels']:
@@ -262,18 +268,20 @@ if __name__ == '__main__':
     dcmod = dc
     lines = dcmod.split('\n')
     histsplit = []
+    histnorm = {}
     for m in modsnormshape.keys():
         if len(modsnormshape[m]) < 2: continue
         for iline, line in enumerate(lines):
-            d = line.split()
-            if len(d) > 0 and m == d[0] and 'shape' in d[1]:
+            dl = line.split()
+            if len(dl) > 0 and m == dl[0] and 'shape' in dl[1]:
                 for iline2 in range(len(lines)):
                     if iline == iline2: continue
                     d2 = lines[iline2].split()
                     if len(d2) > 0 and m == d2[0] and 'ln' in d2[1]:
-                        histsplit.append(d[0])
-                        d[0] += '_splitns'
-                        lines[iline] = ' '.join(d)
+                        histnorm[m] = d2[2:]
+                        histsplit.append(dl[0])
+                        dl[0] += '_splitns'
+                        lines[iline] = ' '.join(dl)
                         lines[iline2] = ''
                         break
     linescl = []
@@ -288,21 +296,40 @@ if __name__ == '__main__':
     for ch in chanlist:
         chname = ch.ReadObj().GetName()
         for h in histsplit:
-            d = fr.GetDirectory(chname)
-            if d:
+            dirr = fr.GetDirectory(chname)
+            if dirr:
                 for p in samples:
-                    if d.GetListOfKeys().Contains(p+'_'+h+'Up'):
-                        d.cd()
-                        hup = d.Get(p+'_'+h+'Up')
-                        hdown = d.Get(p+'_'+h+'Down')
+                    if dirr.GetListOfKeys().Contains(p+'_'+h+'Up'):
+                        dirr.cd()
+                        sf = histnorm[h][smap[chname][p]]                        
+                        hup = dirr.Get(p+'_'+h+'Up')
+                        hdown = dirr.Get(p+'_'+h+'Down')
                         hup.SetName(p+'_'+h+'_splitnsUp')
                         hdown.SetName(p+'_'+h+'_splitnsDown')
-                        hup.SetDirectory(d)
-                        hdown.SetDirectory(d)
+                        hup.SetDirectory(dirr)
+                        hdown.SetDirectory(dirr)
+                        if sf != '-' and len(modsnormshape[h]) == 2:
+                            nln, nsh = 0, 0
+                            for chh in d['channels']:
+                                if chh['name'] == chname:
+                                    for pp in chh['samples']:
+                                        if pp['name'] == p:
+                                            for mm in pp['modifiers']:
+                                                if mm['name'] == h:
+                                                    if mm['type'] == 'histosys': nsh += 1
+                                                    elif mm['type'] == 'normsys': nln += 1
+                            if nln+nsh == 2:
+                                sfv = sf.split('/')
+                                if len(sfv) == 2:
+                                    hup.Scale(float(sfv[1]))
+                                    hdown.Scale(float(sfv[0]))
+                                else:
+                                    hup.Scale(float(sfv[0]))
+                                    hdown.Scale(1./float(sfv[0]))
                         hup.Write()
                         hdown.Write()
-                        d.Delete(p+'_'+h+'Up;*')
-                        d.Delete(p+'_'+h+'Down;*')
+                        dirr.Delete(p+'_'+h+'Up;*')
+                        dirr.Delete(p+'_'+h+'Down;*')
     fr.Close()
             
     normf.sort()

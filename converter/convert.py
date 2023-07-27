@@ -60,7 +60,7 @@ for d in dc:
         bbl = '--bbl ' if 'bbl' in fname or 'atlas-' not in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
-        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --prune --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('combine -> pyhf: plot distributions')
         utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/combine/'+os.path.splitext(fname)[0]+'/hist')
         comblog.info('pyhf -> combine: '+fname)

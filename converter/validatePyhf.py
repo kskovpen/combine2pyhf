@@ -44,10 +44,10 @@ for r in runs:
                                 mods = j['channels'][ich]['samples'][isamp]['modifiers']
                                 normsys = mods[im]
                                 histosys = mods[imm]
-                                for ib, b in enumerate(histosys['data']['hi_data']):
-                                    histosys['data']['hi_data'][ib] *= normsys['data']['hi']
-                                    histosys['data']['lo_data'][ib] *= normsys['data']['lo']
-                                histosys['name'] = histosys['name'].replace('_splitns', '')
+#                                for ib, b in enumerate(histosys['data']['hi_data']):
+#                                    histosys['data']['hi_data'][ib] *= normsys['data']['hi']
+#                                    histosys['data']['lo_data'][ib] *= normsys['data']['lo']
+#                                histosys['name'] = histosys['name'].replace('_splitns', '')
                                 del mods[im]
                                 break
             
@@ -72,8 +72,8 @@ for r in runs:
                                     if s1['data'][ib] != s2['data'][ib]:
                                         pyhflog.error('Different data found')
                                         passComp = False
-                                mods1 = [s['name'] for s in s1['modifiers'] if s['type'] not in ['staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name']]
-                                mods2 = [s['name'] for s in s2['modifiers'] if s['type'] not in ['staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name']]
+                                mods1 = [s['name'] for s in s1['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
+                                mods2 = [s['name'] for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name']]
                                 d = list(set(mods1) - set(mods2))
                                 if len(d) > 0: 
                                     pyhflog.error('Different number of modifiers found')
