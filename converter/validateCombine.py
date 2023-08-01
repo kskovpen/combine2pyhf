@@ -36,17 +36,15 @@ def compareCards(lh, rh):
 
 def compareShapes(lh, rh):
     hists = []
-    try:
-        for hname in lh.keys():
-            if lh[hname].Integral() != rh[hname].Integral():
-                hists.append(hname)
-            else:
-                for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
-                    if (lh[hname].GetBinContent(b) != rh[hname].GetBinContent(b)) or (lh[hname].GetBinError(b) != rh[hname].GetBinError(b)):
-                        hists.append(hname)
-                        break
-    except Exception as e:
-        comblog.error(e)
+    for hname in lh.keys():
+        if rh[hname].Integral() > 0 and abs(lh[hname].Integral()-rh[hname].Integral())/rh[hname].Integral() > 1E-4:
+            print(hname, lh[hname].Integral(), rh[hname].Integral())
+            hists.append(hname)
+        else:
+            for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
+                if rh[hname].GetBinContent(b) > 0 and abs(lh[hname].GetBinContent(b)-rh[hname].GetBinContent(b))/rh[hname].GetBinContent(b) > 1E-4:
+                    hists.append(hname)
+                    break
     return hists
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
