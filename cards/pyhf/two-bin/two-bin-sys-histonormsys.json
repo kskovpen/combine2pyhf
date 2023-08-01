@@ -1,0 +1,116 @@
+{
+    "channels": [
+        {
+            "name": "ch1",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+			{
+			    "name": "sigsys",
+			    "type": "histosys",
+			    "data": {"hi_data": [163.68641510009767], "lo_data": [133.92524871826173]}
+                        },
+			{
+			    "name": "sigsys",
+			    "type": "normsys",
+			    "data": {"hi": 1.1, "lo": 0.9}
+			}
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+			{
+			    "name": "bkgsys",
+			    "type": "histosys",
+			    "data": {"hi_data": [52.611790466308596], "lo_data": [35.074526977539064]}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch2",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+			2.345
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+			{
+			    "name": "sigsys",
+			    "type": "normsys",
+			    "data": {"hi": 1.05, "lo": 0.95}
+			}
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+			254.674
+                    ],
+                    "modifiers": [
+			{
+			    "name": "bkgsys",
+			    "type": "normsys",
+			    "data": {"hi": 1.20, "lo": 0.80}
+			}
+                    ]
+                }
+            ]
+        }
+    ],
+    "observations": [
+        {
+            "name": "ch1",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch2",
+            "data": [
+		270.0
+            ]
+        }
+    ],
+    "measurements": [
+        {
+            "config": {
+                "parameters": [
+                    {
+                        "bounds": [
+                            [
+                                -10.0,
+                                10.0
+                            ]
+                        ],
+                        "fixed": false,
+                        "name": "r_sig"
+                    }
+                ],
+                "poi": "r_sig"
+            },
+            "name": "meas"
+        }
+    ],
+    "version": "1.0.0"
+}

@@ -3,6 +3,7 @@
 import os, sys, math, json, itertools
 import numpy as np
 from array import array
+from collections import OrderedDict
 from optparse import OptionParser
 import ROOT
 
@@ -217,74 +218,82 @@ if __name__ == '__main__':
             if se['type'] not in ['histosys', 'normsys']: continue
             sname = se['name'].replace('_mergedns', '')
             if sname in sysd and 'atlas-' not in options.input: continue
-            if se['type'] == 'histosys':
-                sysl += sname+' shape '
-                for ch in d['channels']:
-                    for samp in samples:
-                        foundsamp = False
-                        sampf, ndata = None, 0
-                        for sampp in ch['samples']:
-                            if samp == sampp['name']:
-                                foundsamp = True
-                                sampf = sampp
-                                ndata = sum(sampp['data'])
-                                break
-                        if (not foundsamp) and (ndata > 0):
-                            sysl += ' - '
-                            continue
-                        found = False
-                        if sampf:
-                            for sysn in sampp['modifiers']:
-                                if sysn['name'].replace('_mergedns', '') == sname:
-                                    sysl += ' 1.0 '
-                                    found = True
+            for si in modsnormshape[se['name']]:
+                if si == 'histosys':
+                    sysl += sname+' shape '
+                    for ch in d['channels']:
+                        for samp in samples:
+                            foundsamp = False
+                            sampf, ndata = None, 0
+                            for sampp in ch['samples']:
+                                if samp == sampp['name']:
+                                    foundsamp = True
+                                    sampf = sampp
+                                    ndata = sum(sampp['data'])
                                     break
-                            if (not found) and (ndata > 0):
+                            if (not foundsamp) and (ndata > 0):
                                 sysl += ' - '
-            elif se['type'] == 'normsys' and 'mergedns' not in se['name']:
-                sysl += se['name']+' lnN '
-                for ch in d['channels']:
-                    for samp in samplenames:
-                        found, ndata = False, 0
-                        for sa in ch['samples']:
-                            if sa['name'] == samp:
-                                ndata = sum(sa['data'])
-                                for sysn in sa['modifiers']:
-                                    if sysn['name'] == se['name'] and sysn['type'] == se['type']:
-                                        if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-7:
-                                            sysl += ' '+str(sysn['data']['hi'])
-                                        else:
-                                            if sysn['data']['lo'] < 1E-7: sysn['data']['lo'] = 1E-7
-                                            sysl += ' '+str(sysn['data']['lo'])+'/'+str(sysn['data']['hi'])
+                                continue
+                            found = False
+                            if sampf:
+                                for sysn in sampp['modifiers']:
+                                    if sysn['name'].replace('_mergedns', '') == sname:
+                                        sysl += ' 1.0 '
                                         found = True
                                         break
-                        if (not found) and (ndata > 0): sysl += ' - '
-            if sysl != '':
-                sysl += '\n'
-                dc += sysl
-                sysd.append(sname)
+                                if (not found) and (ndata > 0):
+                                    sysl += ' - '
+                elif si == 'normsys' and 'mergedns' not in se['name']:
+                    sysl += se['name']+' lnN '
+                    for ch in d['channels']:
+                        for samp in samplenames:
+                            found, ndata = False, 0
+                            for sa in ch['samples']:
+                                if sa['name'] == samp:
+                                    ndata = sum(sa['data'])
+                                    for sysn in sa['modifiers']:
+                                        if sysn['name'] == se['name'] and sysn['type'] == si:
+                                            if abs(sysn['data']['lo']-1./sysn['data']['hi']) < 1E-7:
+                                                sysl += ' '+str(sysn['data']['hi'])
+                                            else:
+                                                if sysn['data']['lo'] < 1E-7: sysn['data']['lo'] = 1E-7
+                                                sysl += ' '+str(sysn['data']['lo'])+'/'+str(sysn['data']['hi'])
+                                            found = True
+                                            break
+                            if (not found) and (ndata > 0): sysl += ' - '
+                if sysl != '':
+                    sysl += '\n'
+                    dc += sysl
+                    sysd.append(sname)
                 
     # add normsys to histosys
     dcmod = dc
     lines = dcmod.split('\n')
     histsplit = []
     histnorm = {}
+    shapes = []
     for m in modsnormshape.keys():
         if len(modsnormshape[m]) < 2: continue
         for iline, line in enumerate(lines):
             dl = line.split()
             if len(dl) > 0 and m == dl[0] and 'shape' in dl[1]:
+                if m in shapes:
+                    lines[iline] = ''
+                    continue
                 for iline2 in range(len(lines)):
                     if iline == iline2: continue
                     d2 = lines[iline2].split()
                     if len(d2) > 0 and m == d2[0] and 'ln' in d2[1]:
+                        shapes.append(m)
                         histnorm[m] = d2[2:]
-                        histsplit.append(dl[0])
-                        dl[0] += '_splitns'
+                        if '_splitns' not in dl[0]:
+                            histsplit.append(dl[0])
+                            dl[0] += '_splitns'
                         lines[iline] = ' '.join(dl)
                         lines[iline2] = ''
-                        break
+                
     linescl = []
+    lines = OrderedDict.fromkeys((line for line in lines if line))
     for l in lines:
         if l != '':
             linescl.append(l)
