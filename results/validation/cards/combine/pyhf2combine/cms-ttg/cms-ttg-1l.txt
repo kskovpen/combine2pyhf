@@ -1,0 +1,110 @@
+imax 3 number of bins
+jmax 6 number of processes minus 1
+kmax 87 number of nuisance parameters
+------------------------------------
+shapes * ch1 /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-1l.root ch1/$PROCESS ch1/$PROCESS_$SYSTEMATIC
+shapes * ch2 /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-1l.root ch2/$PROCESS ch2/$PROCESS_$SYSTEMATIC
+shapes * ch3 /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-1l.root ch3/$PROCESS ch3/$PROCESS_$SYSTEMATIC
+bin          ch1 ch2 ch3
+observation  -1  -1  -1 
+bin          ch1 ch1 ch1 ch1 ch1 ch1 ch1 ch2 ch2 ch2 ch2 ch2 ch2 ch2 ch3 ch3 ch3 ch3 ch3 ch3 ch3
+process      TTGamma WG misID ZG nonprompt other QCD TTGamma WG misID ZG nonprompt other QCD TTGamma WG misID ZG nonprompt other QCD
+process      0 1 2 3 4 5 6 0 1 2 3 4 5 6 0 1 2 3 4 5 6
+rate         -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+colRec_1 shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+ephRes shape  1.0  -  -  -  1.0  -  -  1.0  -  -  -  1.0  -  -  1.0  -  1.0  1.0  1.0  1.0  - 
+ephScale shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+fsr shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+isr shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+lumi_2016 lnN  1.022 1.022 1.022 1.022 1.022 1.022 1.022 -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+lumi_20162017 lnN  1.008 1.008 1.008 1.008 1.008 1.008 1.008 1.006 1.006 1.006 1.006 1.006 1.006 1.006 -  -  -  -  -  -  - 
+lumi_3Ycorr lnN  1.009 1.009 1.009 1.009 1.009 1.009 1.009 1.008 1.008 1.008 1.008 1.008 1.008 1.008 1.02 1.02 1.02 1.02 1.02 1.02 1.02
+Absolute shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+AbsoluteUC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+BBEC1 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+BBEC1UC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+EC2 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+EC2UC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+FlavorQCD shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+HF shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+HFUC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+RelativeBal shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+RelativeSampleUC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+JER shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+pf shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+MisID_extrapolation_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+MisID_nJet_dependence_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+pdf shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+pu shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+q2 shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+Tune shape  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  - 
+lSFElSyst shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+electron_reco shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+bTagbUC_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+bTagl shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+misID_pT_Bin1_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin2_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin3_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin4_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin5_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin6_2016 shape  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+lSFMuSyst shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+phSF shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+pvSF_2016 shape  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
+top_pt_reweighting shape  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+Gluon_splitting shape  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  -  - 
+WGamma_nJet_dependence shape  -  1.0  -  -  1.0  -  -  -  1.0  -  -  1.0  -  -  -  1.0  -  -  -  -  - 
+WGamma_pT_Bin1 shape  -  1.0  1.0  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  - 
+WGamma_pT_Bin2 shape  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  - 
+DY_normalization shape  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  - 
+Other_normalization shape  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  - 
+TT_normalization shape  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  -  -  -  1.0  -  1.0  1.0  - 
+ZGamma_nJet_dependence shape  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  - 
+ZGamma_normalization shape  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  - 
+ZGamma_pT_Bin1 shape  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  1.0  -  - 
+ZGamma_pT_Bin2 shape  -  -  1.0  1.0  1.0  -  -  -  -  1.0  1.0  -  -  -  -  -  1.0  1.0  -  -  - 
+fake_photon_DD_normalization shape  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  - 
+fake_photon_MC_normalization shape  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  -  -  -  -  -  1.0  -  - 
+lumi_2017 lnN  -  -  -  -  -  -  -  1.02 1.02 1.02 1.02 1.02 1.02 1.02 -  -  -  -  -  -  - 
+lumi_20172018 lnN  -  -  -  -  -  -  -  1.004 1.004 1.004 1.004 1.004 1.004 1.004 1.003 1.003 1.003 1.003 1.003 1.003 1.003
+AbsoluteUC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+BBEC1UC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+EC2UC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+HFUC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+RelativeSampleUC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+MisID_extrapolation_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+MisID_nJet_dependence_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+bTagbUC_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+misID_pT_Bin1_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin2_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin3_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin4_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin5_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+misID_pT_Bin6_2017 shape  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  -  -  -  -  -  -  -  - 
+pvSF_2017 shape  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  -  -  -  -  -  -  -  - 
+fake_photon_model_2017 shape  -  -  -  -  -  -  -  -  -  -  -  1.0  -  -  -  -  -  -  -  -  - 
+lumi_2018 lnN  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.015 1.015 1.015 1.015 1.015 1.015 1.015
+AbsoluteUC_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+BBEC1UC_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+EC2UC_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+HFUC_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+RelativeSampleUC_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+MisID_extrapolation_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+MisID_nJet_dependence_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin1_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin2_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin3_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin4_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin5_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+misID_pT_Bin6_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  -  1.0  -  -  -  - 
+pvSF_2018 shape  -  -  -  -  -  -  -  -  -  -  -  -  -  -  1.0  1.0  1.0  1.0  1.0  1.0  - 
+WGamma_normalization rateParam ch1 WG 1 [0.,10.]
+WGamma_normalization rateParam ch2 WG 1 [0.,10.]
+WGamma_normalization rateParam ch3 WG 1 [0.,10.]
+MisID_normalization_2016 rateParam ch1 misID 1 [0.,10.]
+MisID_normalization_2017 rateParam ch2 misID 1 [0.,10.]
+MisID_normalization_2018 rateParam ch3 misID 1 [0.,10.]
+------------------------------------
+ch1 autoMCStats 0 1 2
+ch2 autoMCStats 0 1 2
+ch3 autoMCStats 0 1 2
