@@ -13,18 +13,6 @@
                             "data": null,
                             "name": "r_sig",
                             "type": "normfactor"
-                        },
-                        {
-                            "name": "sigsys",
-                            "type": "histosys",
-                            "data": {
-                                "hi_data": [
-                                    163.68641510009766
-                                ],
-                                "lo_data": [
-                                    133.92524871826174
-                                ]
-                            }
                         }
                     ]
                 },
@@ -33,20 +21,7 @@
                     "data": [
                         43.84315872192383
                     ],
-                    "modifiers": [
-                        {
-                            "name": "bkgsys",
-                            "type": "histosys",
-                            "data": {
-                                "hi_data": [
-                                    52.6117904663086
-                                ],
-                                "lo_data": [
-                                    35.074526977539065
-                                ]
-                            }
-                        }
-                    ]
+                    "modifiers": []
                 }
             ]
         }

@@ -11,15 +11,12 @@ shapes * y2017_sr_emu /__w/combine2pyhf/combine2pyhf/validation/cards/combine/py
 shapes * y2018_sr_ee /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-2l.root y2018_sr_ee/$PROCESS y2018_sr_ee/$PROCESS_$SYSTEMATIC
 shapes * y2018_sr_mumu /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-2l.root y2018_sr_mumu/$PROCESS y2018_sr_mumu/$PROCESS_$SYSTEMATIC
 shapes * y2018_sr_emu /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/cms-ttg/cms-ttg-2l.root y2018_sr_emu/$PROCESS y2018_sr_emu/$PROCESS_$SYSTEMATIC
-------------------------------------
 bin          y2016_sr_ee y2016_sr_mumu y2016_sr_emu y2017_sr_ee y2017_sr_mumu y2017_sr_emu y2018_sr_ee y2018_sr_mumu y2018_sr_emu
 observation  -1  -1  -1  -1  -1  -1  -1  -1  -1 
-------------------------------------
 bin          y2016_sr_ee y2016_sr_ee y2016_sr_ee y2016_sr_ee y2016_sr_ee y2016_sr_mumu y2016_sr_mumu y2016_sr_mumu y2016_sr_mumu y2016_sr_mumu y2016_sr_emu y2016_sr_emu y2016_sr_emu y2016_sr_emu y2016_sr_emu y2017_sr_ee y2017_sr_ee y2017_sr_ee y2017_sr_ee y2017_sr_ee y2017_sr_mumu y2017_sr_mumu y2017_sr_mumu y2017_sr_mumu y2017_sr_mumu y2017_sr_emu y2017_sr_emu y2017_sr_emu y2017_sr_emu y2017_sr_emu y2018_sr_ee y2018_sr_ee y2018_sr_ee y2018_sr_ee y2018_sr_ee y2018_sr_mumu y2018_sr_mumu y2018_sr_mumu y2018_sr_mumu y2018_sr_mumu y2018_sr_emu y2018_sr_emu y2018_sr_emu y2018_sr_emu y2018_sr_emu
 process      TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other TTGamma singleTop nonprompt ZG other
 process      0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4
 rate         -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-------------------------------------
 Absolute shape  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0 
 AbsoluteUC_2016 shape  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  - 
 BBEC1 shape  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0  1.0  1.0  -  1.0  1.0 

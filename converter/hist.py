@@ -30,7 +30,11 @@ if __name__ == '__main__':
     os.system('rm -rf '+mpl.get_cachedir()+'/font*')
     
     data, pred, uncorrup, uncorrdown, corrup, corrdown = (OrderedDict() for _ in range(6))
-    colors = [plt.cm.Pastel1(i) for i in range(100)]
+    cmaps = [plt.cm.Set1, plt.cm.Set2, plt.cm.Accent, plt.cm.Dark2]
+    colors = []
+    for ibm, bm in enumerate(cmaps):
+        for i in range(8):
+            colors.append(cmaps[ibm](i))
 
     res = json.load(open(options.input))
     chs = res['channels']
@@ -50,6 +54,7 @@ if __name__ == '__main__':
     corrup, corrdown = [], []
     procs = []
     ibin = 0
+    ntotbin = 0
     for ich, ch in enumerate(chs):
         obsd = obs[ich]['data']
         samps = ch['samples']
@@ -65,7 +70,7 @@ if __name__ == '__main__':
                     corrup[ich][m] = {}
                     corrdown[ich][m] = {}
                     for ib in range(nbins):
-                        ibin = nbins*ich+ib
+                        ibin = ntotbin+ib
                         corrup[ich][m][ibin] = 0
                         corrdown[ich][m][ibin] = 0
                         for s in nuis[ich][m]:
@@ -88,7 +93,7 @@ if __name__ == '__main__':
 #            nbins = len(d)
             
             for ib in range(nbins):
-                ibin = nbins*ich+ib
+                ibin = ntotbin+ib
                 if ibin not in data.keys(): data[ibin] = {}
                 data[ibin][proc] = d[ib]
                 for m in mods:
@@ -114,28 +119,30 @@ if __name__ == '__main__':
                 if ibin not in pred.keys(): pred[ibin] = 0
                 pred[ibin] += d[ib]
         for ib in range(nbins):
-            ibin = nbins*ich+ib
+            ibin = ntotbin+ib
             obsbins.append(ibin+0.5)
             obsdata.append(obsd[ib])
             obsdataerr.append(math.sqrt(obsdata[-1]))
             
+        ntotbin += nbins
+            
+    ntotbin = 0
     for ich, ch in enumerate(chs):
         samps = ch['samples']
         nbins = len(samps[0]['data'])
         for im, m in enumerate(corrup[ich].keys()):
-            for ib in range(len(corrup[ich][m])):
-                ibin = nbins*ich+ib
+            for ib in range(nbins):
+                ibin = ntotbin+ib
                 if im == 0: 
                     dnup.append(corrup[ich][m][ibin]**2)
                     dndown.append(corrdown[ich][m][ibin]**2)
                 else:
                     dnup[ibin] += corrup[ich][m][ibin]**2
                     dndown[ibin] += corrdown[ich][m][ibin]**2
-        if len(corrup[ich].keys()) > 0:
-            for ib in range(len(corrup[ich][m])):
-                ibin = nbins*ich+ib
-                dnup[ibin] = math.sqrt(dnup[ibin])
-                dndown[ibin] = math.sqrt(dndown[ibin])
+        ntotbin += nbins
+    for ib in range(len(dnup)):
+        dnup[ib] = math.sqrt(dnup[ib])
+        dndown[ib] = math.sqrt(dndown[ib])
 
     totalup, totaldown = [], []
     for ib in range(len(uncorrup.keys())):
@@ -179,7 +186,7 @@ if __name__ == '__main__':
         plcol.append(colors[ip])
     
     ax.hist(plbins, len(obsdata), weights=pldata, stacked=True, label=procs, color=plcol)
-    ax.errorbar(obsbins, obsdata, yerr=obsdataerr, fmt='.', color='black', lw=2, alpha=1.0, label='data')
+    ax.errorbar(obsbins, obsdata, yerr=obsdataerr, fmt='.', color='black', lw=1, alpha=1.0, label='data', markersize=1)
     yerrup = totalup
     yerrdown = totaldown
     ypred = [v for k, v in pred.items()]
@@ -189,10 +196,10 @@ if __name__ == '__main__':
     ax.set_xlabel('Bins')
     ax.set_ylabel('Events')
     ax.set_ylim([0.0, 1.2*ymax])
-    ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
+#    ax.set_xticks(np.arange(0.5, len(obsbins)+0.5, 1.0))
     plt.draw()
-    xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
-    ax.set_xticklabels(xlabels)
+#    xlabels = [str(int(float(item.get_text())-0.5)) for item in ax.get_xticklabels()]
+#    ax.set_xticklabels(xlabels)
     handles, labels = plt.gca().get_legend_handles_labels()    
     order = [len(labels)-1]
     for v in range(len(labels)):

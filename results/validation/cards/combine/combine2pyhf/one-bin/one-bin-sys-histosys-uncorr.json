@@ -15,7 +15,7 @@
                             "type": "normfactor"
                         },
                         {
-                            "name": "sigsys_splitns",
+                            "name": "sigsys_mergedns",
                             "type": "histosys",
                             "data": {
                                 "hi_data": [
@@ -27,7 +27,7 @@
                             }
                         },
                         {
-                            "name": "sigsys_splitns",
+                            "name": "sigsys_mergedns",
                             "type": "normsys",
                             "data": {
                                 "hi": 1.1000000102541607,
@@ -43,7 +43,7 @@
                     ],
                     "modifiers": [
                         {
-                            "name": "bkgsys_splitns",
+                            "name": "bkgsys_mergedns",
                             "type": "histosys",
                             "data": {
                                 "hi_data": [
@@ -55,7 +55,7 @@
                             }
                         },
                         {
-                            "name": "bkgsys_splitns",
+                            "name": "bkgsys_mergedns",
                             "type": "normsys",
                             "data": {
                                 "hi": 1.1999999825984378,

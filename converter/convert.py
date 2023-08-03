@@ -43,7 +43,7 @@ def execshapeloc(logger, dname, fname, tool = 'combine', combine2pyhf = False):
         shapeloc(dname, fname, tool, combine2pyhf)
     except Exception as e:
         logger.error(e)
-
+        
 # combine cards
 comblog = logging.getLogger('convert.combine')
 dc = glob.glob(ws+'/cards/combine/*')
@@ -57,15 +57,21 @@ for d in dc:
     for f in fc:
         fname = f.split('/')[-1]
         os.system('mkdir -p '+ws+'/results/combine/'+os.path.splitext(fname)[0])
-        bbl = '--bbl ' if 'bbl' in fname or 'cms-' in fname else ''
+        bbl = '--bbl ' if 'bbl' in fname or 'atlas-' not in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
-        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --prune --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
         comblog.info('combine -> pyhf: plot distributions')
         utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/combine/'+os.path.splitext(fname)[0]+'/hist')
         comblog.info('pyhf -> combine: '+fname)
         utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --normshape --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
+
+#        if 'normfactor' in fname:
+#            with open(wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
+#                lines = ff.readlines()
+#                for l in lines:
+#                    print(l)
         
 #        frr = ROOT.TFile((wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])+'.root', 'READ')
 #        keyso = frr.GetDirectory('ch1').GetListOfKeys()
@@ -100,4 +106,4 @@ for d in dc:
 #            lines = ff.readlines()
 #            for l in lines:
 #                print(l)
-        utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0]+(' --prune' if 'multi-bin-sys-histosys-' in fname else ''))

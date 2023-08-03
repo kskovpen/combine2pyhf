@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          load: true
+          push: true
           tags: ${{ env.LATEST_TAG }}
       - name: Build and push image
         run: | 

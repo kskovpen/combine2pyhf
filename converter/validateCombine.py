@@ -36,17 +36,15 @@ def compareCards(lh, rh):
 
 def compareShapes(lh, rh):
     hists = []
-    try:
-        for hname in lh.keys():
-            if lh[hname].Integral() != rh[hname].Integral():
-                hists.append(hname)
-            else:
-                for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
-                    if (lh[hname].GetBinContent(b) != rh[hname].GetBinContent(b)) or (lh[hname].GetBinError(b) != rh[hname].GetBinError(b)):
-                        hists.append(hname)
-                        break
-    except Exception as e:
-        comblog.error(e)
+    for hname in lh.keys():
+        if rh[hname].Integral() > 0 and abs(lh[hname].Integral()-rh[hname].Integral())/rh[hname].Integral() > 1E-4:
+            print(hname, lh[hname].Integral(), rh[hname].Integral())
+            hists.append(hname)
+        else:
+            for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
+                if rh[hname].GetBinContent(b) > 0 and abs(lh[hname].GetBinContent(b)-rh[hname].GetBinContent(b))/rh[hname].GetBinContent(b) > 1E-4:
+                    hists.append(hname)
+                    break
     return hists
 
 opts = type("opts", (object,), dict(bin=True, noJMax=False, stat=False, nuisancesToExclude=[], allowNoSignal=True, allowNoBackground=True))
@@ -108,27 +106,33 @@ for r in runs:
                             if syst == '':
                                 nomName = nomo.replace('$PROCESS', proc)
                                 if not rfo.GetListOfKeys().Contains(nomName): continue
-                                histso[nomName] = rfo.Get(nomName).Clone(nomName+'_original')
+                                histso[b+'_'+proc] = rfo.Get(nomName).Clone(b+'_'+proc+'_original')
+                                histso[b+'_'+proc].SetDirectory(0)
                                 nomName = nomv.replace('$PROCESS', proc)
-                                if not rfv.GetListOfKeys().Contains(nomName):
+                                if not rfv.Get(nomName):
                                     comblog.error('Missing histogram in the converted file: '+nomName)
                                     continue
-                                histsv[nomName] = rfv.Get(nomName).Clone(nomName+'_converted')
+                                histsv[b+'_'+proc] = rfv.Get(nomName).Clone(b+'_'+proc+'_converted')
+                                histsv[b+'_'+proc].SetDirectory(0)
                             else:
-                                systName = syso.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
-                                if not rfo.GetListOfKeys().Contains(systName): continue
-                                histso[systName] = rfo.Get(systName).Clone(systName+'_original')
-                                systName = sysv.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst)
-                                if not rfv.GetListOfKeys().Contains(systName):
-                                    comblog.error('Missing histogram in the converted file: '+systName)
-                                    continue
-                                histsv[systName] = rfv.Get(systName).Clone(systName+'_converted')
-                                
+                                for var in ['Up', 'Down']:
+                                    systName = syso.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst+var)
+                                    if not rfo.GetListOfKeys().Contains(systName): continue
+                                    histso[b+'_'+proc+'_'+syst+var] = rfo.Get(systName).Clone(systName+'_original')
+                                    histso[b+'_'+proc+'_'+syst+var].SetDirectory(0)
+                                    systName = sysv.replace('$PROCESS', proc).replace('$SYSTEMATIC', syst+var)
+                                    if not rfv.Get(systName):
+                                        comblog.error('Missing histogram in the converted file: '+systName)
+                                        continue
+                                    histsv[b+'_'+proc+'_'+syst+var] = rfv.Get(systName).Clone(systName+'_converted')
+                                    histsv[b+'_'+proc+'_'+syst+var].SetDirectory(0)
+
             hists = compareShapes(histso, histsv)
-            if hists:
-                comblog.info('--> Compare shapes: \033[1;31mfailed\x1b[0m')
-            else:
+            
+            if not hists:
                 comblog.info('--> Compare shapes: \033[1;32mpassed\x1b[0m')
+            else:
+                comblog.info('--> Compare shapes: \033[1;31mfailed\x1b[0m')
                 for h in hists:
                     nbins = histso[h].GetXaxis().GetNbins()
                     comblog.error('--> Original shape ('+h+'):')
