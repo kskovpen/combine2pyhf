@@ -105,6 +105,3 @@ MisID_normalization_2016 rateParam ch1 misID 1 [0.,10.]
 MisID_normalization_2017 rateParam ch2 misID 1 [0.,10.]
 MisID_normalization_2018 rateParam ch3 misID 1 [0.,10.]
 ------------------------------------
-ch1 autoMCStats 0 1 2
-ch2 autoMCStats 0 1 2
-ch3 autoMCStats 0 1 2
