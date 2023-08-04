@@ -19,7 +19,7 @@ def main(argv = None):
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     parser.add_option("--combine", action="store_true", help="Run on combine inputs")
-    parser.add_option("--background", default="pytorch", help="Backend (numpy, pytorch, jax, tensorflow)")
+    parser.add_option("--backend", default="pytorch", help="Backend (numpy, pytorch, jax, tensorflow)")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
