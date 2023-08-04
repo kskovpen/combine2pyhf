@@ -99,7 +99,7 @@ if __name__ == '__main__':
                 bfres['time'] = fittime
                 comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
-                utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
+                utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName MultiDimFit -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
                 fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, output, fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))
