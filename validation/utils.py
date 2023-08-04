@@ -8,7 +8,7 @@ def setprec(d, prec=2):
 
 def execute(logger, c):
     try:
-        r = subprocess.check_output(c, stderr=subprocess.STDOUT, shell=True)
+        r = subprocess.check_output(c, stderr=subprocess.STDOUT)
         logger.debug(r)
     except subprocess.CalledProcessError as e:
         logger.error(e.output)

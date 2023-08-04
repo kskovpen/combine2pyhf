@@ -88,18 +88,18 @@ if __name__ == '__main__':
             fname = f.replace('.txt', '')
             comblog.info('--> Run fits ('+dname+', '+fname.split('/')[-1]+')')
             comblog.info('--> Prepare the workspace')
-            utils.execute(comblog, 'text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f)
+            utils.execute(comblog, ('text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:defaultModel -o '+fname+'_model.root '+f).split())
             for fit in fits.keys():
                 comblog.info('--> Perform the best fit ('+fit+')')
                 start = timer()
-                utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root')
+                utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'--saveWorkspace --saveNLL --expectSignal=1 -n BestFit '+opts+' '+fname+'_model.root').split())
                 end = timer()
                 fittime = end-start
                 bfres = postproc(comblog, 'higgsCombineBestFit.MultiDimFit.mH120.root')
                 bfres['time'] = fittime
                 comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
-                utils.execute(comblog, 'combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1')
+                utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName \"MultiDimFit\" -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
                 fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, output, fit, fname.split('/')[-1])
                 for i in range(len(fres['r'])):
                     comblog.info('    r='+str(fres['r'][i])+', delta_nll='+str(fres['nll'][i]))

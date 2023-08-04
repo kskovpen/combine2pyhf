@@ -19,6 +19,7 @@ def main(argv = None):
     parser.add_option("--min", default=0.5, type=float, help="Scan range min value [default: %default]")
     parser.add_option("--max", default=1.5, type=float, help="Scan range max value [default: %default]")
     parser.add_option("--combine", action="store_true", help="Run on combine inputs")
+    parser.add_option("--background", default="pytorch", help="Backend (numpy, pytorch, jax, tensorflow)")
     
     (options, args) = parser.parse_args(sys.argv[1:])
     
@@ -48,8 +49,7 @@ if __name__ == '__main__':
     logging.info('Start pyhf fits')
     pyhflog = logging.getLogger('fit.pyhf')
     
-#    pyhf.set_backend('numpy')
-    pyhf.set_backend('pytorch')
+    pyhf.set_backend(options.backend)
     
     dc = glob.glob(indir+'/*')
     
@@ -79,14 +79,10 @@ if __name__ == '__main__':
                 data = asimov if fit == 'asi' else obs
                 pyhflog.info('--> Perform the best fit ('+fit+')')
                 start = timer()
-                m = iminuit.Minuit(twice_nll, init, name=model.config.par_names)
-                m.limits = constraints
-                m.migrad()
-                bf = m.values[model.config.poi_index]
-                bfnll = m.fval
+                bfpars, bfnll = pyhf.infer.mle.fit(data, model, return_fitted_val=True)
                 end = timer()
                 fittime = end-start
-                pyhflog.info('    bf='+str(bf))
+                pyhflog.info('    bf='+str(float(bfpars[0])))
                 inc = (options.max-options.min)/options.npoints
                 muv = list(np.arange(options.min, options.max+inc, inc))
                 utils.setprec(muv)
@@ -96,14 +92,8 @@ if __name__ == '__main__':
                 res['bf'] = [bf]
                 nllv = []
                 for r in muv:
-                    init[model.config.poi_index] = r
-                    pfix = [(model.config.poi_index, r)]
-                    for idx, fixed_val in pfix:
-                        pname = model.config.par_names[idx]
-                        m.values[pname] = fixed_val
-                        m.fixed[pname] = True
-                    m.migrad()
-                    nllv.append(m.fval)
+                    bfpars, bfnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
+                    nllv.append(bfnll)
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
                     res['r'].append(muv[i])
