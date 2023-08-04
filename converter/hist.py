@@ -203,7 +203,8 @@ if __name__ == '__main__':
     handles, labels = plt.gca().get_legend_handles_labels()    
     order = [len(labels)-1]
     for v in range(len(labels)):
+        if v > 10: break
         if v in order: continue
         else: order.append(v)
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1, prop={'size': 6})
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1, prop={'size': 4})
     fig.savefig(options.output+'.png', dpi=300)
