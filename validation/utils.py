@@ -3,8 +3,9 @@ from decimal import Decimal
 
 def setprec(d, prec=2):
     for ik, k in enumerate(d):
-        k = Decimal(str(k))
-        d[ik] = float(round(k, prec))
+        kfl = float(k)
+        k = Decimal(str(kfl))
+        d[ik] = float(round(kfl, prec))
 
 def execute(logger, c):
     try:
