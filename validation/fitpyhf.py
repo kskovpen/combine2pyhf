@@ -89,7 +89,7 @@ if __name__ == '__main__':
                 if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
-                res['bf'] = [bf]
+                res['bf'] = [float(bfpars[0])]
                 nllv = []
                 for r in muv:
                     bfpars, bfnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
