@@ -434,6 +434,34 @@
 
     </details>
 
+  - <details>
+
+    <summary>cms-tttt-multilepton (asi)</summary>
+
+    ![cms-tttt-multilepton (asi)](results/combine/cms-tttt-multilepton/hist.png?raw=true)
+
+    ![cms-tttt-multilepton (asi)](results/combine/cms-tttt-multilepton/time_asi.png?raw=true)
+
+    ![cms-tttt-multilepton (asi)](results/combine/cms-tttt-multilepton/nll_shape_asi.png?raw=true)
+
+    ![cms-tttt-multilepton (asi)](results/combine/cms-tttt-multilepton/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>cms-tttt-multilepton (obs)</summary>
+
+    ![cms-tttt-multilepton (obs)](results/combine/cms-tttt-multilepton/hist.png?raw=true)
+
+    ![cms-tttt-multilepton (obs)](results/combine/cms-tttt-multilepton/time_obs.png?raw=true)
+
+    ![cms-tttt-multilepton (obs)](results/combine/cms-tttt-multilepton/nll_shape_obs.png?raw=true)
+
+    ![cms-tttt-multilepton (obs)](results/combine/cms-tttt-multilepton/nll_obs.png?raw=true)
+
+    </details>
+
 ## Results for pyhf inputs
 
 - MC statistical uncertainties
@@ -496,34 +524,6 @@
 
   - <details>
 
-    <summary>one-bin-stat-full (asi)</summary>
-
-    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/hist.png?raw=true)
-
-    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/time_asi.png?raw=true)
-
-    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_shape_asi.png?raw=true)
-
-    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>one-bin-stat-full (obs)</summary>
-
-    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/hist.png?raw=true)
-
-    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/time_obs.png?raw=true)
-
-    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/nll_shape_obs.png?raw=true)
-
-    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>one-bin-stat-bbl (asi)</summary>
 
     ![one-bin-stat-bbl (asi)](results/pyhf/one-bin-stat-bbl/hist.png?raw=true)
@@ -547,6 +547,34 @@
     ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_shape_obs.png?raw=true)
 
     ![one-bin-stat-bbl (obs)](results/pyhf/one-bin-stat-bbl/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-full (asi)</summary>
+
+    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/hist.png?raw=true)
+
+    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/time_asi.png?raw=true)
+
+    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_shape_asi.png?raw=true)
+
+    ![one-bin-stat-full (asi)](results/pyhf/one-bin-stat-full/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-stat-full (obs)</summary>
+
+    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/hist.png?raw=true)
+
+    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/time_obs.png?raw=true)
+
+    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/nll_shape_obs.png?raw=true)
+
+    ![one-bin-stat-full (obs)](results/pyhf/one-bin-stat-full/nll_obs.png?raw=true)
 
     </details>
 
@@ -724,34 +752,6 @@
 
   - <details>
 
-    <summary>one-bin-sys-histosys-corr (asi)</summary>
-
-    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/hist.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/time_asi.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>one-bin-sys-histosys-corr (obs)</summary>
-
-    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/hist.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/time_obs.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
-
-    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>one-bin-sys-histosys-uncorr (asi)</summary>
 
     ![one-bin-sys-histosys-uncorr (asi)](results/pyhf/one-bin-sys-histosys-uncorr/hist.png?raw=true)
@@ -775,6 +775,34 @@
     ![one-bin-sys-histosys-uncorr (obs)](results/pyhf/one-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
 
     ![one-bin-sys-histosys-uncorr (obs)](results/pyhf/one-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-corr (asi)</summary>
+
+    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/time_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (asi)](results/pyhf/one-bin-sys-histosys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-histosys-corr (obs)</summary>
+
+    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/time_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-histosys-corr (obs)](results/pyhf/one-bin-sys-histosys-corr/nll_obs.png?raw=true)
 
     </details>
 
@@ -863,6 +891,34 @@
     ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_shape_obs.png?raw=true)
 
     ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-tttt-multilepton (asi)</summary>
+
+    ![atlas-tttt-multilepton (asi)](results/pyhf/atlas-tttt-multilepton/hist.png?raw=true)
+
+    ![atlas-tttt-multilepton (asi)](results/pyhf/atlas-tttt-multilepton/time_asi.png?raw=true)
+
+    ![atlas-tttt-multilepton (asi)](results/pyhf/atlas-tttt-multilepton/nll_shape_asi.png?raw=true)
+
+    ![atlas-tttt-multilepton (asi)](results/pyhf/atlas-tttt-multilepton/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-tttt-multilepton (obs)</summary>
+
+    ![atlas-tttt-multilepton (obs)](results/pyhf/atlas-tttt-multilepton/hist.png?raw=true)
+
+    ![atlas-tttt-multilepton (obs)](results/pyhf/atlas-tttt-multilepton/time_obs.png?raw=true)
+
+    ![atlas-tttt-multilepton (obs)](results/pyhf/atlas-tttt-multilepton/nll_shape_obs.png?raw=true)
+
+    ![atlas-tttt-multilepton (obs)](results/pyhf/atlas-tttt-multilepton/nll_obs.png?raw=true)
 
     </details>
 
