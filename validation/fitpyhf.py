@@ -92,10 +92,10 @@ if __name__ == '__main__':
                 res['bf'] = [float(bfpars[0])]
                 nllv = []
                 for r in muv:
-                    bfpars, bfnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
-                    nllv.append(float(bfnll))
+                    rpars, rnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
+                    nllv.append(float(rnll))
                 for i in range(len(nllv)):
-                    nllv[i] -= bfnll
+                    nllv[i] -= float(bfnll)
                     res['r'].append(muv[i])
                     res['nll'].append(nllv[i])
                     pyhflog.info('    r='+str(muv[i])+', delta_nll='+str(nllv[i]))
