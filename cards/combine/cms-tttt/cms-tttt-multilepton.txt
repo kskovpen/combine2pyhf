@@ -1,7 +1,7 @@
 imax 51 number of bins
 jmax 11 number of processes minus 1
 #kmax 255 number of nuisance parameters
-kmax 113 number of nuisance parameters
+kmax 116 number of nuisance parameters
 ----------------------------------------------------------------------------------------------------------------------------------
 shapes *                         ch1_y16_y16_bdt_3L_sig    cms-tttt-multilepton-2016.root bdt_3L_sig/$PROCESS bdt_3L_sig/$SYSTEMATIC/$PROCESS
 shapes *                         ch1_y16_y16_bdt_3L_ttbar  cms-tttt-multilepton-2016.root bdt_3L_ttbar/$PROCESS bdt_3L_ttbar/$SYSTEMATIC/$PROCESS
