@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 nllv = []
                 for r in muv:
                     bfpars, bfnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
-                    nllv.append(bfnll)
+                    nllv.append(float(bfnll))
                 for i in range(len(nllv)):
                     nllv[i] -= bfnll
                     res['r'].append(muv[i])
