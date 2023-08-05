@@ -42,7 +42,7 @@ def compareShapes(lh, rh):
             hists.append(hname)
         else:
             for b in range(1, lh[hname].GetXaxis().GetNbins()+1):
-                if rh[hname].GetBinContent(b) > 0 and abs(lh[hname].GetBinContent(b)-rh[hname].GetBinContent(b))/rh[hname].GetBinContent(b) > 1E-4:
+                if rh[hname].GetBinContent(b) > 1E-10 and abs(lh[hname].GetBinContent(b)-rh[hname].GetBinContent(b))/rh[hname].GetBinContent(b) > 1E-4:
                     hists.append(hname)
                     break
     return hists
