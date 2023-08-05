@@ -206,5 +206,5 @@ if __name__ == '__main__':
         if v > 10: break
         if v in order: continue
         else: order.append(v)
-    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1, prop={'size': 4})
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order], loc="best", fancybox=True, framealpha=0.1, prop={'size': 5})
     fig.savefig(options.output+'.png', dpi=300)

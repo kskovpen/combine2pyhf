@@ -82,14 +82,14 @@ if __name__ == '__main__':
                 bfpars, bfnll = pyhf.infer.mle.fit(data, model, return_fitted_val=True)
                 end = timer()
                 fittime = end-start
-                pyhflog.info('    bf='+str(float(bfpars[0])))
+                pyhflog.info('    bf='+str(float(bfpars[model.config.poi_index])))
                 inc = (options.max-options.min)/options.npoints
                 muv = list(np.arange(options.min, options.max+inc, inc))
                 utils.setprec(muv)
                 if 1 not in muv: muv += utils.setprec([1])
                 pyhflog.info('--> Perform the scan ('+fit+')')
                 res = {'r': [], 'nll': []}
-                res['bf'] = [float(bfpars[0])]
+                res['bf'] = [float(bfpars[model.config.poi_index])]
                 nllv = []
                 for r in muv:
                     rpars, rnll = pyhf.infer.mle.fixed_poi_fit(r, data, model, return_fitted_val=True)
