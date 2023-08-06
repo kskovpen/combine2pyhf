@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 comblog.info('    bf='+str(bfres['r'][0]))
                 comblog.info('--> Perform the scan ('+fit+')')
                 if 'atlas-tttt' in f:
-                    utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName MultiDimFit -n Scan '+opts+' --algo grid --rMin 0.2 --rMax 3.0 --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
+                    utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName MultiDimFit -n Scan '+opts+' --algo grid --rMin 0.1 --rMax 3.1 --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
                 else:
                     utils.execute(comblog, ('combine -M MultiDimFit '+fits[fit]+'-d higgsCombineBestFit.MultiDimFit.mH120.root --saveNLL -w w --snapshotName MultiDimFit -n Scan '+opts+' --algo grid --rMin '+str(options.min)+' --rMax '+str(options.max)+' --points '+str(options.npoints+1)+' --freezeParameters r --setParameters r=1 --alignEdges 1').split())
                 fres = postproc(comblog, 'higgsCombineScan.MultiDimFit.mH120.root', bfres, output, fit, fname.split('/')[-1])
