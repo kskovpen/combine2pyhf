@@ -84,8 +84,8 @@ if __name__ == '__main__':
                 fittime = end-start
                 pyhflog.info('    bf='+str(float(bfpars[model.config.poi_index])))
                 if 'atlas-tttt' in f:
-                    inc = (3.0-0.2)/options.npoints
-                    muv = list(np.arange(0.2, 3.0+inc, inc))
+                    inc = (3.1-0.1)/options.npoints
+                    muv = list(np.arange(0.1, 3.1+inc, inc))
                 else:
                     inc = (options.max-options.min)/options.npoints
                     muv = list(np.arange(options.min, options.max+inc, inc))
