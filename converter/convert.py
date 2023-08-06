@@ -60,11 +60,11 @@ for d in dc:
         bbl = '--bbl ' if 'bbl' in fname or 'atlas-' not in fname else ''
         execshapeloc(comblog, dname, f, tool = 'combine', combine2pyhf = True)
         comblog.info('combine -> pyhf: '+fname)
-        utils.execute(comblog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --prune --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, ('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+f+' --normshape --prune --out '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0]).split())
         comblog.info('combine -> pyhf: plot distributions')
-        utils.execute(comblog, 'python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/combine/'+os.path.splitext(fname)[0]+'/hist')
+        utils.execute(comblog, ('python3 '+ws+'/converter/hist.py --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+ws+'/results/combine/'+os.path.splitext(fname)[0]+'/hist').split())
         comblog.info('pyhf -> combine: '+fname)
-        utils.execute(comblog, 'python3 '+ws+'/converter/pyhf2combine.py --normshape --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(comblog, ('python3 '+ws+'/converter/pyhf2combine.py --normshape --input '+wd+'/cards/combine/combine2pyhf/'+dname+'/'+fname.replace('.txt', '.json')+' --output '+wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]).split())
         execshapeloc(comblog, dname, wd+'/cards/combine/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt')
 
 #        if 'normfactor' in fname:
@@ -96,14 +96,14 @@ for d in dc:
         os.system('mkdir -p '+ws+'/results/pyhf/'+os.path.splitext(fname)[0])
         bbl = '--bbl ' if 'bbl' in fname or 'atlas-' in fname else ''
         pyhflog.info('pyhf -> combine: '+fname)
-        utils.execute(pyhflog, 'python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0])
+        utils.execute(pyhflog, ('python3 '+ws+'/converter/pyhf2combine.py --input '+f+' --output '+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]).split())
         froot = wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.root'
         pyhflog.info('combine -> pyhf: '+fname)
         execshapeloc(pyhflog, dname, wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', tool = 'pyhf')
         pyhflog.info('combine -> pyhf: plot distributions')
-        utils.execute(pyhflog, 'python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/pyhf/'+os.path.splitext(fname)[0]+'/hist')
+        utils.execute(pyhflog, ('python3 '+ws+'/converter/hist.py --input '+f+' --output '+ws+'/results/pyhf/'+os.path.splitext(fname)[0]+'/hist').split())
 #        with open(wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt', 'r') as ff:
 #            lines = ff.readlines()
 #            for l in lines:
 #                print(l)
-        utils.execute(pyhflog, 'python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0]+(' --prune' if 'multi-bin-sys-histosys-' in fname else ''))
+        utils.execute(pyhflog, ('python3 /HiggsAnalysis/CombinedLimit/test/datacardConvert.py '+bbl+wd+'/cards/pyhf/pyhf2combine/'+dname+'/'+os.path.splitext(fname)[0]+'.txt --out '+wd+'/cards/pyhf/combine2pyhf/'+dname+'/'+os.path.splitext(fname)[0]+(' --prune' if 'multi-bin-sys-histosys-' in fname else '')).split())
