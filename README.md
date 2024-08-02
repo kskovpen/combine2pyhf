@@ -922,3 +922,30 @@
 
     </details>
 
+  - <details>
+
+    <summary>atlas-sabine (asi)</summary>
+
+    ![atlas-sabine (asi)](results/pyhf/atlas-sabine/hist.png?raw=true)
+
+    ![atlas-sabine (asi)](results/pyhf/atlas-sabine/time_asi.png?raw=true)
+
+    ![atlas-sabine (asi)](results/pyhf/atlas-sabine/nll_shape_asi.png?raw=true)
+
+    ![atlas-sabine (asi)](results/pyhf/atlas-sabine/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-sabine (obs)</summary>
+
+    ![atlas-sabine (obs)](results/pyhf/atlas-sabine/hist.png?raw=true)
+
+    ![atlas-sabine (obs)](results/pyhf/atlas-sabine/time_obs.png?raw=true)
+
+    ![atlas-sabine (obs)](results/pyhf/atlas-sabine/nll_shape_obs.png?raw=true)
+
+    ![atlas-sabine (obs)](results/pyhf/atlas-sabine/nll_obs.png?raw=true)
+
+    </details>
