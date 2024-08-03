@@ -1,5 +1,13 @@
 #!/bin/bash
 
+ls
+echo "here"
+ls /
+echo "p1"
+ls /HiggsAnalysis
+echo "p2"
+ls /HiggsAnalysis/CombinedLimit
+
 check() {
   if grep -q "ERROR" $1; then
     exit 1
