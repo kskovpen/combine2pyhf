@@ -1,16 +1,21 @@
 #!/usr/bin/python3
 
+print("p1")
 import os, sys, glob, logging, subprocess, ROOT
+print("p2")
 
 ws = os.environ['WS']
 wd = ws+'/validation'
 
+print("p3")
 sys.path.append(wd)
 import utils
+print("p4")
 
 os.system('mkdir -p '+wd+'/cards/combine')
 os.system('mkdir -p '+wd+'/cards/pyhf')
 
+print("p5")
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%m-%d %H:%M',
@@ -21,6 +26,7 @@ console.setLevel(logging.INFO)
 formatter = logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s')
 console.setFormatter(formatter)
 logging.getLogger().addHandler(console)
+print("p6")
 
 logging.info('Start conversion process')
         
