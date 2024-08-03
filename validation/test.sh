@@ -6,18 +6,18 @@ check() {
   fi
 }
 
-pyenvon() {
-  unset PYTHONPATH; unset PYTHONHOME
-  /usr/bin/virtualenv --python=/usr/bin/python3 pyenv > /dev/null
-  source pyenv/bin/activate
-  pip install pyhf iminuit deepdiff plotly kaleido pydash jax jaxlib torch torchvision > /dev/null
-  source pyenv/bin/activate
-}
+#pyenvon() {
+#  unset PYTHONPATH; unset PYTHONHOME
+#  /usr/bin/virtualenv --python=/usr/bin/python3 pyenv > /dev/null
+#  source pyenv/bin/activate
+#  pip install pyhf iminuit deepdiff plotly kaleido pydash jax jaxlib torch torchvision > /dev/null
+#  source pyenv/bin/activate
+#}
 
-pyenvoff() {
-  deactivate
-  export PYTHONPATH=$PP; export PYTHONHOME=$PH
-}
+#pyenvoff() {
+#  deactivate
+#  export PYTHONPATH=$PP; export PYTHONHOME=$PH
+#}
 
 pyloc=($(pip show pyhf | grep Location))
 export PYTHONPATH=$PYTHONPATH:${pyloc[1]}
@@ -60,11 +60,13 @@ echo "Done."
 echo "Clean combine."
 rm -rf /usr
 echo "Run pyhf fits on combine inputs .."
-pyenvon; python3 $WS/validation/fitpyhf.py --combine; pyenvoff
+#pyenvon; python3 $WS/validation/fitpyhf.py --combine; pyenvoff
+python3 $WS/validation/fitpyhf.py --combine
 check "$WS/logs/combine_fitpyhf.log"
 echo "Done."
 echo "Run pyhf fits on pyhf inputs .."
-pyenvon; python3 $WS/validation/fitpyhf.py; pyenvoff
+#pyenvon; python3 $WS/validation/fitpyhf.py; pyenvoff
+python3 $WS/validation/fitpyhf.py
 check "$WS/logs/pyhf_fitpyhf.log"
 echo "Done."
 echo "Run analytical tests .."
@@ -73,9 +75,11 @@ check "$WS/logs/analytic.log"
 echo "Done."
 
 echo "Run plotting .."
-pyenvon; python3 $WS/validation/plot.py --input $WS/results/combine --combine; pyenvoff
+#pyenvon; python3 $WS/validation/plot.py --input $WS/results/combine --combine; pyenvoff
+python3 $WS/validation/plot.py --input $WS/results/combine --combine
 check "$WS/logs/plot_combine.log"
-pyenvon; python3 $WS/validation/plot.py --input $WS/results/pyhf; pyenvoff
+#pyenvon; python3 $WS/validation/plot.py --input $WS/results/pyhf; pyenvoff
+python3 $WS/validation/plot.py --input $WS/results/pyhf
 check "$WS/logs/plot_pyhf.log"
 echo "Done."
 
