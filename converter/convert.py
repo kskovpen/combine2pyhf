@@ -6,6 +6,7 @@ ws = os.environ['WS']
 wd = ws+'/validation'
 
 sys.path.append(wd)
+import utils
 
 os.system('mkdir -p '+wd+'/cards/combine')
 os.system('mkdir -p '+wd+'/cards/pyhf')
