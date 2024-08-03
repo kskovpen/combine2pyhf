@@ -468,34 +468,6 @@
 
   - <details>
 
-    <summary>multi-bin-stat-bbl (asi)</summary>
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/time_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-stat-bbl (obs)</summary>
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/time_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>multi-bin-stat-full (asi)</summary>
 
     ![multi-bin-stat-full (asi)](results/pyhf/multi-bin-stat-full/hist.png?raw=true)
@@ -519,6 +491,34 @@
     ![multi-bin-stat-full (obs)](results/pyhf/multi-bin-stat-full/nll_shape_obs.png?raw=true)
 
     ![multi-bin-stat-full (obs)](results/pyhf/multi-bin-stat-full/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-stat-bbl (asi)</summary>
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/time_asi.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-stat-bbl (obs)</summary>
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/time_obs.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_obs.png?raw=true)
 
     </details>
 
@@ -840,6 +840,34 @@
 
   - <details>
 
+    <summary>atlas-sabine-test (asi)</summary>
+
+    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/hist.png?raw=true)
+
+    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/time_asi.png?raw=true)
+
+    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/nll_shape_asi.png?raw=true)
+
+    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>atlas-sabine-test (obs)</summary>
+
+    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/hist.png?raw=true)
+
+    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/time_obs.png?raw=true)
+
+    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/nll_shape_obs.png?raw=true)
+
+    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
     <summary>atlas-tttt-multilepton (asi)</summary>
 
     ![atlas-tttt-multilepton (asi)](results/pyhf/atlas-tttt-multilepton/hist.png?raw=true)
@@ -919,34 +947,6 @@
     ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_shape_obs.png?raw=true)
 
     ![atlas-ttz-4l (obs)](results/pyhf/atlas-ttz-4l/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>atlas-sabine-test (asi)</summary>
-
-    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/hist.png?raw=true)
-
-    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/time_asi.png?raw=true)
-
-    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/nll_shape_asi.png?raw=true)
-
-    ![atlas-sabine-test (asi)](results/pyhf/atlas-sabine-test/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>atlas-sabine-test (obs)</summary>
-
-    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/hist.png?raw=true)
-
-    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/time_obs.png?raw=true)
-
-    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/nll_shape_obs.png?raw=true)
-
-    ![atlas-sabine-test (obs)](results/pyhf/atlas-sabine-test/nll_obs.png?raw=true)
 
     </details>
 

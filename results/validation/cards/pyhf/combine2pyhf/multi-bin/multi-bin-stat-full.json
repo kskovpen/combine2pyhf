@@ -1,0 +1,487 @@
+{
+    "channels": [
+        {
+            "name": "ch1",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch1_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch1_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch2",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch2_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch2_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch3",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch3_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch3_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch4",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch4_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch4_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch5",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch5_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch5_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch6",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch6_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch6_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch7",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch7_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch7_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch8",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch8_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch8_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch9",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch9_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch9_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ch10",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "prop_binch10_sig",
+                            "type": "shapesys",
+                            "data": [
+                                1.4363549397668944
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "prop_binch10_bkg",
+                            "type": "shapesys",
+                            "data": [
+                                6.306722640645254
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "observations": [
+        {
+            "name": "ch1",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch2",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch3",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch4",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch5",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch6",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch7",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch8",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch9",
+            "data": [
+                237.0
+            ]
+        },
+        {
+            "name": "ch10",
+            "data": [
+                237.0
+            ]
+        }
+    ],
+    "measurements": [
+        {
+            "config": {
+                "parameters": [
+                    {
+                        "bounds": [
+                            [
+                                -10.0,
+                                10.0
+                            ]
+                        ],
+                        "fixed": false,
+                        "name": "r_sig"
+                    }
+                ],
+                "poi": "r_sig"
+            },
+            "name": "meas"
+        }
+    ],
+    "version": "1.0.0"
+}
