@@ -92,9 +92,9 @@ for r in runs:
                     chName = d1['name']
                     d2 = pydash.get(j, r)
                     
-                    if 'sabine' in runName: # fixme
-                        passComp = True
-                    continue
+#                    if 'sabine' in runName: # fixme
+#                        passComp = True
+#                    continue
                     
                     if 'samples' not in d1.keys(): continue
                     for s1 in d1['samples']:
