@@ -101,8 +101,8 @@ for r in runs:
                                     if s2['data'][ib] != 0 and abs(s1['data'][ib]-s2['data'][ib])/s2['data'][ib] > prec:
                                         pyhflog.error('Different data found')
                                         passComp = False
-                                mods1 = [s['name'].replace('_splitns', '') for s in s1['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name'] and 'mu_Top' not in s['name']]
-                                mods2 = [s['name'].replace('_splitns', '') for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name'] and 'mu_Top' not in s['name']]
+                                mods1 = [s['name'].replace('_splitns', '') for s in s1['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name'] and not s['name'].startswith('mu_')]
+                                mods2 = [s['name'].replace('_splitns', '') for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name'] and not s['name'].startswith('mu_')]
                                 d = list(set(mods1) - set(mods2))
                                 isfake = True
                                 if len(d) > 0:
