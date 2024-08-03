@@ -236,34 +236,6 @@
 
   - <details>
 
-    <summary>multi-bin-sys-histosys-corr (asi)</summary>
-
-    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/hist.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/time_asi.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-sys-histosys-corr (obs)</summary>
-
-    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/hist.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/time_obs.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>multi-bin-sys-histosys-uncorr (asi)</summary>
 
     ![multi-bin-sys-histosys-uncorr (asi)](results/combine/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
@@ -287,6 +259,34 @@
     ![multi-bin-sys-histosys-uncorr (obs)](results/combine/multi-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
 
     ![multi-bin-sys-histosys-uncorr (obs)](results/combine/multi-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-corr (asi)</summary>
+
+    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (asi)](results/combine/multi-bin-sys-histosys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-corr (obs)</summary>
+
+    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-corr (obs)](results/combine/multi-bin-sys-histosys-corr/nll_obs.png?raw=true)
 
     </details>
 
@@ -380,34 +380,6 @@
 
   - <details>
 
-    <summary>cms-ttg-2l (asi)</summary>
-
-    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/hist.png?raw=true)
-
-    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/time_asi.png?raw=true)
-
-    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/nll_shape_asi.png?raw=true)
-
-    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>cms-ttg-2l (obs)</summary>
-
-    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/hist.png?raw=true)
-
-    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/time_obs.png?raw=true)
-
-    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/nll_shape_obs.png?raw=true)
-
-    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>cms-ttg-1l (asi)</summary>
 
     ![cms-ttg-1l (asi)](results/combine/cms-ttg-1l/hist.png?raw=true)
@@ -431,6 +403,34 @@
     ![cms-ttg-1l (obs)](results/combine/cms-ttg-1l/nll_shape_obs.png?raw=true)
 
     ![cms-ttg-1l (obs)](results/combine/cms-ttg-1l/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>cms-ttg-2l (asi)</summary>
+
+    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/hist.png?raw=true)
+
+    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/time_asi.png?raw=true)
+
+    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/nll_shape_asi.png?raw=true)
+
+    ![cms-ttg-2l (asi)](results/combine/cms-ttg-2l/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>cms-ttg-2l (obs)</summary>
+
+    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/hist.png?raw=true)
+
+    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/time_obs.png?raw=true)
+
+    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/nll_shape_obs.png?raw=true)
+
+    ![cms-ttg-2l (obs)](results/combine/cms-ttg-2l/nll_obs.png?raw=true)
 
     </details>
 
@@ -468,34 +468,6 @@
 
   - <details>
 
-    <summary>multi-bin-stat-bbl (asi)</summary>
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/time_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-stat-bbl (obs)</summary>
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/time_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>multi-bin-stat-full (asi)</summary>
 
     ![multi-bin-stat-full (asi)](results/pyhf/multi-bin-stat-full/hist.png?raw=true)
@@ -519,6 +491,34 @@
     ![multi-bin-stat-full (obs)](results/pyhf/multi-bin-stat-full/nll_shape_obs.png?raw=true)
 
     ![multi-bin-stat-full (obs)](results/pyhf/multi-bin-stat-full/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-stat-bbl (asi)</summary>
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/time_asi.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-stat-bbl (asi)](results/pyhf/multi-bin-stat-bbl/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-stat-bbl (obs)</summary>
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/hist.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/time_obs.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-stat-bbl (obs)](results/pyhf/multi-bin-stat-bbl/nll_obs.png?raw=true)
 
     </details>
 
@@ -638,34 +638,6 @@
 
   - <details>
 
-    <summary>one-bin-sys-normsys-corr (asi)</summary>
-
-    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/hist.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/time_asi.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/nll_shape_asi.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>one-bin-sys-normsys-corr (obs)</summary>
-
-    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/hist.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/time_obs.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/nll_shape_obs.png?raw=true)
-
-    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/nll_obs.png?raw=true)
-
-    </details>
-
-  - <details>
-
     <summary>one-bin-sys-normsys-uncorr (asi)</summary>
 
     ![one-bin-sys-normsys-uncorr (asi)](results/pyhf/one-bin-sys-normsys-uncorr/hist.png?raw=true)
@@ -692,35 +664,35 @@
 
     </details>
 
+  - <details>
+
+    <summary>one-bin-sys-normsys-corr (asi)</summary>
+
+    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/time_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/nll_shape_asi.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (asi)](results/pyhf/one-bin-sys-normsys-corr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>one-bin-sys-normsys-corr (obs)</summary>
+
+    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/hist.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/time_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/nll_shape_obs.png?raw=true)
+
+    ![one-bin-sys-normsys-corr (obs)](results/pyhf/one-bin-sys-normsys-corr/nll_obs.png?raw=true)
+
+    </details>
+
 - Shape uncertainties
-
-  - <details>
-
-    <summary>multi-bin-sys-histosys-uncorr (asi)</summary>
-
-    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/time_asi.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_shape_asi.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_asi.png?raw=true)
-
-    </details>
-
-  - <details>
-
-    <summary>multi-bin-sys-histosys-uncorr (obs)</summary>
-
-    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/time_obs.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
-
-    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
-
-    </details>
 
   - <details>
 
@@ -747,6 +719,34 @@
     ![multi-bin-sys-histosys-corr (obs)](results/pyhf/multi-bin-sys-histosys-corr/nll_shape_obs.png?raw=true)
 
     ![multi-bin-sys-histosys-corr (obs)](results/pyhf/multi-bin-sys-histosys-corr/nll_obs.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-uncorr (asi)</summary>
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/time_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_shape_asi.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (asi)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_asi.png?raw=true)
+
+    </details>
+
+  - <details>
+
+    <summary>multi-bin-sys-histosys-uncorr (obs)</summary>
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/hist.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/time_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_shape_obs.png?raw=true)
+
+    ![multi-bin-sys-histosys-uncorr (obs)](results/pyhf/multi-bin-sys-histosys-uncorr/nll_obs.png?raw=true)
 
     </details>
 
