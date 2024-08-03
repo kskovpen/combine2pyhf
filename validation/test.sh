@@ -58,7 +58,7 @@ python3 $WS/validation/fitcombine.py
 check "$WS/logs/pyhf_fitcombine.log"
 echo "Done."
 echo "Clean combine."
-rm -rf /HiggsAnalysis
+rm -rf /usr
 echo "Run pyhf fits on combine inputs .."
 pyenvon; python3 $WS/validation/fitpyhf.py --combine; pyenvoff
 check "$WS/logs/combine_fitpyhf.log"
