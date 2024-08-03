@@ -1,12 +1,14 @@
 #!/bin/bash
 
-ls
+du -sh *
 echo "here"
-ls /
+du -sh /*
 echo "p1"
-ls /HiggsAnalysis
+du -sh /HiggsAnalysis/*
 echo "p2"
-ls /HiggsAnalysis/CombinedLimit
+du -sh /HiggsAnalysis/CombinedLimit/*
+echo "p3"
+du -sh /HiggsAnalysis/CombinedLimit/src/*
 
 check() {
   if grep -q "ERROR" $1; then
