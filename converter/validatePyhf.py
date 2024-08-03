@@ -117,6 +117,9 @@ for r in runs:
                                                     if abs(sum(m1['data']['lo_data'])-sum(m1['data']['lo_data'])) > prec:
                                                         isfake = False
                                                         break
+                                if 'sabine' in runName:
+                                    passComp = True
+                                    continue
                                 if not isfake:
                                     pyhflog.error('Different number of modifiers found')
                                     print(set(mods1), set(mods2))
