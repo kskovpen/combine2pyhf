@@ -1,0 +1,99 @@
+{
+    "channels": [
+        {
+            "name": "ch1",
+            "samples": [
+                {
+                    "name": "sig",
+                    "data": [
+                        148.8058319091797
+                    ],
+                    "modifiers": [
+                        {
+                            "data": null,
+                            "name": "r_sig",
+                            "type": "normfactor"
+                        },
+                        {
+                            "name": "sigsys_mergedns",
+                            "type": "histosys",
+                            "data": {
+                                "hi_data": [
+                                    148.8058319091797
+                                ],
+                                "lo_data": [
+                                    148.8058319091797
+                                ]
+                            }
+                        },
+                        {
+                            "name": "sigsys_mergedns",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.1000000102541607,
+                                "lo": 0.8999999897458394
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "bkg",
+                    "data": [
+                        43.84315872192383
+                    ],
+                    "modifiers": [
+                        {
+                            "name": "bkgsys_mergedns",
+                            "type": "histosys",
+                            "data": {
+                                "hi_data": [
+                                    43.84315872192383
+                                ],
+                                "lo_data": [
+                                    43.84315872192383
+                                ]
+                            }
+                        },
+                        {
+                            "name": "bkgsys_mergedns",
+                            "type": "normsys",
+                            "data": {
+                                "hi": 1.1999999825984378,
+                                "lo": 0.8000000174015622
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "observations": [
+        {
+            "name": "ch1",
+            "data": [
+                237.0
+            ]
+        }
+    ],
+    "measurements": [
+        {
+            "config": {
+                "parameters": [
+                    {
+                        "bounds": [
+                            [
+                                -10.0,
+                                10.0
+                            ]
+                        ],
+                        "fixed": false,
+                        "name": "r_sig"
+                    }
+                ],
+                "poi": "r_sig"
+            },
+            "name": "meas"
+        }
+    ],
+    "version": "1.0.0"
+}
