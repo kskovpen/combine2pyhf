@@ -1,0 +1,13 @@
+imax 1 number of bins
+jmax 1 number of processes minus 1
+kmax 1 number of nuisance parameters
+------------------------------------
+shapes * ch1 /__w/combine2pyhf/combine2pyhf/validation/cards/combine/pyhf2combine/one-bin/one-bin-sys-histosys-corr.root ch1/$PROCESS ch1/$PROCESS_$SYSTEMATIC
+bin          ch1
+observation  -1 
+bin          ch1 ch1
+process      sig bkg
+process      0 1
+rate         -1 -1
+sys shape  1.0  1.0 
+------------------------------------
