@@ -8,6 +8,15 @@ jobs:
       options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
     name: Run combine2pyhf tests
     steps:
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@main
+	with:
+	  tool-cache: true
+	  android: true
+	  dotnet: true
+	  haskell: true
+	  large-packages: true
+	  swap-storage: true
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Run tests
