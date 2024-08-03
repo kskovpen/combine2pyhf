@@ -20,6 +20,7 @@ RUN dpkg -i cvmfs-release-latest_all.deb
 RUN rm -f cvmfs-release-latest_all.deb
 RUN apt-get update
 RUN apt-get install -y cvmfs
+RUN apt-get clean
 
 COPY install.sh .
 
