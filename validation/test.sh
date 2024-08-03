@@ -40,7 +40,6 @@ PP=$PYTHONPATH; PH=$PYTHONHOME
 echo "Done"
 echo "Convert datacards .."
 
-root-config --version
 python3 $WS/converter/multibin.py
 python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
