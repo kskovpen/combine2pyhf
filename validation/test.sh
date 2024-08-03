@@ -47,7 +47,7 @@ python3 $WS/converter/convert.py
 check "$WS/logs/convert.log"
 python3 $WS/converter/validateCombine.py
 check "$WS/logs/validateCombine.log"
-python3 $WS/converter/validatePyhf.py
+pyenvon; python3 $WS/converter/validatePyhf.py; pyenvoff
 check "$WS/logs/validatePyhf.log"
 
 echo "Done."
