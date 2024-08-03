@@ -8,6 +8,9 @@ jobs:
       options: --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined
     name: Run combine2pyhf tests
     steps:
+      - name: Install sudo
+        run: |
+          apt install sudo
       - name: Free disk space
         uses: jlumbroso/free-disk-space@main
         with:
