@@ -10,8 +10,8 @@ RUN apt-get install -y git make wget lsb-release libncurses5 python3 python3-pip
 RUN gcc --version
 
 RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install pyhf deepdiff kaleido plotly matplotlib pydash jax jaxlib torch torchvision --break-system-packages
-RUN python3 -m pip install --upgrade jax jaxlib --break-system-packages
+#RUN python3 -m pip install pyhf deepdiff kaleido plotly matplotlib pydash jax jaxlib torch torchvision --break-system-packages
+#RUN python3 -m pip install --upgrade jax jaxlib --break-system-packages
 
 RUN git clone --single-branch --branch combine2pyhf https://github.com/kskovpen/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
 
