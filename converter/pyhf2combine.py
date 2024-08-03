@@ -165,7 +165,7 @@ if __name__ == '__main__':
     normf = []
     for p in poi:
         if (('r_' in p[1]) and not 'atlas-' in options.input) \
-        or (('XS' in p[1] or 'mu_tttt' in p[1] or 'mu_SIG' in p[1]) and 'atlas-' in options.input):
+        or (('XS' in p[1] or 'mu_tttt' in p[1] or 'mu_Top' in p[1]) and 'atlas-' in options.input):
             poisig = p[0]
         else: normf.append(p)
     samples.remove(poisig)
