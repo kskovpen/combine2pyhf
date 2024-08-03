@@ -1,5 +1,5 @@
 #FROM ubuntu:latest as base
-FROM ubuntu:22.04 as base
+FROM ubuntu:20.04 as base
 FROM base as builder
 
 RUN apt-get update -y
