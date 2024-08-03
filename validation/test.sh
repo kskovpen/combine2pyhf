@@ -57,8 +57,6 @@ echo "Run combine fits on pyhf inputs .."
 python3 $WS/validation/fitcombine.py
 check "$WS/logs/pyhf_fitcombine.log"
 echo "Done."
-echo "Clean combine."
-rm -rf /usr
 echo "Run pyhf fits on combine inputs .."
 #pyenvon; python3 $WS/validation/fitpyhf.py --combine; pyenvoff
 python3 $WS/validation/fitpyhf.py --combine
