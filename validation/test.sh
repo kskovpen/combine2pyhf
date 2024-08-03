@@ -1,15 +1,5 @@
 #!/bin/bash
 
-du -sh *
-echo "here"
-du -sh /*
-echo "p1"
-du -sh /HiggsAnalysis/*
-echo "p2"
-du -sh /HiggsAnalysis/CombinedLimit/*
-echo "p3"
-du -sh /HiggsAnalysis/CombinedLimit/src/*
-
 check() {
   if grep -q "ERROR" $1; then
     exit 1
