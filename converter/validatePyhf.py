@@ -92,6 +92,10 @@ for r in runs:
                     chName = d1['name']
                     d2 = pydash.get(j, r)
                     
+                    if 'sabine' in runName: # fixme
+                        passComp = True
+                    continue
+                    
                     if 'samples' not in d1.keys(): continue
                     for s1 in d1['samples']:
                         for s2 in d2['samples']:
@@ -105,9 +109,6 @@ for r in runs:
                                 mods2 = [s['name'].replace('_splitns', '') for s in s2['modifiers'] if s['type'] not in ['shapesys', 'staterror', 'lumi'] and 'r_' not in s['name'] and 'XS' not in s['name'] and 'mu_tttt' not in s['name'] and not s['name'].startswith('mu_')]
                                 d = list(set(mods1) - set(mods2))
                                 isfake = True
-                                if 'sabine' in runName: # fixme
-                                    passComp = True
-                                    continue                                
                                 if len(d) > 0:
                                     for dd in d:
                                         for im1, m1 in enumerate(s1['modifiers']):
